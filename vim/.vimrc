@@ -1,4 +1,4 @@
-"==================================================================
+
 "			~My vimrc~
 "==================================================================		
 
@@ -24,7 +24,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-dispatch' "allows you to test in the window with vim-rspec
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tomasr/molokai'
-Plugin 'nanotech/jellybeans.vim' "color scheme
+Plugin 'joshdick/onedark.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,6 +58,7 @@ nmap <leader>t :w<cr>:call RunCurrentSpecFile()<cr>
 nmap <leader>i mmgg=G`m
 nmap <leader>cc :w !pbcopy<cr>
 nmap <leader>h :noh<cr>
+nmap <leader>op :!open % -a Google\ Chrome<cr>
 
 "Move up and down by visible lines if current line is wrapped
 nmap j gj
@@ -69,9 +70,9 @@ autocmd Filetype help nnoremap <buffer> q :q<CR>
 "Command aliases for typoed commands (accidentally holding shift too long)
 command! Q q " Bind :Q to :q
 
-let g:molokai_original = 1
-
-colorscheme jellybeans
+" Colors
+colorscheme onedark
+let g:airline_theme='onedark'
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
