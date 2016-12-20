@@ -24,6 +24,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-dispatch' "allows you to test in the window with vim-rspec
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tomasr/molokai'
+Plugin 'nanotech/jellybeans.vim' "color scheme
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -70,6 +71,9 @@ command! Q q " Bind :Q to :q
 
 let g:molokai_original = 1
 
+colorscheme jellybeans
+
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 " let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
