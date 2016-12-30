@@ -1,0 +1,68 @@
+:% y +          Select all and copy to system clipboard /<word> <ENTER>          
+:%s/old/new/gc  Replace (old) with (new) word for the entire file (g) and ask for each change (c)
+:ctrl o         Go to previous posotion
+:set ic         Set (while in search mode) so you can search both uppercase and lower case instances
+:set hls        Highlight text during search
+:noh            Turn of hilighted text from last search
+:f / F / ;      Jump to a specific place in a line (; goes to the next instance)
+:t / T / ;      Jump to the character before a specific place in a line (; goes to the next instance)
+:H / M / L      Navigate to the High, Middle, or Low section of a page
+:cc							Deletes an entire line (leaves a blank line) 
+:<< / >>        Intents a line
+:daw						Delete a word
+:diw            Delete (in) a word (leaves a space)
+:<ip / >ip      Indent an entire paragraph equally
+:cip						Change the code within the current param
+:ci(						Change the code within the ()  
+:cit            Can be used to select the inner portion of html tags
+:gg=G						Indents the entire contents of a file												
+:q/             Access / edit search history
+:zt							Focuses the current line to the top of the screen
+:W							Moves through words delimited by white spaces
+:dit						Delete inner tag
+:*							Select all items under the current curssor
+
+Setting up buffer windows
+vim <filename>			    Opens the file in VIM	
+:new <filename tab> 		Opens a new window
+:vnew <filename tab>		Opens a new vertical window		
+:split <filename tab>   Opens an existing file in a horizontal split
+:vsplit <filename tab>  Opens an existing file in a vertical split
+:on											Closes all other tabs except the one you are in
+
+tabs
+:tabe <filename> or e.	Opens a new tab
+$ vim -p <filename>...  Opens multiple files in multiple tabs
+3gt											View tab 3
+:tabm 0									Moves current tab to 0th place
+:tabm 									Moves current tab to last place 
+
+ctrl-w-(hjkl)           Moving between windows
+ctrl-w-(HJKL)           Moving windows
+ctrl-w-T          			Breaks a split view into a separate tab 
+
+:echo expand('%:p') 		Check current file path
+
+Plugins
+:PluginInstall          Install plugins with Vundler
+
+ctrlp (plugin)
+<C-j>                   move selection down
+<C-k>                   move selection up
+<C-p>										reopen last search (<C-n> goes forward)
+<C-t>										open the highlighted file in a new tab
+<C-s>										open the highlighted file in a new split   
+<C-v>										open the highlighted file in a new inner split
+
+vim-surround (plugin)
+ysiw<p>												yes inner word <p> (adds paragraph tags)
+yss<h1>												yes sentence <h1> (adds h1 tags to a line)
+ys10j													adds surrounding tags surrounding the selected 10 lines
+dst														delete surrounding tag
+cst<new tag>									change surrounding tag
+ds<character>									delete surrounding (character)
+cs<character><new character>	change surrounding (character)
+
+comentary.vim (plugin)
+gcc											go comment current line
+gcip										go comment inner paragraph

@@ -1,0 +1,17 @@
+****************************************************************
+										javaScript Cheatsheet
+****************************************************************
+
+
+number times a character
+	"ab".repeat(3) 			=> "ababab" // not available on node
+	Array(4).join("ab") => "ababab"
+
+rounding
+	Math.round(5.609)   		 => 5
+	Number(5.649.toFixed(2)) => 5.65 // round two decimal points
+	Math.floor(5.609)				 => 5.65 // drops all numbers after decimal
+
+objects
+	var obj = { foo: "bar", baz: 42 };
+	console.log(Object.keys(obj)); // ['foo', 'baz;]

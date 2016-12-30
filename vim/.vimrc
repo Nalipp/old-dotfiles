@@ -1,4 +1,3 @@
-
 "			~My vimrc~
 "==================================================================		
 
@@ -30,6 +29,8 @@ Plugin 'joshdick/onedark.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
+
 
 imap jk <esc>
 imap kj <esc>
@@ -45,20 +46,26 @@ set hlsearch
 set ignorecase
 set splitbelow
 set splitright
+set mousehide
 
 "leader comands
-let mapleader = "\<Space>"
+let mapleader = "\;"
 nmap <leader>vr :tabedit ~/.vimrc<cr>
 "nmap <leader>co ggVG*y
 nmap <leader>ca :%w !pbcopy<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
-nmap <leader>cs :tabedit /Users/natelipp/code/vim/cheatsheet <cr>
+nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/vim <cr> 
+nmap <leader>fc :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/
+nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/vim/skeletons/
 nmap <leader>t :w<cr>:call RunCurrentSpecFile()<cr>
-nmap <leader>i mmgg=G`m
+nmap <leader>id mmgg=G`m
+nmap <leader>i :i<cr>
+nmap <leader>s :w<cr>
 nmap <leader>cc :w !pbcopy<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
+nmap <leader>q :q<cr>
 
 "Move up and down by visible lines if current line is wrapped
 nmap j gj
