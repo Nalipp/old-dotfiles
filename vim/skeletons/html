@@ -1,4 +1,14 @@
-/* html */
+=============================================================
+html
+=============================================================
+
+html skeleton
+css clearfix
+css resets
+links (frameworks)
+
+=============================================================
+html skeleton
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,4 +22,35 @@
 		<p>This is a web page.</p>
 	</body>
 </html>
+
+
+=============================================================
+css clearfix
+
+.group:before,
+	.group:after {
+content: "";
+display: table;
+	}
+.group:after {
+clear: both;
+}
+.group {
+	*zoom: 1;
+}
+
+
+=============================================================
+css resets 
+
+	examples: http://meyerweb.com/eric/tools/css/reset/
+	http://necolas.github.io/normalize.css/
+
+
+=============================================================
+frameworks
+	http://getskeleton.com/
+
+
+
 
