@@ -2,24 +2,55 @@
 										javaScript Cheatsheet
 ****************************************************************
 
-
-number times a character
-	"ab".repeat(3) 			=> "ababab" // not available on node
-	Array(4).join("ab") => "ababab" // available on node
-
-rounding
-	Math.round(5.609)   		 => 5
-	Number(5.649.toFixed(2)) => 5.65 // round two decimal points
-	Math.floor(5.609)				 => 5.65 // drops all numbers after decimal
-
+strings
+arrays
 objects
-	var source = { foo: "bar", baz: 42 };
+numbers
+regex
 
-	keys
-		Object.keys(source); // ['foo', 'baz;]
-	values
-		Object.values(source); // ['bar', 42]
+****************************************************************
+strings
 
+	charAt()
+		vowels = 'abcde';
+		console.log(vowels.charAt(3));     // 'd'
+
+  indexOf()
+		vowels = 'abcde';
+		console.log(vowels.indexOf('c'));  // '2'
+
+	  
+	number times a character
+		"ab".repeat(3) 			=> "ababab" // not available on node
+		Array(4).join("ab") => "ababab" // available on node
+
+****************************************************************
+arrays
+
+	indexOf()
+		vowels = ['a','e','i','o'];
+		vowels.indexOf('i');         // 2
+
+****************************************************************
+objects
+
+	objects
+		var source = { foo: "bar", baz: 42 };
+
+		keys
+			Object.keys(source); // ['foo', 'baz;]
+		values
+			Object.values(source); // ['bar', 42]
+
+****************************************************************
+numbers
+
+	rounding
+		Math.round(5.609)   		 => 5
+		Number(5.649.toFixed(2)) => 5.65 // round two decimal points
+		Math.floor(5.609)				 => 5.65 // drops all numbers after decimal
+
+****************************************************************
 regex
 
 	function myFunction(str, var1, var2) {
@@ -32,4 +63,9 @@ regex
 	var2 = 'cat';
 
 	myFunction(str, var1, var2)  // "the cat went to the catpark"
+
+
+
+
+
 
