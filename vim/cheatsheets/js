@@ -2,12 +2,18 @@
 										javaScript Cheatsheet
 ****************************************************************
 
+general
 strings
 arrays
 objects
 numbers
 regex
+functions
 
+****************************************************************
+general
+
+	typeof(5) // number
 ****************************************************************
 strings
 
@@ -50,7 +56,16 @@ numbers
 		Number(5.649.toFixed(2)) => 5.65 // round two decimal points
 		Math.floor(5.609)				 => 5.65 // drops all numbers after decimal
 
-****************************************************************
+	charcodes (lowercase 97-122, uppercase 65-90)
+		"abc".charCodeAt(1)  					// 98
+		String.fromCharCode(98, 99)   // "bc"
+
+	range
+		alphabet = [];
+		for (var i = 97; i < 123; i++) {
+			alphabet.push(String.fromCharCode(i));
+		}
+**************************************************************
 regex
 
 	function myFunction(str, var1, var2) {
@@ -65,7 +80,9 @@ regex
 	myFunction(str, var1, var2)  // "the cat went to the catpark"
 
 
+**************************************************************
+functions
 
-
-
-
+	argments
+		get an array of arguments passed to a function
+			var args = Array.from(arguments);
