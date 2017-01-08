@@ -24,7 +24,6 @@ strings
   indexOf()
 		vowels = 'abcde';
 		console.log(vowels.indexOf('c'));  // '2'
-
 	  
 	number times a character
 		"ab".repeat(3) 			=> "ababab" // not available on node
@@ -36,6 +35,24 @@ arrays
 	indexOf()
 		vowels = ['a','e','i','o'];
 		vowels.indexOf('i');         // 2
+
+	find the last element
+		arr = [1, 2, 3];
+		arr.slice(-1)[0] 							 // 3
+
+	find the first element
+		arr = [1, 2, 3];
+		arr.slice(0)[0] 							 // 1
+
+	pop, push, shift, unshift
+		arr = [1, 2, 3, 4];
+		arr.pop();
+		arr 													// [1, 2, 3]
+		arr.push(4);								
+		arr	 												  // [1, 2, 3, 4]
+		arr.shift();
+		arr														// [2, 3, 4]
+		arr.unshift(1);								// [1, 2, 3, 4]
 
 ****************************************************************
 objects

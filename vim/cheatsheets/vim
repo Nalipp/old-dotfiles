@@ -37,9 +37,8 @@ $ vim -p <filename>...  Opens multiple files in multiple tabs
 :tabm 0									Moves current tab to 0th place
 :tabm 									Moves current tab to last place 
 
-ctrl-w-(hjkl)           Moving between windows
-ctrl-w-(HJKL)           Moving windows
 ctrl-w-T          			Breaks a split view into a separate tab 
+ctrl-w-(LH)							Move a window right / left
 
 :echo expand('%:p') 		Check current file path
 
