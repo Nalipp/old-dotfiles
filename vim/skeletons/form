@@ -69,7 +69,8 @@ labels
 ****************************************************************
 examples
 ****************************************************************
-
+input elements can have attributes such as "required" and can be found here https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-required
+input element attributes can be added after 
 
 <form class="col-1-3" action="#" method="post">
 <fieldset class="register-group">

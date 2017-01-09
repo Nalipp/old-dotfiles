@@ -3,6 +3,7 @@ html
 =============================================================
 
 html skeleton
+definition lists
 css clearfix
 css resets
 links (frameworks)
@@ -23,6 +24,22 @@ html skeleton
 	</body>
 </html>
 
+
+=============================================================
+definition lists
+
+<dl>
+	<dt></dt>
+	<dd>
+	</dd>
+</dl>
+
+dl => definition list
+dt => definition term
+dd => definition description 
+* you can add multiple definition terms to a definition description and vise versa
+	inside the <dd></dd> you can also add <p> and other tags, but this is not allowed on <dt></dt>
+	http://maxdesign.com.au/articles/definition/
 
 =============================================================
 css clearfix

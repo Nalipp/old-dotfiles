@@ -49,6 +49,7 @@ set ignorecase
 set splitbelow
 set splitright
 set mousehide
+set backspace=indent,eol,start
 
 "leader comands
 let mapleader = "\;"

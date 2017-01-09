@@ -18,9 +18,8 @@
 :gg=G						Indents the entire contents of a file												
 :q/             Access / edit search history
 :zt							Focuses the current line to the top of the screen
-:W							Moves through words delimited by white spaces
 :dit						Delete inner tag
-:*							Select all items under the current curssor
+:args *.txt | tab all  open all files within a file in tabs that end in .txt
 
 Setting up buffer windows
 vim <filename>			    Opens the file in VIM	
