@@ -6,6 +6,8 @@ html skeleton
 definition lists
 css clearfix
 css resets
+meida queries 
+gradients
 links (frameworks)
 
 =============================================================
@@ -19,8 +21,6 @@ html skeleton
 		<link rel="stylesheet" href="main.css"> 
 	</head>
 	<body>
-		<h1>Hello World</h1>
-		<p>This is a web page.</p>
 	</body>
 </html>
 
@@ -43,26 +43,94 @@ dd => definition description
 
 =============================================================
 css clearfix
+	to prevent collapsing try to float first, otherwise...
 
-.group:before,
-	.group:after {
-content: "";
-display: table;
+	<parent element> {
+		overflow: hidden;  // can cause unwanted scrollbars
 	}
-.group:after {
-clear: both;
-}
-.group {
-	*zoom: 1;
-}
+
+	<parent element>:after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+
+	.clearfix:after { 
+		content: "."; 
+		visibility: hidden; 
+		display: block; 
+		height: 0; 
+		clear: both;
+	}
+
+	.group:before,
+		.group:after {
+	content: "";
+	display: table;
+		}
+	.group:after {
+	clear: both;
+	}
+	.group {
+		*zoom: 1;
+	}
 
 
-=============================================================
-css resets 
+	other options
+
+	fake div
+	<div style="clear: right;"></div>  // uses unsamantic html
+
+
+	=============================================================
+	css resets 
 
 	examples: http://meyerweb.com/eric/tools/css/reset/
 	http://necolas.github.io/normalize.css/
+	http://cssreset.com/scripts/undohtml-css-tantek-celik/
+	
+	(add to the top of the css file)
+	@import url("whitespace-reset.css");
 
+ul,ol { list-style: none; }
+h1,h2,h3,h4,h5,h6,pre,code { font-size: 1em; }
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,dl,dt,dd, figure, figcaption {
+	margin: 0;
+	padding: 0; }
+a img,:link img,:visited img, fieldset { border: none; }
+address { font-style: normal; }
+header, section, article, nav, footer, hgroup, details, summary, figure, main { display: block; }
+mark {
+	color: inherit;
+	background: transparent; }
+abbr { border: none; }
+/* summary::-webkit-details-marker { display: none; } */
+
+
+=============================================================
+meida queries 
+
+	@media screen and (min-width:600px) {
+		nav {
+	float: left;
+	width: 25%;
+		}
+		section {
+			margin-left: 25%;
+		}
+	}
+	@media screen and (max-width:599px) {
+		nav li {
+	display: inline;
+		}
+	}
+
+=============================================================
+gradients
+
+background-color: #d2dcbe;
+background-image: linear-gradient(to bottom, #d2dcbe, #fcfff5); 
+background-repeat: no-repeat;
 
 =============================================================
 frameworks

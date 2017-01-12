@@ -2,8 +2,164 @@
 form
 ****************************************************************
 
+examples
+
+	form action(path) method
+
 	<form action="/login" method="post">
 	</form>
+	common form elements and matching css
+
+input elements can have attributes such as "required" and can be found here https://developer.mozilla.org/en-us/docs/web/html/element/input#attr-required
+input element attributes can be added after 
+
+<form class="col-1-3" action="#" method="post">
+	<fieldset class="register-group">
+		<label>
+			name
+			<input type="text" name="name" placeholder="full name" required>
+		</label>
+		<label>
+			email
+			<input type="email" name="email" placeholder="email address" required>
+		</label>
+		<label>
+			number of passes
+			<select name="quantity" required>
+				<option value="1" selected>1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</label>
+		<label>
+			comments
+			<textarea name="comments"></textarea>
+		</label>
+	</fieldset>
+	<input class="btn btn-default" type="submit" name="submit" value="purchase">
+</form>
+
+
+/* css */
+
+
+form {
+  margin-bottom: 22px;
+}
+input,
+select,
+textarea {
+	font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.register-group label {
+	color: #648880;
+	cursor: pointer;
+	font-weight: 400;
+}
+.register-group input,
+.register-group select,
+.register-group textarea {
+	border: 1px solid #c6c9cc;
+	border-radius: 5px;
+	color: #888;
+	display: block;
+	margin: 5px 0 27px 0;
+	padding: 5px 8px;
+}
+.register-group input,
+	.register-group textarea {
+	width: 100%;
+}
+.register-group select {
+	height: 34px;
+	width: 60px;
+}
+.register-group textarea {
+	height: 78px;
+}
+.btn-default {
+	border: 0;
+	background: #648880;
+	padding: 11px 30px;
+ font-size: 14px;
+}
+.btn-default:hover {
+	background: #77a198;
+}
+.btn {
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 400;
+	letter-spacing: .5px;
+	margin: 0;
+	text-transform: uppercase
+}
+
+	formaction : multiple buttons overide form action  
+
+	<form action="/login" method="post">
+		<fieldset>
+			<h1>Log In</h1>
+			<label for="email">Email address</label>
+			<input type="email" name="email" id="email" />
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" />
+			<div class="actions">
+				<input type="submit" value="Login" />
+				<button type="submit" formaction="/account/delete">Delete account</button>
+				<button type="submit" formaction="/account/password_reset">Reset password</button>
+			</div>
+		</fieldset>
+	</form>
+
+	common boolean form attributes
+
+	novalidate			=> allows you to shut off the html validations
+											<form action="/search" method="get" novalidate>
+											*novalidate is a boolean value so it does not need an "=", in this format it is set to false
+	autocomplete    => shuts off autocomplete feature (boolean value with same format as above novalidate)
+	autocorrect			=> shuts off autocorrect which can be annoying for fields like email on phone devices (Ios devices only)
+	autocapitalize  => can be set to the following values (Ios devices only)
+										 none			   => Completely disables automatic capitalization
+										 sentences	 => Automatically capitalize the first letter of sentences
+										 words			 => Automatically capitalize the first letter of words
+										 characters  =>	Automatically capitalize all characters
+											 
+	radio example
+
+<form action="" method="post">
+	<fieldset>
+		<h2>Favorite Color</h2>
+		<ul>
+			<li><label><input type="radio" name="favorite_color" value="red" />Red</label></li>
+			<li><label><input type="radio" name="favorite_color" value="orange" />Orange</label></li>
+		</ul>
+	</fieldset>
+</form>
+
+		a radio attribute can only have one selected element and needs to have a name="" attribute that matches the other matching radio elements
+		a boolean attribute of checked can be set
+
+	checkbox example
+
+<form action="" method="post">
+	<fieldset>
+		<h2>Hobbies</h2>
+		<ul>
+			<li><label><input type="checkbox" name="sports" />Sports</label></li>
+			<li><label><input type="checkbox" name="video_games" />Video games</label></li>
+			<li><label><input type="checkbox" name="spoon_collecting" />Spoon collecting</label></li>
+		</ul>
+	</fieldset>
+</form>
+
+		a checkbox when selected sends a value of on by default but can be changed with the value="" attribute 
+		a boolean attribute of checked can be set
+
 
 
 ****************************************************************
@@ -69,94 +225,5 @@ labels
 ****************************************************************
 examples
 ****************************************************************
-input elements can have attributes such as "required" and can be found here https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-required
-input element attributes can be added after 
 
-<form class="col-1-3" action="#" method="post">
-<fieldset class="register-group">
-	<label>
-		Name
-		<input type="text" name="name" placeholder="Full name" required>
-	</label>
-	<label>
-		Email
-		<input type="email" name="email" placeholder="Email address" required>
-	</label>
-	<label>
-		Number of Passes
-		<select name="quantity" required>
-			<option value="1" selected>1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-		</select>
-	</label>
-	<label>
-		Comments
-		<textarea name="comments"></textarea>
-	</label>
-	</fieldset>
-
-	<input class="btn btn-default" type="submit" name="submit" value="Purchase">
-	
-
-	</form>
-
-
-/* css */
-
-form {
-  margin-bottom: 22px;
-}
-input,
-select,
-textarea {
-	font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.register-group label {
-	color: #648880;
-	cursor: pointer;
-	font-weight: 400;
-}
-.register-group input,
-.register-group select,
-.register-group textarea {
-	border: 1px solid #c6c9cc;
-	border-radius: 5px;
-	color: #888;
-	display: block;
-	margin: 5px 0 27px 0;
-	padding: 5px 8px;
-}
-.register-group input,
-	.register-group textarea {
-	width: 100%;
-}
-.register-group select {
-	height: 34px;
-	width: 60px;
-}
-.register-group textarea {
-	height: 78px;
-}
-.btn-default {
-	border: 0;
-	background: #648880;
-	padding: 11px 30px;
- font-size: 14px;
-}
-.btn-default:hover {
-	background: #77a198;
-}
-.btn {
-	border-radius: 5px;
-	color: #fff;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 400;
-	letter-spacing: .5px;
-	margin: 0;
-	text-transform: uppercase
-}
 
