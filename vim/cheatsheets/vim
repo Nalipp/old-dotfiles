@@ -7,15 +7,10 @@
 :f / F / ;      				Jump to a specific place in a line (; goes to the next instance)
 :t / T / ;      				Jump to the character before a specific place in a line (; goes to the next instance)
 :H / M / L      				Navigate to the High, Middle, or Low section of a page
-:cc											Deletes an entire line (leaves a blank line) 
-:<< / >>        				Intents a line
-:daw										Delete a word
-:diw            				Delete (in) a word (leaves a space)
 :<ip / >ip      				Indent an entire paragraph equally
 :cip										Change the code within the current param
 :ci(										Change the code within the ()  
 :cit            				Can be used to select the inner portion of html tags
-:gg=G										Indents the entire contents of a file												
 :q/             				Access / edit search history
 :zt											Focuses the current line to the top of the screen
 :dit										Delete inner tag
@@ -69,3 +64,4 @@ gcip										go comment inner paragraph
 folding
 zf3j										folds the next three lines
 za											toggle fold and unfold
+zd											delete a fold

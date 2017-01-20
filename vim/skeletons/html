@@ -17,7 +17,8 @@ html skeleton
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Hello World</title>
+		<meta name="viewport" content="width=device-width">
+		<title></title>
 		<link rel="stylesheet" href="main.css"> 
 	</head>
 	<body>
@@ -90,7 +91,7 @@ css clearfix
 	http://cssreset.com/scripts/undohtml-css-tantek-celik/
 	
 	(add to the top of the css file)
-	@import url("whitespace-reset.css");
+	@import url("reset.css");
 
 ul,ol { list-style: none; }
 h1,h2,h3,h4,h5,h6,pre,code { font-size: 1em; }
@@ -109,6 +110,23 @@ abbr { border: none; }
 
 =============================================================
 meida queries 
+
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	@media (max-width: 875px) {
+	}
+	@media only screen and (min-width:480px) and (max-width: 640px)  {
+	}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+}
+@media (max-width: 600px) {
+}
+@media (max-width: 768px) {
+}
+
 
 	@media screen and (min-width:600px) {
 		nav {

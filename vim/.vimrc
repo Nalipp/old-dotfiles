@@ -68,6 +68,8 @@ nmap <leader>cc :w !pbcopy<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
+nmap <leader>nn :set nonu norelativenumber<cr>
+nmap <leader>yn :set number relativenumber<cr>
 
 "Move up and down by visible lines if current line is wrapped
 nmap j gj

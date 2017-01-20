@@ -4,17 +4,180 @@ form
 
 examples
 
+	****************************************************************
 	form action(path) method
 
+<form action="/login" method="post">
+</form>
+
+	****************************************************************
+<form class="col-1-3" action="#" method="post">
+	<fieldset class="">
+		<label>name<input type="text" name="name" placeholder="full name" required></label>
+		<label>email<input type="email" name="email" placeholder="email address" required></label>
+		<label>number of passes
+			<select name="quantity" required>
+				<option value="1" selected>1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</label>
+		<label>comments<textarea name="comments"></textarea></label>
+	</fieldset>
+	<input class="btn btn-default" type="submit" name="submit" value="purchase">
+</form>
+
+
+	****************************************************************
+	labels
+	****************************************************************
+	
+<label for="username">Username</label>
+<input type="text" name="username" id="username">
+
+<label>
+	<input type="text" name="username"> username
+</label>
+
+	****************************************************************
+	buttons
+	****************************************************************
+
+<input type="submit" name="submit" value="Send">
+
+<button name="submit">
+	<strong>Send Us</strong> a Message
+</button>
+
+
+	****************************************************************
+	radio example
+
+<form action="" method="post">
+	<fieldset>
+		<h2>Favorite Color</h2>
+		<ul>
+			<li><label><input type="radio" name="favorite_color" value="red" />Red</label></li>
+			<li><label><input type="radio" name="favorite_color" value="orange" />Orange</label></li>
+		</ul>
+	</fieldset>
+</form>
+
+		a radio attribute can only have one selected element and needs to have a name="" attribute that matches the other matching radio elements
+		a boolean attribute of checked can be set
+
+	****************************************************************
+	checkbox example
+
+<form action="" method="post">
+	<fieldset>
+		<h2>Hobbies</h2>
+		<ul>
+			<li><label><input type="checkbox" name="sports" />Sports</label></li>
+			<li><label><input type="checkbox" name="video_games" />Video games</label></li>
+			<li><label><input type="checkbox" name="spoon_collecting" />Spoon collecting</label></li>
+		</ul>
+	</fieldset>
+</form>
+
+		a checkbox when selected sends a value of on by default but can be changed with the value="" attribute 
+		a boolean attribute of checked can be set
+
+	****************************************************************
+	formaction : multiple buttons overide form action  
+
 	<form action="/login" method="post">
+		<fieldset>
+			<h1>Log In</h1>
+			<label for="email">Email address</label>
+			<input type="email" name="email" id="email" />
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" />
+			<div class="actions">
+				<input type="submit" value="Login" />
+				<button type="submit" formaction="/account/delete">Delete account</button>
+				<button type="submit" formaction="/account/password_reset">Reset password</button>
+			</div>
+		</fieldset>
 	</form>
-	common form elements and matching css
+
+	****************************************************************
+	common boolean form attributes
+
+	novalidate			=> allows you to shut off the html validations
+											<form action="/search" method="get" novalidate>
+											*novalidate is a boolean value so it does not need an "=", in this format it is set to false
+	autocomplete    => shuts off autocomplete feature (boolean value with same format as above novalidate)
+	autocorrect			=> shuts off autocorrect which can be annoying for fields like email on phone devices (Ios devices only)
+	autocapitalize  => can be set to the following values (Ios devices only)
+										 none			   => Completely disables automatic capitalization
+										 sentences	 => Automatically capitalize the first letter of sentences
+										 words			 => Automatically capitalize the first letter of words
+										 characters  =>	Automatically capitalize all characters
+	inputmode 			=> allows you to specify the keyboard layout for the user 
+									numeric  => including keys for the digits 0 to 9, the user's preferred thousands separator character, and the character for indicating 
+													negative numbers. Intended for numeric codes, e.g. credit card numbers. For actual numbers, prefer using <input type="number">
+									tel			 => including asterisk and pound key. Use <input type="tel"> if possible instead.
+									email 	 => Use <input type="email"> if possible instead.
+									url	 	=> Use <input type="url"> if possible instead.
+
+
+****************************************************************
+input controls
+****************************************************************
+
+		<input type="text" name="username">
+		<input type="date" name="birthday">
+		<input type="time" name="game-time">
+		<input type="email" name="email-address">
+		<input type="url" name="website">
+		<input type="number" name="cost">
+		<input type="tel" name="phone-number">
+		<input type="file" name="file">
+
+		<textarea name="comment" rows="4" cols="50">Add your comment here</textarea>
+
+
+
+
+****************************************************************
+examples
+****************************************************************
+
+
+radio buttons
+	<input type="radio" name="day" value="Friday" checked> Friday
+	<input type="radio" name="day" value="Saturday"> Saturday
+	<input type="radio" name="day" value="Sunday"> Sunday
+check boxes
+	<input type="checkbox" name="day" value="Friday" checked> Friday
+	<input type="checkbox" name="day" value="Saturday"> Saturday
+	<input type="checkbox" name="day" value="Sunday"> Sunday
+drop-down lists
+	<select name="day">
+		<option value="Friday" selected>Friday</option>
+		<option value="Saturday">Saturday</option>
+		<option value="Sunday">Sunday</option>
+	</select>
+multiple selections
+	<select name="day" multiple>
+		<option value="Friday" selected>Friday</option>
+		<option value="Saturday">Saturday</option>
+		<option value="Sunday">Sunday</option>
+	</select>
+
+
+****************************************************************************
+example with css styling
+
 
 input elements can have attributes such as "required" and can be found here https://developer.mozilla.org/en-us/docs/web/html/element/input#attr-required
 input element attributes can be added after 
 
 <form class="col-1-3" action="#" method="post">
-	<fieldset class="register-group">
+	<fieldset class="">
 		<label>
 			name
 			<input type="text" name="name" placeholder="full name" required>
@@ -98,132 +261,4 @@ textarea {
 	margin: 0;
 	text-transform: uppercase
 }
-
-	formaction : multiple buttons overide form action  
-
-	<form action="/login" method="post">
-		<fieldset>
-			<h1>Log In</h1>
-			<label for="email">Email address</label>
-			<input type="email" name="email" id="email" />
-			<label for="password">Password</label>
-			<input type="password" name="password" id="password" />
-			<div class="actions">
-				<input type="submit" value="Login" />
-				<button type="submit" formaction="/account/delete">Delete account</button>
-				<button type="submit" formaction="/account/password_reset">Reset password</button>
-			</div>
-		</fieldset>
-	</form>
-
-	common boolean form attributes
-
-	novalidate			=> allows you to shut off the html validations
-											<form action="/search" method="get" novalidate>
-											*novalidate is a boolean value so it does not need an "=", in this format it is set to false
-	autocomplete    => shuts off autocomplete feature (boolean value with same format as above novalidate)
-	autocorrect			=> shuts off autocorrect which can be annoying for fields like email on phone devices (Ios devices only)
-	autocapitalize  => can be set to the following values (Ios devices only)
-										 none			   => Completely disables automatic capitalization
-										 sentences	 => Automatically capitalize the first letter of sentences
-										 words			 => Automatically capitalize the first letter of words
-										 characters  =>	Automatically capitalize all characters
-											 
-	radio example
-
-<form action="" method="post">
-	<fieldset>
-		<h2>Favorite Color</h2>
-		<ul>
-			<li><label><input type="radio" name="favorite_color" value="red" />Red</label></li>
-			<li><label><input type="radio" name="favorite_color" value="orange" />Orange</label></li>
-		</ul>
-	</fieldset>
-</form>
-
-		a radio attribute can only have one selected element and needs to have a name="" attribute that matches the other matching radio elements
-		a boolean attribute of checked can be set
-
-	checkbox example
-
-<form action="" method="post">
-	<fieldset>
-		<h2>Hobbies</h2>
-		<ul>
-			<li><label><input type="checkbox" name="sports" />Sports</label></li>
-			<li><label><input type="checkbox" name="video_games" />Video games</label></li>
-			<li><label><input type="checkbox" name="spoon_collecting" />Spoon collecting</label></li>
-		</ul>
-	</fieldset>
-</form>
-
-		a checkbox when selected sends a value of on by default but can be changed with the value="" attribute 
-		a boolean attribute of checked can be set
-
-
-
-****************************************************************
-input controls
-****************************************************************
-
-		<input type="text" name="username">
-		<input type="date" name="birthday">
-		<input type="time" name="game-time">
-		<input type="email" name="email-address">
-		<input type="url" name="website">
-		<input type="number" name="cost">
-		<input type="tel" name="phone-number">
-		<input type="file" name="file">
-
-		<textarea name="comment" rows="4" cols="50">Add your comment here</textarea>
-
-		radio buttons
-			<input type="radio" name="day" value="Friday" checked> Friday
-			<input type="radio" name="day" value="Saturday"> Saturday
-			<input type="radio" name="day" value="Sunday"> Sunday
-		check boxes
-			<input type="checkbox" name="day" value="Friday" checked> Friday
-			<input type="checkbox" name="day" value="Saturday"> Saturday
-			<input type="checkbox" name="day" value="Sunday"> Sunday
-		drop-down lists
-			<select name="day">
-				<option value="Friday" selected>Friday</option>
-				<option value="Saturday">Saturday</option>
-				<option value="Sunday">Sunday</option>
-			</select>
-		multiple selections
-			<select name="day" multiple>
-				<option value="Friday" selected>Friday</option>
-				<option value="Saturday">Saturday</option>
-				<option value="Sunday">Sunday</option>
-			</select>
-
-
-****************************************************************
-buttons
-****************************************************************
-
-		<input type="submit" name="submit" value="Send">
-
-		<button name="submit">
-			<strong>Send Us</strong> a Message
-		</button>
-
-
-****************************************************************
-labels
-****************************************************************
-	
-		<label for="username">Username</label>
-		<input type="text" name="username" id="username">
-
-		<label>
-			<input type="text" name="username"> username
-		</label>
-
-
-****************************************************************
-examples
-****************************************************************
-
 
