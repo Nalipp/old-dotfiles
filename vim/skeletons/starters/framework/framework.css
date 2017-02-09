@@ -94,6 +94,7 @@ h4 {
 	max-width: 1200px;
 	margin: 0 auto 20px auto;
 	clear: both;
+	box-sizing: border-box;
 }
 .row::after {
 	display: block;

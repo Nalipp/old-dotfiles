@@ -6,9 +6,13 @@ html skeleton
 definition lists
 css clearfix
 css resets
+aligning content
 meida queries 
 gradients
 links (frameworks)
+selectors
+sprite sheet example
+figcaptin
 
 =============================================================
 html skeleton
@@ -109,6 +113,17 @@ abbr { border: none; }
 
 
 =============================================================
+aligning content
+   
+   text-align => used with inline block level elements and applied to the parent element
+   margin auto => usted with blocks level elements and applied within the element (don't forget to specify the width)
+   
+   position: relative;
+   left: 50%;
+   transform: translateX(-50%);
+
+
+=============================================================
 meida queries 
 
 	<meta name="viewport" content="width=device-width">
@@ -156,4 +171,58 @@ frameworks
 
 
 
+=============================================================
+selectors
 
++ adjacent selector => selects the first/next sibling
+~ sibling select    => selects all siblings
+> direct child      => selects child object from parent
+:only-child         => selects an element if it is alone
+:first-child        =>
+:last-child         =>
+:nth-child()        => select the counted occurance of a child
+:nth-last-child()   => count the backward the number of types
+:first-of-type      =>
+:last-of-type       =>
+:nth-of-type(2n+2)  => select all even elements (step + starting position)
+:only-of-type       => select a type only if it is alone
+:empty              => selects an element with no children
+:not(element)       => select all matching elements except the specified element
+[]                  => attribute
+[type^="Sa"]        => select attributes of type where first two letters are "Sa"
+[type$="to"]        => select attributes of type where last two letters are "to"
+[type*="bo"]        => select attributes of type that contain "bo"
+
+
+
+=============================================================
+sprite sheet example
+
+
+footer li a {
+  display: block;
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  background: transparent url("images/icons_social-media.png") 0 0 no-repeat;   
+}
+
+footer a.facebook {
+  background-position: 0 -46px;
+}
+
+use 
+  background-size: cover;
+  to debug (shows the entire image inside the specified width and height)
+
+
+=============================================================
+figcaptin
+
+<figure>
+  <img></img>
+  <figcaption></figcaption>
+</figure>
+
+
+=============================================================

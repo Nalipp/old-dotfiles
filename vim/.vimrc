@@ -39,8 +39,10 @@ imap <C-s> <esc>:w<CR>
 set relativenumber
 set number
 set tabstop=2
-set nobackup
+set softtabstop=2
 set shiftwidth=2
+set expandtab
+set nobackup
 set clipboard=unnamed
 set incsearch
 set hlsearch
@@ -49,12 +51,14 @@ set splitbelow
 set splitright
 set mousehide
 set backspace=indent,eol,start
+set guioptions-=R
+set guioptions-=L
 
 "leader comands
 let mapleader = "\;"
 nmap <leader>vr :tabedit ~/.vimrc<cr>
 "nmap <leader>co ggVG*y
-nmap <leader>ca :%w !pbcopy<cr>
+nmap <leader>ca :%w !pbcopy<cr><cr>
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/vim <cr> 
@@ -70,6 +74,7 @@ nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
 nmap <leader>nn :set nonu norelativenumber<cr>
 nmap <leader>yn :set number relativenumber<cr>
+nmap <leader>p "+p
 
 "Move up and down by visible lines if current line is wrapped
 nmap j gj
