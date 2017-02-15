@@ -1,3 +1,5 @@
+// <script src="https://d3js.org/d3.v4.min.js"></script>
+
 
 // bar graph css
 
@@ -21,7 +23,48 @@
   </script>
 
 
+// bar graph css with tsv file
+  // http://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
+  // npm install -g http-server
+  // http-server -c-1 
+      // (from the file with an .html extension you want to run
+
+
+  // data.tsv 
+    // name	value
+    // Locke	9
+    // Reyes	8
+    // Ford	15
+    // Jarrah	16
+    // Shephard	23
+    // Kwon	42
+  // 
+
+  <script>
+    d3.tsv("data.tsv", type, function(error, data) {
+      
+      var div = d3.select(".chart")
+          .selectAll("div")
+            .data(data)
+
+          div.enter().append("div")
+            .transition().duration(2200)
+            .style("width", function(d) { return d.value + "%"; } )
+            .text(function(d) { return d.name + d.tax_deduction } );
+
+          div.exit().remove();
+      });
+
+    function type(d) {
+      d.value = +d.value;
+      d.tax_deduction = +d.tax_deduction;
+      return d;
+    }
+  </script>
+
+
 // bar graph svg
+  // requires to run a server
 
 
   // <svg class="chart" width="420" height="120">
@@ -62,55 +105,54 @@
   </script>
 
 
-  // loading data from tsv(tab seperated value) into graph
+  // loading data from tsv(tab seperated value) into svg graph
   // requires to run a server
-  // http://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
-  // npm install -g http-server
-  // http-server -c-1 (from the file with an .html extension you want to run
   
-  // data.tsv 
-    // name	value
-    // Locke	9
-    // Reyes	8
-    // Ford	15
-    // Jarrah	16
-    // Shephard	23
-    // Kwon	42
 
-  <script>
-    var width = 420,
-        barHeight = 20;
+<script>
 
-    var x = d3.scaleLinear()
-        .range([0, width]);
+  var width = 1000;
+  var barHeight = 35;
 
-    var chart = d3.select(".chart")
-        .attr("width", width);
+  var chart = d3.select(".chart")
+      .attr("width", width)
 
-    d3.tsv("data.tsv", type, function(error, data) {
-      x.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-      chart.attr("height", barHeight * data.length);
+  d3.tsv("data.tsv", type, function(error, data) {
+    
+    chart.attr("height", barHeight * data.length) 
 
-      var bar = chart.selectAll("g")
+    var bar = chart.selectAll("g")
           .data(data)
         .enter().append("g")
-          .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+          .attr("transform", function(d, i) { return "translate(100, " + i * barHeight + ")"; } )
 
-      bar.append("rect")
-          .attr("width", function(d) { return x(d.value); })
-          .attr("height", barHeight - 1);
+        bar.append("rect") 
+          .attr("height", barHeight - 6)
+          .transition().duration(2200)
+          .attr("width", function(d) { return d.tax_deduction; } );
 
-      bar.append("text")
-          .attr("x", function(d) { return x(d.value) - 3; })
-          .attr("y", barHeight / 2)
+        bar.append("text")
+          .attr("x", "-100" )
+          .attr("y", barHeight / 2 )
           .attr("dy", ".35em")
-          .text(function(d) { return d.value; });
+          .text(function(d) { return d.name } );
+
+        bar.append("text")
+          .attr("y", barHeight / 2 )
+          .transition().duration(2200)
+          .attr("x", function(d) { return d.tax_deduction - 30; } )
+          .attr("dy", ".2em")
+          .text(function(d) { return d.tax_deduction } );
+
+        bar.exit().remove();
     });
 
-    function type(d) {
-      d.value = +d.value; // coerce to number
-      return d;
-    }
-  </script>
+  function type(d) {
+    d.value = +d.value;
+    d.tax_deduction = +d.tax_deduction;
+    return d;
+  }
+</script>
+
 
