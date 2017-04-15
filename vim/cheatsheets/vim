@@ -1,3 +1,26 @@
+42G                     go to line 42
+zt                      cursor top
+zb                      cursor bottom
+zz                      cursor middle
+==                      auto indent
+
+*******************************
+things to do
+
+  - go through all of the current hints and remove / practice (use :help)
+  - map ctr j ctrl n (for keeping the screen in place while going down or up a line)
+  - replace gt and gT to something easier
+  - tab scroll through list up and down (right now it is tab tab for up only)
+  - map ctr w to close tab (along with ctr q)
+  - push dotfiles
+  - map tabnew# (open recently closed tab)
+
+*******************************
+
+ctrl-e                  scroll up in place
+ctrl-y                  scroll down in place
+
+
 :% y +          				Select all and copy to system clipboard /<word> <ENTER>          
 :%s/old/new/gc  				Replace (old) with (new) word for the entire file (g) and ask for each change (c)
 :set ic         				Set (while in search mode) so you can search both uppercase and lower case instances
@@ -15,6 +38,7 @@
 :di"                    Delete inner quotes
 :args *.txt | tab all  	Open all files within a file in tabs that end in .txt
 :shift m								Remove a space below
+''                      move to last position
 
 Setting up buffer windows
 :new <filename tab> 		Opens a new window

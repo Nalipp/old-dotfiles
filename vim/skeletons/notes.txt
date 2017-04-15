@@ -1,0 +1,6 @@
+primary language or framework   => Ruby, JavaScript, Html, Psql, MongoDB, Vim, Python
+framework                       => Rails, NodeJS, Sinatra 
+sub-technology                  => jQuery, Backbone, RSpec, Mocha, Express, Pandas
+study-type                      => bootcamp, tutorial, Mooc, blog post, documentation, project, book, online school
+
+

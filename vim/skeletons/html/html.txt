@@ -6,13 +6,15 @@ html skeleton
 definition lists
 css clearfix
 css resets
-aligning content
-meida queries 
+center / align content (replaced elements)
+meida queries
 gradients
 links (frameworks)
 selectors
 sprite sheet example
 figcaptin
+definition list
+styling tables
 
 =============================================================
 html skeleton
@@ -23,12 +25,35 @@ html skeleton
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<title></title>
-		<link rel="stylesheet" href="main.css"> 
+		<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
 	</body>
 </html>
 
+=============================================================
+javascript
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>exercises</title>
+    <link rel="shortcut icon" href="/"> <!-- to prevent favicon error -->
+    <script src="practice.js"></script>
+    <style media="screen">
+    body {
+      background: crimson;
+      color: white;
+      font-family: monospace;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>practice</h1>
+  </body>
+</html>
 
 =============================================================
 definition lists
@@ -41,7 +66,7 @@ definition lists
 
 dl => definition list
 dt => definition term
-dd => definition description 
+dd => definition description
 * you can add multiple definition terms to a definition description and vise versa
 	inside the <dd></dd> you can also add <p> and other tags, but this is not allowed on <dt></dt>
 	http://maxdesign.com.au/articles/definition/
@@ -60,11 +85,11 @@ css clearfix
 		content: "";
 	}
 
-	.clearfix:after { 
-		content: "."; 
-		visibility: hidden; 
-		display: block; 
-		height: 0; 
+	.clearfix:after {
+		content: ".";
+		visibility: hidden;
+		display: block;
+		height: 0;
 		clear: both;
 	}
 
@@ -88,12 +113,12 @@ css clearfix
 
 
 	=============================================================
-	css resets 
+	css resets
 
 	examples: http://meyerweb.com/eric/tools/css/reset/
 	http://necolas.github.io/normalize.css/
 	http://cssreset.com/scripts/undohtml-css-tantek-celik/
-	
+
 	(add to the top of the css file)
 	@import url("reset.css");
 
@@ -113,22 +138,34 @@ abbr { border: none; }
 
 
 =============================================================
-aligning content
-   
-   text-align => used with inline block level elements and applied to the parent element
-   margin auto => usted with blocks level elements and applied within the element (don't forget to specify the width)
-   
-   position: relative;
-   left: 50%;
-   transform: translateX(-50%);
+center / align content (replaced elements)
 
+  text-align  => applied to parent element unless the element is default display block
+                   can't be applied to inline, or block-inline level elements (even if the display is changed to block)
+                   works fine with <p> <div> defualt block elements
+  margin auto => used with blocks level elements and applied within the element (don't forget to specify the width)
+                   can be applied to inline, or block-inline level elements if their display is changed to block
+
+  transform   => position must not be default static, can cause issues with resizing the browser window
+
+                  position: relative;
+                  left: 50%;
+                  transform: translateX(-50%);
+
+
+replaced elements (inline elements that act as inline-block elements)
+  img is considered an inline element in the mdn documentation but it is actually a replaced element
+    so it behaves like an inline-block element https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element
+
+some replaced elements
+    <img> <object> <video> <textarea> <input> <audio> <canvas>
 
 =============================================================
-meida queries 
+meida queries
 
 	<meta name="viewport" content="width=device-width">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	@media (max-width: 875px) {
 	}
 	@media only screen and (min-width:480px) and (max-width: 640px)  {
@@ -162,7 +199,7 @@ meida queries
 gradients
 
 background-color: #d2dcbe;
-background-image: linear-gradient(to bottom, #d2dcbe, #fcfff5); 
+background-image: linear-gradient(to bottom, #d2dcbe, #fcfff5);
 background-repeat: no-repeat;
 
 =============================================================
@@ -204,14 +241,14 @@ footer li a {
   width: 46px;
   height: 46px;
   overflow: hidden;
-  background: transparent url("images/icons_social-media.png") 0 0 no-repeat;   
+  background: transparent url("images/icons_social-media.png") 0 0 no-repeat;
 }
 
 footer a.facebook {
   background-position: 0 -46px;
 }
 
-use 
+use
   background-size: cover;
   to debug (shows the entire image inside the specified width and height)
 
@@ -226,3 +263,24 @@ figcaptin
 
 
 =============================================================
+definition list
+  /* definition lists can have mulitple descriptions or terms */
+  /* definition descriptions can also have block level elements but not definition terms */
+
+<dl>
+  <dt>definition term</dt>
+  <dd>definition description</dd>
+</dl>
+
+=============================================================
+styling tables
+
+  borders =>  https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_boxes/Styling_tables
+    border can be added but there is a transparet border between table data
+    remove the transparent border with
+      border-collapse: collapse
+    or
+      border-spacing: 0;
+
+  margins => margins cannot be applied to table cells
+     border-spacing can be used instead but must be applied to the entire tablexcexce

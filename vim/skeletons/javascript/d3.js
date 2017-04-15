@@ -1,4 +1,8 @@
-// <script src="https://d3js.org/d3.v4.min.js"></script>
+// cdn to lead ds
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+// apply multiple styles to one element
+    .style({'stroke': 'crimson', 'fill': 'dodgerblue', 'stroke-width': '0px'})
 
 
 // bar graph css

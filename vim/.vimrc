@@ -35,7 +35,8 @@ autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
 imap jk <esc>
 imap kj <esc>
-imap <C-s> <esc>:w<CR>
+imap <Tab> <C-P>
+
 set relativenumber
 set number
 set tabstop=2
@@ -57,24 +58,40 @@ set guioptions-=L
 "leader comands
 let mapleader = "\;"
 nmap <leader>vr :tabedit ~/.vimrc<cr>
-"nmap <leader>co ggVG*y
-nmap <leader>ca :%w !pbcopy<cr><cr>
 nmap <leader>so :source $MYVIMRC<cr>
-nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
-nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/vim <cr> 
-nmap <leader>fc :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/
-nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/vim/skeletons/
-nmap <leader>t :w<cr>:call RunCurrentSpecFile()<cr>
-nmap <leader>id mmgg=G`m
-nmap <leader>i :i<cr>
 nmap <leader>s :w<cr>
-nmap <leader>cc :w !pbcopy<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
+nmap <leader>w :q<cr>
 nmap <leader>nn :set nonu norelativenumber<cr>
 nmap <leader>yn :set number relativenumber<cr>
-nmap <leader>p "+p
+nmap <leader>l <Insert>console.log(<esc>
+nmap <leader>f <Insert>function <Insert>
+nmap <space> <Insert> <esc>l
+
+"copy all lines in a file
+  "nmap <leader>co ggVG*y
+nmap <leader>cc :w !pbcopy<cr>
+
+"split window with current parent directory file path 
+nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+
+"shortcuts to files
+nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/vim <cr> 
+nmap <leader>fc :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/
+nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/vim/skeletons/
+
+"can be used for testing 
+nmap <leader>T :w<cr>:call RunCurrentSpecFile()<cr>
+
+"indent all lines in the file
+nmap <leader>id mmgg=G`m
+
+"move tabs right and left
+nmap <leader>gg :tabm +1<cr> 
+nmap <leader>tt :tabm -1<cr>
 
 "Move up and down by visible lines if current line is wrapped
 nmap j gj
