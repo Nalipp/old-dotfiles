@@ -1,0 +1,19 @@
+possible things to do before 220 exam
+
+
+read through student questions
+
+
+objects 
+  Exercises: Objects
+  functions as factories  (exercise)
+
+
+Function Contexts and Objects
+  Implicit and Explicit Function Execution Contexts (calculate arguments after call context : line 451 )
+    call still accepts arguments but not as an array?
+
+  create an useful example of when bind is needed
+
+  review dealing with context loss (1)
+

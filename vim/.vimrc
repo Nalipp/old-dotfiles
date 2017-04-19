@@ -72,7 +72,7 @@ nmap <space> <Insert> <esc>l
 
 "copy all lines in a file
   "nmap <leader>co ggVG*y
-nmap <leader>cc :w !pbcopy<cr>
+nmap <leader>ca :w !pbcopy<cr>
 
 "split window with current parent directory file path 
 nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
