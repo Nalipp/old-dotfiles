@@ -1,0 +1,10 @@
+command-shift-4       take a photo (or use it to measure pixels)
+
+quicktime player
+  increase playback       //  alt-click on >>
+
+access zshrc file
+  open ./.zshrc
+
+access bashrc file
+  open ./.bashrc

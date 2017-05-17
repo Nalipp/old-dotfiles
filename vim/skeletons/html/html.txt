@@ -15,6 +15,7 @@ sprite sheet example
 figcaptin
 definition list
 styling tables
+print view stylesheet
 
 =============================================================
 html skeleton
@@ -284,3 +285,12 @@ styling tables
 
   margins => margins cannot be applied to table cells
      border-spacing can be used instead but must be applied to the entire tablexcexce
+
+
+=============================================================
+print view stylesheet
+
+  if you the print screen to be different (when user tries to print the screen) than the regular css
+    you can link a different css file when the user prints screen
+
+    <link rel="stylesheet" href="print.css" media="print">

@@ -49,3 +49,8 @@
     app.listen(5000, () => {
       console.log('Express listening on port 5000')
     })
+
+
+    // allows you to specify where the flies to be served to the page
+    // you can access the files directly through the url
+    app.use(express.static(path.join(__dirname, 'public')))   

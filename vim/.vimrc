@@ -58,7 +58,7 @@ set guioptions-=L
 "leader comands
 let mapleader = "\;"
 nmap <leader>vr :tabedit ~/.vimrc<cr>
-nmap <leader>so :source $MYVIMRC<cr>
+nmap <leader>oo :source $MYVIMRC<cr>
 nmap <leader>s :w<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>

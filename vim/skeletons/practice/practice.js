@@ -1,14 +1,19 @@
-function walk(node, callback) {
-  callback(node);
+var elementTime = createElementTime();
 
-  for (var i = 0; i < node.childNodes.length; i++) {
-    walk(node.childNodes[i], callback);
+function createElementTime() {
+  var startTime = Date.now();
+  var endTime = null;
+  return {
+    resetStartTime: function() {
+      startTime = Date.now();
+    }, 
+    setEndTime: function() {
+      endTime = Date.now();
+    },
+    totalDifference: function() {
+      return endTime - startTime;
+    },
   }
 }
 
-walk(document.body, function(node) {
-  console.log(node.nodeName);
-});
-
-
-
+console.log(elementTime.getStartTime());

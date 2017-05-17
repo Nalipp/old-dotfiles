@@ -1,0 +1,12 @@
+watch more youtuve videos / load onto phone (including udacity oop javascript) 
+set up mac work environment (make cmd space access finder instead of switch langage)
+vim (go through cheatsheet, vim-wiki?)
+
+sql bootcamp
+finish launchSchool curriculum
+vim speed master
+create a new front end for todo-group app
+re-create own version of todo-group app
+udacity finance machine learning course
+get involved with free code camp community
+d3 pandas
