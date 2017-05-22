@@ -21,6 +21,7 @@ SQL
 *working with files
 *string functions
 *aggregate functions
+*logical opperators and CAST()
 
 
 
@@ -251,6 +252,11 @@ example queries
         content VARCHAR(100),
         changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP  // tracks when both created and updated
       );
+
+      alternate
+        changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP
+
+      NOW() = CURRENT_TIMESTAMP()  (they are the same)
                        
 
       DATE format (YYYY-MM-DD) store values in the date format but not time (when you only need the date)
@@ -276,7 +282,7 @@ example queries
       NOW() - gives current datetime
     
 
-!!    DATEFORMAT()  => allows you to format the dates instead of using concat
+!!    DATE_FORMAT()  => allows you to format the dates instead of using concat
         https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_date-format
 
         SELECT DATE_FORMAT(birthdt, '%a %M - %D %Y') AS 'birthday' FROM people LIMIT 1;
@@ -332,14 +338,6 @@ example queries
           SELECT name, birthdate, birthdate + INTERVAL 1 MONTH + INTERVAL 1 YEAR FROM people LIMIT 1;
               => Padma 1983-11-11 1984-12-11 
 
-
-                        
-             
-
-    
-    numeric
-    
-    dates and time
 
 
 *******************************************************************************************
@@ -415,6 +413,9 @@ example queries
     SELECT SUBSTRING('Hello world', 1, 4)         => Hell     selects chars 1 - 4
     SELECT SUBSTRING('Hello world', 7)            => world    selects 7 to the end
     SELECT SUBSTRING('Hello world', -3)           => rld      selects end back 3
+
+    select all books where author name starts with 'c' or 's' using substring
+      SELECT * FROM books WHERE SUBSTR(author_lname,1,1) IN('c', 's');
 
   combining CONCAT AND SUBSTRING
     SELECT CONCAT
@@ -517,3 +518,85 @@ example queries
 
           however this is min realsed_year or each group of authors(super row) not all the books
 
+
+*******************************************************************************************
+*logical opperators and CAST()
+             
+  != 
+    SELECT * FROM books WHERE released_year != 2016;
+      alternate
+      SELECT * FROM books WHERE released_year - 2016;
+
+  NOT LIKE
+    SELECT * FROM books WHERE title NOT LIKE '%Th%';  (selects every title that does not contain 'th')
+
+  >, >=, <, <=
+    SELECT * FROM books WHERE released_year > 2000;
+
+  true false
+    SELECT 99 > 1    => 1 (evaluates to true)
+    SELECT 99 > 100  => 0 (evaluates to false)
+
+  &&, AND   (allows you to chain opperations multiple times)
+    SELECT * FROM books WHERE author_lname = 'Harris' && released_year > 2010;
+    SELECT * FROM books WHERE author_lname = 'Harris' AND released_year > 2010;
+
+  ||, OR
+    SELECT * FROM books WHERE author_lname = 'Harris' || author_lname = 'smith';
+
+  BETWEEN..AND..
+    SELECT * FROM books WHERE released_year BETWEEN 2004 AND 2014;
+    SELECT * FROM books WHERE released_year NOT BETWEEN 2004 AND 2014;
+
+  %
+    SELECT * FROM books WHERE released_year % 2 = 0;
+
+  CAST() AS
+    CAST() allows you to convert the type of data allowing you to use it with logical opperators
+    if a date that is a string needs to be compared to a datetime you need to use CAST()
+    !! it is good habit to use cast when comparing dates even if it still works without it
+
+    SELECT CAST('2017-03-22' AS DATETIME);     => 2017-03-22 00:00:00
+
+    example
+      SELECT * FROM books WHERE timestamp 
+      BETWEEN CAST('2000-01-01' AS DATETIME) AN D
+              CAST('2010-01-01' AS DATETIME);
+
+  IN / NOT IN
+    SELECT * FROM books WHERE released_year IN(2001, 2011, 1989);
+    SELECT * FROM books WHERE released_year NOT IN(2001, 2011, 1989);
+
+    this is  a longer way to select multiple types, IN is more efficient
+      SELECT * FROM books WHERE 
+        released_year = 2001 ||
+        released_year = 2011 ||
+        released_year = 1989;
+
+  CASE
+
+    example1
+
+      SELECT title, released_year,
+        CASE 
+          WHEN released_year >= 2000 THEN 'Modern Lit'
+          ELSE '20th Century Lit'
+        END AS 'GENRE'
+      FROM BOOKS;
+
+
+    example2
+
+      SELECT title, stock_quantity,
+        CASE 
+          WHEN stock_quantity >= 200 THEN '*****'
+          WHEN stock_quantity >= 150 THEN '****'
+          WHEN stock_quantity >= 100 THEN '***'
+          WHEN stock_quantity >= 50 THEN '**'
+          ELSE '*'
+        END AS 'stock'
+      FROM BOOKS;
+
+
+            
+            
