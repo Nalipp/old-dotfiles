@@ -15,7 +15,7 @@ SQL
 *open questions
 *example queries
 *database general notes
-*creating tables
+*creating tables (data types)
 *inserting data
 *CRUD
 *working with files
@@ -126,7 +126,7 @@ example queries
 
   
 *******************************************************************************************
-*creating tables
+*creating tables (data types)
 
   table columns => headers
   table rows    => data rows
@@ -190,6 +190,156 @@ example queries
           email VARCHAR(255),
           password VARCHAR(255) NOT NULL
         );
+
+
+  data types (text, numeric, dates and time)
+
+    text
+
+      CHAR(3) => can be 0 - 255 in length
+                 has fixed length of 3 characters and does not varry if it is longer it will be truncated
+                 3 bytes will always be used regardles of input
+                 if shorted will be padded with spaces to fill out the length
+                 however when the value is retrieved the spaces are removed unless specifically specified
+                 CHAR is faster for fixed length text (state abreviations, yes or no flags)
+
+      VARCHAR(255) => can be 0 - 255 in length 
+                      will use up as much as needed with max of 255 characters, no empty spaces
+                      the number of bytes used to store the data depends ont he length of the data
+                      uses less space then CHAR and useful when you don't know the length of the data
+
+
+    numeric
+
+      INT => whole numbers
+      DECIMAL(5, 2) => accepts two arguments first(max 65) total number of digits and 
+                       second(max 35)number after the decimal points
+                       DECIMAL(5, 2) inputing 765 in this column will result 764.00
+                       DECIMAL(5, 2) inputing 12.94333 in this column will result 12.94
+                       DECIMAL(5, 2) inputing 121233 (exceeds 5 length) result 999.99
+                       DECIMAL(5, 2) inputing 990.99 result 991.00 rounds up
+                       DECIMAL(5, 2) inputing 1.99999 result 2.00 rounds up
+
+      decimal vs float vs double
+        decimal => fixed point type, calculations are exact
+                   better for financial dat a
+        float & double => floating point types, calculations are approximat
+
+        float & double can store larger numbers using less space but are less precise
+          floats have precision issues after 7 digits and take up 4 bytes in memory
+            after 7 digits zeros are stored instead of the actual number
+          doubles are twice the size of floats, have precision issues after 15 digits, take up 8 bytes of memory
+            if you don't use decimal it is usually better to use double 
+
+        overall probably best to just use decimail unless you know you are going to be working with small numbers
+
+
+    dates and time
+
+      DATETIME vs TIMESTAMP
+        both use the format of date and timestamps
+
+      DATETIME    year range 1000 - 9999
+                  better for things like birthdays
+      TIMESTAMP   year range 1970 - 2038
+                  takes half as much space as DATETIME
+                  better for marking the time something happens and storeing that information on the server
+                  timestamps shouldn't need to be changed
+
+      CREATE TABLE comments 
+      (
+        content VARCHAR(100),
+        changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP  // tracks when both created and updated
+      );
+                       
+
+      DATE format (YYYY-MM-DD) store values in the date format but not time (when you only need the date)
+      TIME format (HH:MM:SS) store values in time format but not date (when you only need the time)
+      DATETIME format (YYYY-MM-DD HH:MM:SS) store values in time and date format (most usefull)
+
+      example
+        CREATE TABLE people (
+          name VARCHAR(100), 
+          birthdate DATE, 
+          birthtime TIME, 
+          birthdt DATETIME
+        );
+         
+        INSERT INTO people (name, birthdate, birthtime, birthdt)
+        VALUES('Padma', '1983-11-11', '10:07:35', '1983-11-11 10:07:35'),
+              ('Larry', '1943-12-25', '04:10:42', '1943-12-25 04:10:42');
+         
+        SELECT * FROM people;
+
+      CURDATE() - gives current date  SELECT CURDATE() => gives the current date
+      CURTIME() - gives current time
+      NOW() - gives current datetime
+    
+
+!!    DATEFORMAT()  => allows you to format the dates instead of using concat
+        https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_date-format
+
+        SELECT DATE_FORMAT(birthdt, '%a %M - %D %Y') AS 'birthday' FROM people LIMIT 1;
+          => Fri November - 11th 1983
+
+      TIMEFORMAT() => similar to DATEFORMAT()
+
+
+      most of the following can be done more efficiently with DATEFORMAT()
+
+        DAY()
+          SELECT name, DAY(birthdate) FROM people LIMIT 1;  => Padma, 11
+
+        DAYNAME()
+          SELECT name, DAYNAME(birthdate) FROM people LIMIT 1;  => Padma, Friday
+
+        DAYOFWEEK()
+          SELECT name, DAYOFWEEK(birthdate) FROM people LIMIT 1;  => Padma, 6
+
+        DAYOFYEAR()
+          SELECT name, DAYOFYEAR(birthdate) FROM people LIMIT 1;  => Padma, 315 
+
+        MONTH()
+          SELECT name, MONTH(birthdate) FROM people LIMIT 1;  => Padma, 11
+
+        MONTHNAME()
+          SELECT name, MONTHNAME(birthdate) FROM people LIMIT 1;  => Padma, November 
+
+        HOUR()
+          SELECT name, HOUR(birthtime) FROM people LIMIT 1;  => Padma, 10
+
+        MINUTE()
+          SELECT name, MINUTE(birthtime) FROM people LIMIT 1;  => Padma, 7
+
+
+      calculating dates
+
+        DATEDIFF  => returns the different in dates (first argument subtracted from second)
+          SELECT name, DATEDIFF(NOW(), birthdate) FROM people LIMIT 1; => Padma 12246
+
+        DATE_ADD => allows you to add time to an existing time data
+                    first agrument is the time data followed by INTERVAL and increase time amount
+                    https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_date-add
+
+          SELECT name, birthdate, DATE_ADD(birthdate, INTERVAL 1 MONTH) FROM people LIMIT 1;
+              => Padma 1983-11-11 1983-12-11
+          SELECT name, MONTHNAME(birthdt), MONTHNAME(DATE_ADD(birthdt, INTERVAL 1 MONTH)) FROM people LIMIT 1;
+              => Padma November December
+
+        +/- alternate option
+          allows you to string multiple date adds
+
+          SELECT name, birthdate, birthdate + INTERVAL 1 MONTH + INTERVAL 1 YEAR FROM people LIMIT 1;
+              => Padma 1983-11-11 1984-12-11 
+
+
+                        
+             
+
+    
+    numeric
+    
+    dates and time
 
 
 *******************************************************************************************
