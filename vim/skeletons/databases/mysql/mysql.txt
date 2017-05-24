@@ -140,6 +140,26 @@ example queries
       );
 
 
+  example
+
+    CREATE TABLE customers
+    (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      first_name VARCHAR(100) NOT NULL,
+      last_name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL,
+    );
+
+    CREATE TABLE orders
+    (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      order_date DATE,
+      amount DECIMAL(8,2), 
+      customer_id INT,
+      FOREIGN KEY(customer_id) REFERENCES customers(id)
+    );
+
+
     SHOW TABLES;
     SHOW COLUMNS FROM <table name>;
     DESC <table name>;               // same as SHOW COLUMNS FROM, stands for describe
@@ -598,5 +618,29 @@ example queries
       FROM BOOKS;
 
 
-            
-            
+*******************************************************************************************
+*joins
+
+  broad overview of data relationships
+
+    one to one relationship
+      one user has one details page and
+      details page belongs to only one user
+
+    one to many relationship
+      bookstore example
+        book has many reviews but
+        review is only for one book
+
+    many to many relationship
+      bookstore example
+        a single book can have multiple authors (many)
+        and an author can have multiple books(many)
+
+
+  see *creating tables for example of how to create and join tables
+
+  cross joins (implicit) => not very usefull because it returns each users with each order (cross multiplies)
+    SELECT * FROM customers, orders;
+
+ 
