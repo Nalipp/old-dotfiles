@@ -22,21 +22,13 @@ SQL
 *string functions
 *aggregate functions
 *logical opperators and CAST()
-
+*working with NULL
 
 
 *******************************************************************************************
 *common questions
 
-  IFNull()
-    IFNULL(SUM(amount), 0) AS 'total spent'
-      => can be used with right or left joins where the result is NULL but you would like to change the value
-         useful when you have a lot of NULL data and you want to change the NULL to a value 
-         this allows you use GROUP BY on the replaced value
-       IFNULL takes two arguments
-         1. the value you want to check for NULL
-         2. the value you want to replace it with if it is NULL
-
+  ROUND(<value>, 2) => rounds to two digits 
 
   CASE example
     CASE
@@ -44,6 +36,9 @@ SQL
       WHEN THEN ''
       ELSE ''
     end
+
+    one line CASE example
+      IF(COUNT >= 1, '<first statement>', '<second statement>') AS 'Count'
 
 
 *******************************************************************************************
@@ -673,7 +668,9 @@ example queries
     this way works but is less convential than using keyword JOIN
 
 
-  difference between INNER, LEFT, RIGHT joins
+  one to many joins
+
+    difference between INNER, LEFT, RIGHT joins
 
     INNER JOIN => only returns matches from the joined tables
     RIGHT JOIN => returns all data from the first specified table(right)  
@@ -710,4 +707,36 @@ example queries
         RIGHT JOIN orders
         ON customers.id = orders.customer_id;
 
+
+  many to many joins
+    require three tables the two many to many values and a join table
+    the join table will have two foregin keys
+    many to many joins can be accessed with single or double joins
+
+    double joins example
+
+      SELECT series.title, reviews.rating, reviewers.first_name 
+      FROM reviews 
+      JOIN reviewers
+        ON reviewers.id = reviews.reviewer_id
+      JOIN series 
+        ON series.id = reviews.series_id
+        ORDER BY reviewers.first_name, reviews.rating DESC;
+
+
+*******************************************************************************************
+*working with NULL
+
+  IFNull()
+    IFNULL(SUM(amount), 0) AS 'total spent'
+      => can be used with right or left joins where the result is NULL but you would like to change the value
+         useful when you have a lot of NULL data and you want to change the NULL to a value 
+         this allows you use GROUP BY on the replaced value
+       IFNULL takes two arguments
+         1. the value you want to check for NULL
+         2. the value you want to replace it with if it is NULL
+
+  you cannot use WHERE <value> = NULL you must use IS NULL
+    WHERE <value> IS NULL;
+    
 
