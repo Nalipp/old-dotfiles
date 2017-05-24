@@ -12,7 +12,7 @@ SQL
     sql formater
       http://www.sql-format.com/     
 
-*open questions
+*common questions
 *example queries
 *database general notes
 *creating tables (data types)
@@ -26,17 +26,24 @@ SQL
 
 
 *******************************************************************************************
-*open questions
+*common questions
 
-  IfNull()
-  Round()
-  Avg()
-  Count()
-  CASE
-    WHEN THEN ''
-    WHEN THEN ''
-    ELSE ''
-  end
+  IFNull()
+    IFNULL(SUM(amount), 0) AS 'total spent'
+      => can be used with right or left joins where the result is NULL but you would like to change the value
+         useful when you have a lot of NULL data and you want to change the NULL to a value 
+         this allows you use GROUP BY on the replaced value
+       IFNULL takes two arguments
+         1. the value you want to check for NULL
+         2. the value you want to replace it with if it is NULL
+
+
+  CASE example
+    CASE
+      WHEN THEN ''
+      WHEN THEN ''
+      ELSE ''
+    end
 
 
 *******************************************************************************************
@@ -156,8 +163,18 @@ example queries
       order_date DATE,
       amount DECIMAL(8,2), 
       customer_id INT,
-      FOREIGN KEY(customer_id) REFERENCES customers(id)
+      FOREIGN KEY(customer_id) 
+        REFERENCES customers(id)
+        ON DELETE CASCADE 
     );
+
+      FOREIGN KEY => locks the two keys together so that if you 
+                     try to insert into a table that has an inncorect user id it will block you or if try to 
+                     delete a user that has a coresponding entry in another table (unless you use ON DELETE CASCADE)
+                     the restraint will block you, you will recieve an error for both
+
+      ON DELETE CASCADE => allows you to delete from one table all associated data from other tables
+
 
 
     SHOW TABLES;
@@ -617,6 +634,7 @@ example queries
         END AS 'stock'
       FROM BOOKS;
 
+    * when a value evaluates to NULL it moves past it, no error the same as false
 
 *******************************************************************************************
 *joins
@@ -636,6 +654,8 @@ example queries
       bookstore example
         a single book can have multiple authors (many)
         and an author can have multiple books(many)
+        use a third join table to connect the books and authors
+        the join table has two foreign keys
 
 
   see *creating tables for example of how to create and join tables
@@ -643,4 +663,51 @@ example queries
   cross joins (implicit) => not very usefull because it returns each users with each order (cross multiplies)
     SELECT * FROM customers, orders;
 
- 
+    more usefull example
+
+    implicit inner join => can join tables without using the JOIN keyword (implicitly)
+      SELECT first_name, last_name, order_date 
+      FROM orders, customers
+      WHERE customers.id = orders.customer_id;
+
+    this way works but is less convential than using keyword JOIN
+
+
+  difference between INNER, LEFT, RIGHT joins
+
+    INNER JOIN => only returns matches from the joined tables
+    RIGHT JOIN => returns all data from the first specified table(right)  
+                    and returns NULL when there isn't a match in the second specified table(left)
+    LEFT JOIN => returns all data from the second specified table(left)  
+                    and returns NULL when there isn't a match in the first specified table(right)
+                    not as useful because you can just switch the order of the specified tables
+
+
+    JOIN (INNER JOIN by default)
+
+      example
+
+        SELECT * 
+        FROM customers
+        INNER JOIN orders
+        ON customers.id = orders.customer_id;
+
+
+    LEFT JOIN
+
+      example
+
+        SELECT * 
+        FROM customers
+        LEFT JOIN orders
+        ON customers.id = orders.customer_id;
+
+
+    RIGHT JOIN
+
+        SELECT * 
+        FROM customers
+        RIGHT JOIN orders
+        ON customers.id = orders.customer_id;
+
+
