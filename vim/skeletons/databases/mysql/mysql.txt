@@ -412,14 +412,38 @@ SQL
                     to visually confirm you are going to select the correct data
 
 
-  SELECT
+  SELECT 
+  
+    WHERE vs HAVING
+      when using GROUP BY you can't use WHERE clauses because WHERE goes before GROUP BY
+      instead you can use HAVING after GROUP BY
 
-    WHERE
-      SELECT * FROM <table name> WHERE id=4;     // where arguments are not case sensitive
-      SELECT * FROM users WHERE password=name;   // arguments can also be other columns 
-      SELECT * FROM users WHERE user_id-5        // selects everything except user_id 5
+      WHERE
+        SELECT * FROM <table name> WHERE id=4;     // where arguments are not case sensitive
+        SELECT * FROM users WHERE password=name;   // arguments can also be other columns 
+        SELECT * FROM users WHERE user_id-5        // selects everything except user_id 5
 
-    Aliasis
+        example 
+
+          SELECT * 
+          FROM users
+          LEFT JOIN photos
+          ON users.id = photos.user_id
+          WHERE photos.user_id IS NULL
+          GROUP BY photos.user_id;
+
+      HAVING
+        having can even be used with aliases
+
+        SELECT users.username, 
+               COUNT(*) as total_likes
+        FROM users
+        JOIN likes
+          ON users.id = likes.user_id
+        GROUP BY users.id
+        HAVING total_likes = 257; 
+
+      Aliasis
       SELECT user_id AS id FROM users;
      
   UPDATE
@@ -560,6 +584,12 @@ SQL
 
           however this is min realsed_year or each group of authors(super row) not all the books
 
+      subqueries example
+
+        SELECT (
+          (SELECT COUNT(*) FROM photos) / (SELECT COUNT(*) FROM users) 
+        ) AS avg_post;
+              
 
 *******************************************************************************************
 *logical opperators and CAST()
