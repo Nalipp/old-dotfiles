@@ -42,7 +42,7 @@ SQL
 
 
 *******************************************************************************************
-example queries
+*example queries
 
     play area and sample data
     https://www.w3schools.com/sql/trysql.asp?filename=trysql_op_or
@@ -133,6 +133,11 @@ example queries
 
   table columns => headers
   table rows    => data rows
+  
+  SHOW TABLES;
+  SHOW COLUMNS FROM <table name>;
+  DESC <table name>;               // same as SHOW COLUMNS FROM, stands for describe
+  DROP TABLE <table name>;
 
   creating tables 
     CREATE TABLE <table name>
@@ -171,11 +176,16 @@ example queries
       ON DELETE CASCADE => allows you to delete from one table all associated data from other tables
 
 
+  example creating a table with multiple FOREIGN KEYS and adding a PRIMARY KEY() to ensure unique likes
 
-    SHOW TABLES;
-    SHOW COLUMNS FROM <table name>;
-    DESC <table name>;               // same as SHOW COLUMNS FROM, stands for describe
-    DROP TABLE <table name>;
+    CREATE TABLE likes (
+      user_id INT NOT NULL,
+      photo_id INT NOT NULL,
+      created_at TIMESTAMP DEFAULT NOW(),
+      FOREIGN KEY(user_id) REFERENCES users(id),
+      FOREIGN KEY(photo_id) REFERENCES photos(id)
+      PRIMARY KEY(photo_id, user_id)
+    );
 
 
     data types
