@@ -8,3 +8,6 @@ access zshrc file
 
 access bashrc file
   open ./.bashrc
+
+find ~/ -name "file_name"  // find a file on your computer
+find / -iname "*.jpg"      // search wildcard

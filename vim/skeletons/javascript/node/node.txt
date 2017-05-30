@@ -2,6 +2,65 @@
 Node Js
 *************************************************************
 
+udemy bootcamp
+  *setup
+  *route parameters / route variables
+  *npm 
+
+
+
+*************************************************************
+*setup
+
+  npm init => creates a package json file
+  npm install <package name> --save   // --save saves the package locally to the package json file
+
+  example app 
+    var express = require('express');
+    var app = express();
+
+    app.get("/", function(req, res) {
+      res.send('home')
+    });
+
+    app.get("*", function(req, res) {  // wildcard redirects to root page, this must be the last request
+      res.redirect("/");
+    });
+
+    app.listen(3000, function() {
+      console.log('listening on localhost: 3000');
+    });
+
+
+*************************************************************
+*route parameters / route variables
+
+    http://rooname.com/files/popcorn
+
+    app.get("/files/:filename", function(req, res) {
+                                          // filename is designated as a route parameter using the ':' 
+                                          //in this instance the value is 'popcorn'
+      console.log(req.params.filename);   // allows you to access the route params 'popcorn'
+    })
+  
+
+*************************************************************
+*npm 
+  npm init                         => creates a package.json file
+  npm install --save <filename>    => installs the package and dependencies locally
+  npm install --global <filename>  => installs the package and dependencies globally 
+                                      (find with $ find ~/ -name "file_name")
+
+
+
+
+
+
+*************************************************************
+learn Teach Code
+
+
+*************************************************************
 *common modules
 *read write files
 *basic routing and file serving (without express)
