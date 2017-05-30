@@ -6,6 +6,9 @@ udemy bootcamp
   *setup
   *route parameters / route variables
   *npm 
+  *ejs
+  *partials
+  *body parser
 
 
 
@@ -13,11 +16,13 @@ udemy bootcamp
 *setup
 
   npm init => creates a package json file
-  npm install <package name> --save   // --save saves the package locally to the package json file
 
   example app 
+
     var express = require('express');
     var app = express();
+
+    app.use(express.static('public'));  // middleware for serving public files including css and javascript
 
     app.get("/", function(req, res) {
       res.send('home')
@@ -51,8 +56,53 @@ udemy bootcamp
   npm install --global <filename>  => installs the package and dependencies globally 
                                       (find with $ find ~/ -name "file_name")
 
+  npm install --save express
+  npm install --save ejs
 
+*************************************************************
+*ejs
 
+  npm install --save ejs
+  app.set('view engine', 'ejs');  // middleware
+
+  put html file in views folder with extension .ejs
+  pass to the file from the get request {key: value} and access in the html file with <%= key %>
+    key   => is the value placed in the template
+    value => the value passed in from the route block
+
+*************************************************************
+*partials
+
+  create a partials folder inside of the views directory
+  link to a partials with : 
+    <% include partials/<file name> %> 
+
+  example 
+    views/partials/header.ejs
+    <% include partials/header %>   // link to the header partial file
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Puppies</title>
+        <link rel="stylesheet" href="/app.css">
+      </head>
+      <body>
+
+    views/partials/footer.ejs
+    <% include partials/footer %>   // link to the footer partial file
+
+      </body>
+    </html>
+
+*************************************************************
+*body parser
+
+  var bodyParser = require('body-parser');
+
+  app.use(bodyParser.urlencoded({extended: true}));
 
 
 
@@ -226,4 +276,4 @@ function pageNotFound(res) {
 //
 // solution
 //   when making a ajax post request the data passed was a buffer in object format and the encoding needs to be set
-//   in the app.js file add req.setEncoding('utf8') before req.on('data', (newTask) => {...}
+C
