@@ -1,0 +1,19 @@
+make api requests and cleanly embed them in a web node web app using npm request
+https://github.com/request/request
+
+npm insatll --save request
+
+
+var request = require('request');
+
+request('https://api.korbit.co.kr/v1/ticker', function (error, response, body) {
+  if (error) {
+    console.log('there was an error with your request');
+  } else if (response && response.statusCode === 200) {
+    // console.log(response);
+    console.log('body:', body);
+    var parsedData = JSON.parse(body);
+  } else {
+    console.log('you have been redirected'); 
+  }
+});
