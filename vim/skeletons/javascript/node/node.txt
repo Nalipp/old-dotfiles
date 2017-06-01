@@ -9,6 +9,7 @@ udemy bootcamp
   *ejs
   *partials
   *body parser
+  *search using get requests
 
 
 
@@ -104,6 +105,16 @@ udemy bootcamp
 
   app.use(bodyParser.urlencoded({extended: true}));
 
+
+
+*************************************************************
+*search using get requests
+
+  you can pass a search query to the url using a form with method="GET" 
+  www.movies.com/title_search?search=happy
+
+  this can be accessed from the routes file with
+  req.query.search
 
 
 *************************************************************
