@@ -1,0 +1,5 @@
+*******************************************************************************************
+angular setup
+
+  ng new <project name>  => start a new project
+  ng serve               => serves the project to local host 4200
