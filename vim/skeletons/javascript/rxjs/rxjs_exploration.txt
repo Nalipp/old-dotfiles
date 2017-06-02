@@ -1,5 +1,22 @@
 *******************************************************************************************
-what is rxjs/reactive programing?
+rxjs
+*******************************************************************************************
+*setup
+*what is rxjs/reactive programing?
+
+
+*******************************************************************************************
+*setup
+
+  npm init
+  npm install --save rxjs
+
+  var Rx = require('rxjs/Rx');
+  var Observable = Rx.Observable;
+
+
+*******************************************************************************************
+*what is rxjs/reactive programing?
 
   rxjs is a javascript library for reactive programing, there are other langauges that use reactive programing
 
@@ -7,8 +24,12 @@ what is rxjs/reactive programing?
   https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
 
     Reactive programming is programming with asynchronous data streams.
+      event streams are a sequence of events that can happen over time
+        can be thought of as an asyncronous array
 
     anything can be a stream: variables, user inputs, properties, caches, data structures, etc.
+
+
 
    A stream can be used as an input to another one.
    Even multiple streams can be used as inputs to another stream. 
@@ -28,8 +49,11 @@ what is rxjs/reactive programing?
    http://jsfiddle.net/staltz/4gGgs/27/
 
 
+   with rxjs everything can be a stream(almost)
+   stream => Observable
 
-
-
-
+   request a string (an api call) / creating an Observable
+     1. doing a requst
+     2. getting a response
+     3. rendering the response
 
