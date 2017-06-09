@@ -65,6 +65,12 @@
     // drop collection
     db.students.drop()
 
+    // indexes are used for making faster queries, but each field must be unique
+    db.users.getIndexes()
+    db.users.createIndex( {"email":1}, {unique: true} )
+
+    // set "<property value>" from 1 to -1 for Descending order
+
 
   // concurrency means the database can process multiple requests at the same time
   //   the program doesn't assign the id number it is handled by the database

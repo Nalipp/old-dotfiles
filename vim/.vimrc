@@ -25,6 +25,8 @@ Plugin 'tpope/vim-dispatch' "allows you to test in the window with vim-rspec
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tomasr/molokai'
 Plugin 'joshdick/onedark.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'nikvdp/ejs-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,6 +78,7 @@ nmap <leader>ca :w !pbcopy<cr>
 
 "split window with current parent directory file path 
 nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+nmap <leader>vv :split <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 
 "shortcuts to files
