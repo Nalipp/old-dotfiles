@@ -15,6 +15,13 @@ angular setup
       ng g c parent-file/<component-name>    // inside a parent
 
 
+  setting up two way binding
+  with angular 4 you need to update the app/app.module.ts file with the following two lines
+
+  import { FormsModule }   from '@angular/forms'; 
+  FormsModule
+      |-> goes after AppComponent,
+
 
   an exported class from type script file can also have 
 
@@ -23,6 +30,8 @@ angular setup
 
     ngOnInit() {
     }
+
+
 
 
 *******************************************************************************************

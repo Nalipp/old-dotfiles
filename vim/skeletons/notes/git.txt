@@ -22,21 +22,6 @@ delete a branch
 reset code (if you didn't commit any changes)
   git reset HEAD --hard
 
-prevent git from recognizing swp files
-  .gitignore
-    # swap
-    [._]*.s[a-v][a-z]
-    [._]*.sw[a-p]
-    [._]s[a-v][a-z]
-    [._]sw[a-p]
-    # session
-    Session.vim
-    # temporary
-    .netrwhist
-    *~
-    # auto-generated tag files
-    tags
-
 switch branches without commiting changes in current branch
   git stash
     <switch branches> when you return 
@@ -44,3 +29,20 @@ switch branches without commiting changes in current branch
 
 see all branches in the repository not only on your machine
   git branch -r
+
+
+prevent git from recognizing swp files in .gitignore
+
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+

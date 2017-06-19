@@ -17,7 +17,6 @@
   npm install --save
   npm install --save mongodb
 
-
   localhost:27017/local
   localhost:27017/test
   localhost:27017/<db name>
@@ -33,10 +32,10 @@
     use <db name>
 
   // collections             (collection(instead of table) is like an array of elements)
-    show collections
+    show collections  // collection will not show up if it is empty
     db.<collection name>
 
-    db.students.insert(<JSON data>)    create a collection and insert
+    db.students.insert(<JSON data>)    // create a collection and insert
     db.students.find()
     db.students.find().pretty()
     db.students.find({"name": /S/})                                 regex expression
@@ -74,3 +73,10 @@
 
   // concurrency means the database can process multiple requests at the same time
   //   the program doesn't assign the id number it is handled by the database
+
+var personSchema = new Schema({
+  name: { type: String, default: 'anonymous' },
+  age: { type: Number, min: 18, index: true },
+  bio: { type: String, match: /[a-zA-Z ]/ },
+  date: { type: Date, default: Date.now },
+});

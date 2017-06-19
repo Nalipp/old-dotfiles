@@ -1,5 +1,16 @@
 var Rx = require('rxjs/Rx');
 
+Array.prototype.concatAll = function() {
+  var results = [];
+  
+  this.forEach(function(subArray) {
+    subArray.forEach(function(item) {
+      results.push(item);
+    });
+  });
+  return results;
+};
+
 var exchanges = [
   { 
     name: "NYSE",
@@ -44,17 +55,6 @@ var exchanges = [
     ]
   }
 ];
-
-Array.prototype.concatAll = function() {
-  var results = [];
-  
-  this.forEach(function(subArray) {
-    subArray.forEach(function(item) {
-      results.push(item);
-    });
-  });
-  return results;
-};
 
 var christmas_eve_closes = 
   exchanges.map(function(exchange){

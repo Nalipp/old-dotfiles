@@ -1,5 +1,7 @@
 command-shift-4       take a photo (or use it to measure pixels)
 
+option-space          open spotlight
+
 quicktime player
   increase playback       //  alt-click on >>
 

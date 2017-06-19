@@ -2,6 +2,7 @@
 rxjs
 *******************************************************************************************
 *setup
+*example api call
 *what is rxjs/reactive programing?
 *creating an observable (api call)
 *concatAll()
@@ -15,7 +16,6 @@ rxjs
 
   var Rx = require('rxjs/Rx');
   var Observable = Rx.Observable;
-
 
   or use the cdn's
 
@@ -38,6 +38,27 @@ rxjs
 
     var Observable = Rx.Observable;
     console.log(Observable); 
+
+
+*******************************************************************************************
+*example api call
+
+
+var endpoingArr = [];
+
+var url = '';
+
+var requestStream = Rx.Observable.of(url);
+
+var responseStream = requestStream
+  .flatMap(requestUrl =>
+    Rx.Observable.fromPromise(jQuery.getJSON(requestUrl))
+    .map(x => x)
+  );
+
+responseStream.subscribe(response => {
+  console.log(response);
+});
 
 
 *******************************************************************************************
