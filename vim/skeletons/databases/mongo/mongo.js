@@ -6,6 +6,8 @@
 // *express
 //   *examples
 
+// *mongoose
+
 
 // ********************************************************************************
 // *mongodb
@@ -80,3 +82,44 @@ var personSchema = new Schema({
   bio: { type: String, match: /[a-zA-Z ]/ },
   date: { type: Date, default: Date.now },
 });
+
+
+// ********************************************************************************
+// *mongoose
+
+  // schema examples
+
+    // models/message.js 
+
+      var mongoose = require('mongoose');
+      var Schema = mongoose.Schema
+
+      var schema = new Schema({
+        content: {type: String, required: true},
+        user: {type: Schema.Types.ObjectId, ref: 'User'}   // references the Message model below
+      })
+
+      module.exports = mongoose.model('Message', schema);
+
+
+  // validation with mongoose example
+     npm install mongoose --save mongoose-unique-validator
+
+    // models/message.js 
+
+      var mongoose = require('mongoose');
+      var Schema = mongoose.Schema;
+      var uniqueValidator = require('mongoose-unique-validator');
+
+      var schema = new Schema({
+        firstName {type: String, required: true},
+        lastName {type: String, required: true},
+        password {type: String, required: true},
+        email {type: String, required: true, unique: true},   // for unique to actually work you have to install the uniquevalidator and plugin
+        message: [{type: Schema.Types.ObjectId, ref: 'Message'}]  // references the User model above
+      })
+
+      schema.plugin(uniqueValidator);
+
+      module.exports = mongoose.model('User', schema);
+
