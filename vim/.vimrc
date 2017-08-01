@@ -27,6 +27,8 @@ Plugin 'tomasr/molokai'
 Plugin 'joshdick/onedark.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'nikvdp/ejs-syntax'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -114,3 +116,4 @@ let g:airline_theme='onedark'
 " let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'

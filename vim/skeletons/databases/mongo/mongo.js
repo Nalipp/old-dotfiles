@@ -7,6 +7,7 @@
 //   *examples
 
 // *mongoose
+// *pluralsight notes
 
 
 // ********************************************************************************
@@ -119,7 +120,59 @@ var personSchema = new Schema({
         message: [{type: Schema.Types.ObjectId, ref: 'Message'}]  // references the User model above
       })
 
+      var schema = new Schema({
+        firstName {type: String, required:[true, 'name is required']}, 
+          // you can also pass an validation error message with required flag
+          // const user = new User({name: undefined});
+          // the message 'name is required' can be accessed with user.validateSync().errors.name.message
+          //  -or-
+          // const = validationResult = user.validateSync()
+          // vadationResult.errors.name.message
+
       schema.plugin(uniqueValidator);
 
       module.exports = mongoose.model('User', schema);
 
+
+// ********************************************************************************
+// *pluralsight notes
+
+  // inserting documents
+    db.users.save({_id: 1}, name: 'nate')  // could be a problem if more then one user is trying to updated the same doc at the same time
+    db.users.update({_id: 1}, {$set: {name: 'nate'}})          // update is better because it won't write over the other users update
+    db.users.update({_id: 1}, {$inc: {points: 1}})             // increment might be a more realistic example 
+    db.users.update({_id: 1}, {$unset: {points: ''}})          // removes a field -> the '' have no impact other than holding place 
+    db.users.update({_id: 1}, {$rename: {'points': 'point'}})  // rename example
+    db.users.update({_id: 1}, {$push: {name: 'nate'}})         // pushes to an existing array, if no array converts the field type to array 
+                                                               // this will not convert to an array if there is an existing string
+    db.users.update({_id: 1}, {$addToSet: {name: 'nate'}})     // same as push but only pushes the value if that value dosen't already exist 
+    db.users.update({_id: 1}, {$pull: {name: 'nate'}})         // removes all instances of a value in an array 
+    db.users.update({_id: 1}, {$pop: {name: 1}})               // removes last element in an aray
+    db.users.update({_id: 1}, {$pop: {name: -1}})              // removes first element in an aray
+    db.users.update({}, {$push: {name: 'nate'}})               // updates only first element by default 
+    db.users.update({}, {$push: {name: 'nate',}}, {multi:true})// updates all documents in the collection
+    db.users.update({name:'bill'}, {$push: {name: 'nate',}}, {multi:true}) // updates all documents if the name contains a value of 'bill'
+
+  // retrieving documents
+    db.users.find({_id: 1}, {name:'nate'});                    // only returns the name field for id 1
+    db.users.find({points: {$gt : 5});                         // returns documents with points greater than 5
+    db.users.find({points: {$lt : 5});                         // returns documents with points less than 5
+    db.users.find({points: {$lte : 5});                        // returns documents with points less than  or equal to 5
+    db.users.find({points: {$lt : 5, $gte : 2});               // (range) returns documents with less than 5 and greater than or equal to 2
+    db.users.find({points: {$not:, {name : 'nate'}}});         // (negative) returns documents not with name 'nate'
+    db.users.find({points: {$in:, [1, 3]}});                   // returns documents with point value of 1 or 3
+    db.users.find({points: {$nin:, [1, 3]}});                  // returns documents with point value not 1 or 3
+    db.users.find({points: {$all:, [1, 3]}});                  // returns documents with point value must have 1 and 3
+
+    // retriving documents in a subdocument
+    db.courses.find({instructors.name: 'nate'})
+    db.courses.find({'instructors.name': {$exists: true}})     // returns all subdocuments where the instructor name has been defined
+    db.courses.find({level: 'admin'}, {name: 1, color: 1})     // returns name and color fields of documents where level is 'admin' 
+    db.courses.find({level: 'admin'}, {name: 0, color: 0})     // returns evertything except name and color fields
+    db.courses.find({level: 'admin'}, {_id: 0})                // id is always returned unless specifically excluded
+    db.courses.find({level: 'admin'}, {$sort: {name:1}})       // returns a sorted list of admins by name
+    db.courses.find({level: 'admin'}, {$sort: {name:-1}})      // returns a sorted list of admins by name desending
+    db.courses.find({level: 'admin'}, {$sort: {name:-1, color:1}}) // sort by multiple fields
+    db.courses.find({instructors.name: 'nate'}).limit(3)       // retirns first 3
+    db.courses.find({instructors.name: 'nate'}).skip(2).limit(3)// page through documents on the server side is better than client side
+    db.courses.findOne({instructors.name: 'nate'})             // returns only one

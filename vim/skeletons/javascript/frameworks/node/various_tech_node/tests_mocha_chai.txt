@@ -1,5 +1,5 @@
 ****************************************************************************************************
-Mocha Chai
+Mocha Chai and mjackson expect
 ****************************************************************************************************
 
 notes
@@ -34,7 +34,24 @@ npm install mocha (if not already installed on your machine)
     "test": "mocha"
   }
 
-  npm run test
+  alternative option
+    this allows you to test every file that ends in test.js
+
+    "scripts": {
+      "test": "mocha **/*.test.js",
+      "test-watch": "nodemon --exec 'npm test'"
+    }
+
+
+    you can also use a minimized test result summary 
+    "test": "mocha **/*.test.js -R min",
+  
+
+  npm test
+  -or-
+  nodemon --exec 'npm test'
+  -or-
+  npm run test watch
 
 
 // server/_config.js
@@ -189,3 +206,28 @@ npm install mocha (if not already installed on your machine)
     });
 
   });
+
+
+*******************************************************************************************
+mjackson expect
+
+  npm install expect --save-dev
+
+  examples 
+
+    var res = utils.add(1, 2);
+
+    expect(res).toBe(3)
+      .toBeA('number');  // passes
+
+    expect({name: 'nate'}).toBe({name: 'nate'});  
+           // fails because is the same comparision as strict equality where pointing to different objects
+           // instead us toEqual
+
+    expect({name: 'nate'}).toEqual({name: 'nate'});   // passes
+
+    expect([1, 2, 3]).toInclude(2)                    // passes 'exclude' is the opposite
+    
+
+
+    

@@ -6,7 +6,7 @@ table
 
   border-spacing: 0;      => remove the auto spacing between table data
                              also allows you to set both the table and td borders without overlaping them 
-                             margin can't be applied to td, border-spacing is can be applied to the table element instead but can't be applied to specific td
+                             margin can't be applied to td, border-spacing is can be applied to the table element instead but can't be applied to specific td.
   table-layout: fixed;    => allows you to set the table column widht to prevent table columns from auto expanding to fit data
 
 <table>

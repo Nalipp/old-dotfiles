@@ -1,0 +1,208 @@
+*******************************************************************************************
+pluralsight_node_epxress_gulp_wiredep_passport
+*******************************************************************************************
+code/node_js/coursework/pluralsight/building_node_express_bower_gulp_wiredep_passport
+https://github.com/Nalipp/node_gulp_passport_example
+
+*bower
+*gulp
+  *wiredep
+*gulp inject
+*gulp nodemon
+
+*templating engines
+  *jade
+
+
+
+
+*******************************************************************************************
+*bower (may not be necessary if using webpack)
+
+  bower is a package manager for the front end (npm is for the backend)
+  has a bower.json just like package.json 
+  this allows your frontend packages to be updated automatially
+
+  $ bower init
+
+  touch .bowerrc   // can be configured to install bower packages in the public directory
+    {
+      "directory": "public/lib"
+    }
+
+  $ bower install --save bootstrap
+  $ bower install --save font-awesome
+
+  you must link to the directories that were installed with bower in the html file 
+  * however this can be done with gulp (see below)
+
+    examples : 
+      <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+
+*******************************************************************************************
+*gulp (webpack can also do most gulp functioning but gulp may be easier to set up)
+
+  $ npm install --save-dev jshint gulp gulp-jshint gulp-jscs jshint-stylish
+
+  // gulpfile.js
+    var gulp = require('gulp');
+    var jshint = require('gulp-jshint');
+
+    var jsFiles = ['*.js', 'src/**/*.js'];   // references all the js files in src
+    
+    gulp.task('style', function() {
+      return gulp.src(jsFiles) 
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish', {
+          verbose: true
+        }))
+        .pipe(jscs());
+    });
+
+  $ gulp style
+
+
+  *******************************************************************************************
+  *wiredep (used in conjunction with gulp to inject assets)
+
+    $ npm install --save-dev wiredep
+
+    // gulpfile.js
+
+      gulp.task('inject', function() {
+        var wiredep = require('wiredep').stream;
+        var options = {
+          bowerJson: require('./bower.json'),
+          directory: './public/lib'
+        }
+
+        return gulp.src('./src/views/*.html')
+        .pipe(wiredep(options))
+        .pipe(gulp.dest('./src/views'));
+      });
+
+      // index.html (the .js resources will be automatically injected between the following after gulp inject )
+        <!-- bower:js -->
+        <!-- endbower -->
+
+    $ gulp inject
+
+    but in order to get the css file working you will need some overrides
+
+    // bower.json (after dependencies)
+
+      "overrides": {
+        "bootstrap": {
+          "main": [
+            "dist/js/bootstrap.js",
+            "dist/css/bootstrap.min.css",
+            "less/bootstrap.less"
+          ]
+        },
+        "font-awesome": {
+          "main": [
+            "less/font-awesome.less",
+            "css/font-awesome.min.css",
+            "scss/font-awesome.scss"
+          ]
+        }
+      }
+
+    to remove the '../../public'
+
+    // gulpfile.js (in gulptask inject)
+
+      ignorePath: '../../public'
+        
+          
+*******************************************************************************************
+*gulp inject
+
+  the previous injections don't include custom resourcess like main.css, this can be done with gulp inject
+
+  $ npm install --save-dev gulp-inject
+
+  // gulpfile.js
+
+    gulp.task('inject', function() {
+      var wiredep = require('wiredep').stream;
+      var inject = require('gulp-inject');
+
+      var injectSrc = gulp.src(['./public/css/*.css', 
+                                './public/js/*.js'], {read: false});
+
+      var injectOptions = {
+        ingnorePath: './public'
+      }
+
+      var options = {
+        bowerJson: require('./bower.json'),
+        directory: './public/lib',
+        ignorePath: '../../public'
+      };
+
+      return gulp.src('./src/views/*.html')
+        .pipe(wiredep(options))
+        .pipe(inject(injectSrc, injectOptions))
+        .pipe(gulp.dest('./src/views'));
+    });
+      
+
+  // index.html (this is in addition to the previous injected filetypes)
+
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- inject:js -->
+    <!-- endinject -->
+
+
+*******************************************************************************************
+*gulp nodemon (serve tasks)
+
+  allows you to watch for js changes using nodemon
+  'serve' is followed by an array of other gulp tasks in the file
+
+  $ npm install --save-dev nodemon gulp-nodemon
+
+  // gulpfile.js
+
+    var nodemon = require('gulp-nodemon');
+
+    gulp.task('style'...
+    gulp.task('inject'...
+
+    gulp.task('serve', ['style', 'inject'], function() {
+      var options = {
+        script: 'app.js',
+        delayTime: 1,
+        env: {
+          'PORT': 5000,
+        },
+        watch: jsFiles
+      };
+
+      return nodemon(options)
+        .on('restart', function(ev) {
+          console.log('restarting'); 
+        });
+    });
+
+  $ gulp server
+
+
+*******************************************************************************************
+*templating engines
+
+  // app.js (middleware)
+    app.set('views', './src/views');
+    app.set('view engine', 'pug');
+
+      *******************************************************************************************
+      *pug
+
+      $ npm install --save pug;
+
+
+
