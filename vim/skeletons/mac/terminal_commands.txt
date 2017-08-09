@@ -1,0 +1,5 @@
+$ tree              
+    -> list all files and subfiles in the directory
+
+$ tree -I node_modules
+    -> list all files and subfiles in the directory excluding node_modules

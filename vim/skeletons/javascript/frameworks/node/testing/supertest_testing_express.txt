@@ -1,0 +1,24 @@
+*******************************************************************************************
+supertest (for testing express apps)
+*******************************************************************************************
+
+*setup 
+
+
+*******************************************************************************************
+*setup 
+
+  $ npm install --save-dev supertest
+  $ touch test/test.js
+
+
+  // app.js
+
+    module.exports.app = app;
+
+  // test/test.js
+
+    const supertest = require('supertest');
+    const app = require('../app.js').app;
+
+

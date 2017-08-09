@@ -1,12 +1,156 @@
-watch more youtuve videos / load onto phone (including udacity oop javascript) 
-set up mac work environment (make cmd space access finder instead of switch langage)
-vim (go through cheatsheet, vim-wiki?)
+*******************************************************************************************
+weekly log aug 8th - aug 31st
+*******************************************************************************************
+170 hours
 
-sql bootcamp
-finish launchSchool curriculum
-vim speed master
-create a new front end for todo-group app
-re-create own version of todo-group app
-udacity finance machine learning course
-get involved with free code camp community
-d3 pandas
+learn
+  pluralsight
+  udemy
+
+build
+  ltc
+  time-keep
+
+teach
+  html css portfolio deployment
+
+
+skills needed to build ltc and time-keep
+spa, socket.io, authentication, development environment
+
+step 1
+  
+  aug 22nd
+    udemy       -> ltc
+    pluarlsight -> time-keep
+    build       -> portfolio
+
+  aug 23rd +
+    job study   -> job interview, launch school, udacity
+    job hunt    -> resume, portfolio
+
+
+*******************************************************************************************
+
+-----------learn build < aug 23rd-----------------------
+week 1
+  tue  aug 8
+         build -> ltc authentication
+                  don't worry about the deployment error, get development working
+         udemy
+  wed  aug 9
+         udemy
+  thur aug 10
+         udemy
+  fri  aug 11
+         prepare portfolio class
+         udemy
+  sat  aug 12
+         pluralsight advanced mongo
+  sun  aug 13
+
+
+week 2
+  mon  aug 14th
+         pluralsight
+         build
+  tue
+         pluralsight 
+         build
+  wed
+         pluralsight 
+         build
+  thur
+         build
+  fri
+         build
+         pprepare portfolio class
+  sat
+         build
+  sun
+
+week 3
+  mon
+         build
+  tue
+         build
+  wed
+         build
+-----------job study > aug 23rd-----------------------
+
+
+
+
+
+
+
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+
+*******************************************************************************************
+weekly log aug 1st - oct 1st
+*******************************************************************************************
+
+*two month outline
+*weekly outline
+
+
+*******************************************************************************************
+*two month outline
+
+  5 weeks 
+
+    pluralsight subscription (aug 16)
+      *sass
+      *webpack
+      *mongoose
+      *javaScript track
+      advanced
+
+    udemy 
+      andrew meed
+      git developer job
+      javascript es6
+
+    launch school 
+      jquery
+
+    build (implement authentication, webpack, scss, spa, socketio, caching?)
+      ltc
+      Gaby
+      timekeep?
+
+
+  3 weeks
+
+    job research
+    interview prep
+      ydkjs
+      udacity
+      launch school review
+    
+    build 
+      portfolio
+      basic node.js app outline
+      timekeep?
+
+
+*******************************************************************************************
+*weekly outline
+
+  week1 -> authentication for 
+           build: ltc, jquery class teach
+             thrus:  ltc local authentication
+                     ltc prepare for class (practice 1)
+             friday: ltc oauth authentication -> https://scotch.io/tutorials/easy-node-authentication-facebook
+                     ltc reset password -> http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
+                     ltc prepare for class (practice 2)
+  week2 -> pluralsight, webpack
+           build: ltc, webpack, flash messages 
+  week3 -> pluralsight, udemy
+           build: ltc, gaby
+  week4 -> udemy, build
+  week5 -> udemy, jQuery, 
+           build: time-keep (use sahat/hackathon-starter)
+  week6 -> 3 weeks
+  week7 -> 3 weeks
+  week8 -> 3 weeks
