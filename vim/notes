@@ -1,0 +1,95 @@
+    remove swap files
+  **vim must not be running
+  find ./ -type f -name "\.*sw[klmnop]" -delete
+
+
+*******************************
+things to do
+
+  - go through all of the current hints and remove / practice (use :help)
+  - map ctr j ctrl n (for keeping the screen in place while going down or up a line)
+  - replace gt and gT to something easier
+  - tab scroll through list up and down (right now it is tab tab for up only)
+  - map ctr w to close tab (along with ctr q)
+  - push dotfiles
+  - map tabnew# (open recently closed tab)
+
+*******************************
+;f                      search projcet file     
+;n                        find next instance while searching project files
+5J                      combines the next 5 lines into one line (removes the /n)
+
+ctrl-e                  scroll up in place
+ctrl-y                  scroll down in place
+
+
+:% y +          				Select all and copy to system clipboard /<word> <ENTER>          
+:%s/old/new/gc  				Replace (old) with (new) word for the entire file (g) and ask for each change (c)
+:set ic         				Set (while in search mode) so you can search both uppercase and lower case instances
+:set hls        				Highlight text during search
+:f / F / ;      				Jump to a specific place in a line (; goes to the next instance)
+:t / T / ;      				Jump to the character before a specific place in a line (; goes to the next instance)
+:H / M / L      				Navigate to the High, Middle, or Low section of a page
+:<ip / >ip      				Indent an entire paragraph equally
+:cip										Change the code within the current param
+:ci(										Change the code within the ()  
+:cit            				Can be used to select the inner portion of html tags
+:q/             				Access / edit search history
+:zt											Focuses the current line to the top of the screen
+:dit										Delete inner tag
+:di"                    Delete inner quotes
+:args *.txt | tab all  	Open all files within a file in tabs that end in .txt
+:shift m								Remove a space below
+''                      move to last position
+
+Setting up buffer windows
+:new <filename tab> 		Opens a new window
+:vnew <filename tab>		Opens a new vertical window		
+:split <filename tab>   Opens an existing file in a horizontal split
+:vsplit <filename tab>  Opens an existing file in a vertical split
+:on											Closes all other tabs except the one you are in
+
+tabs
+$ vim -p <filename>...  Opens multiple files in multiple tabs
+3gt											View tab 3
+:tabm 0									Moves current tab to 0th place
+:tabm 									Moves current tab to last place 
+
+ctrl-w-T          			Breaks a split view into a separate tab 
+ctrl-w-(LH)							Move a window right / left
+
+:echo expand('%:p') 		Check current file path
+
+Plugins
+:PluginInstall          Install plugins with Vundler
+
+ctrlp (plugin)
+<C-j>                   move selection down
+<C-k>                   move selection up
+<C-p>										reopen last search (<C-n> goes forward)
+<C-t>										open the highlighted file in a new tab
+<C-s>										open the highlighted file in a new split   
+<C-v>										open the highlighted file in a new inner split
+
+vim-surround (plugin)
+ysiw<p>												yes inner word <p> (adds paragraph tags)
+yss<h1>												yes sentence <h1> (adds h1 tags to a line)
+ys10j													adds surrounding tags surrounding the selected 10 lines
+dst														delete surrounding tag
+cst<new tag>									change surrounding tag
+ds<character>									delete surrounding (character)
+cs<character><new character>	change surrounding (character)
+
+comentary.vim (plugin)
+gcip										go comment inner paragraph
+
+folding
+zf3j										folds the next three lines
+za											toggle fold and unfold
+zd											delete a fold
+
+vai                     visually select all the elements in a tag to check where tags match
+
+recording
+qw (record the opperation in w) 5@w (repeat the operation saved in w 5 times) 
+

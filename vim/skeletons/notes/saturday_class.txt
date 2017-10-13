@@ -1,7 +1,0 @@
-$(document).ready(function(){
-
-    $.get("output.csv", function( my_var ) {
-        alert(my_var)
-    });
-
-});

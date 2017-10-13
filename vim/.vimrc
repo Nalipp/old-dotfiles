@@ -68,10 +68,11 @@ nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
 nmap <leader>w :q<cr>
-nmap <leader>nn :set nonu norelativenumber<cr>
+" nmap <leader>nn :set nonu norelativenumber<cr>
 nmap <leader>yn :set number relativenumber<cr>
 nmap <leader>l <Insert>console.log(<esc>
-nmap <leader>f <Insert>function <Insert>
+nmap <leader>f :vimgrep // **/*.js
+nmap <leader>n :cnext<cr>
 nmap <space> <Insert> <esc>l
 
 "copy all lines in a file
@@ -84,9 +85,9 @@ nmap <leader>vv :split <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 
 "shortcuts to files
-nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/vim <cr> 
+nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/notes <cr> 
 nmap <leader>fc :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/
-nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/vim/skeletons/
+nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/skeletons <cr>
 
 "can be used for testing 
 nmap <leader>T :w<cr>:call RunCurrentSpecFile()<cr>
