@@ -29,4 +29,30 @@ arr.splice(2, 4)
                   // does not work with strings because a string is an immutable primitive value (you can only make copies)
                   
 
+break    // breaks out of the current iteration and all remaining iterations
+return   // breaks out of the current iteration and returns a value
+continue // breaks out of the current iteration and begins the next iteration if there are remaining iterations
 
+// objects, maps, sets
+  // objects -> require a string for a key
+  // mapps -> can use an integer or even a function for a key
+  // sets -> all values must be unique and lookup is similar to a hash talble O(i)
+
+// maps example
+
+  let map = new Map;
+
+    map.set(2, 2);
+    map.set('two', 2);
+    map.get('two') => 2
+    map.has(2)
+
+    // Map { 2 => 1, 3 => 1 }
+    map.set(2, map.get(2) + 1)
+    // Map { 2 => 2, 3 => 1 }
+
+// sets example
+
+  let set = new Set();
+    set.has('hi')
+    set.add('')

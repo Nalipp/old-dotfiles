@@ -1,6 +1,7 @@
 "==================================================================		
 "			~My vimrc~
 "==================================================================		
+":PluginInstall
 
 "Vundle setup
 set nocompatible " Required by vundle
@@ -29,6 +30,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'nikvdp/ejs-syntax'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'isRuslan/vim-es6'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

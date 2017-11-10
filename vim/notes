@@ -1,4 +1,5 @@
-    remove swap files
+  remove swap files
+
   **vim must not be running
   find ./ -type f -name "\.*sw[klmnop]" -delete
 
