@@ -1,4 +1,4 @@
-  remove swap files
+    remove swap files
 
   **vim must not be running
   find ./ -type f -name "\.*sw[klmnop]" -delete
@@ -49,6 +49,9 @@ Setting up buffer windows
 :split <filename tab>   Opens an existing file in a horizontal split
 :vsplit <filename tab>  Opens an existing file in a vertical split
 :on											Closes all other tabs except the one you are in
+
+Ctrl + w _              Maximize a window vertically
+Ctrl + w |              Maximize a window horizontaly
 
 tabs
 $ vim -p <filename>...  Opens multiple files in multiple tabs

@@ -17,6 +17,10 @@ big O notation
   Evaluate the runtime of algorithms using big-O notation
 
   Compare fastest to slowest asymptotic complexities of common runtimes (e.g. O(1), O(log(n)), O(n), O(nlog(n)), O(n2), etc).
+    constant time
+    liner time
+    quadratic time
+    log time
 
   Explain the difference between time complexity and space complexity
 
