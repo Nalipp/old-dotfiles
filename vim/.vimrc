@@ -2,7 +2,7 @@
 "			~My vimrc~
 "==================================================================		
 ":PluginInstall
-
+let g:ackprg = "ag --vimgrep"
 "Vundle setup
 set nocompatible " Required by vundle
 filetype off     " Required by vundle
@@ -31,6 +31,8 @@ Plugin 'nikvdp/ejs-syntax'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'isRuslan/vim-es6'
+Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -1,0 +1,138 @@
+****************************************************************************************************
+Git a web developer job
+
+  block__element--modifier
+
+  example : bem
+
+    <div class="large-hero">                                      // block
+      <h1 class="large-hero__title">TStory</h1>                   // element
+      <h3 class="large-hero__sub-title">Learn to code</h3>        // element
+      <button class="btn btn--large">Sign up</button>             // block and modifier
+      <button class="btn btn--large btn--green">Log in</button>   // block and 2x modifiers
+    </div>
+
+
+  example : nesting
+
+    .large-hero {
+      position: relative;
+      with: 100%;
+      height: 400px;
+
+      &__text-content {      // the preprocess will generate the appropriate bem name (large-hero__text-content) -> & === .large-hero
+        font-size: '10px';
+        text-align: center;
+      }
+    }
+
+
+****************************************************************************************************
+Why Bem
+
+  Makes the relationship between html and css clearer
+  Instaed of relying on the page cascade we are relying on a direct one to one relationship between the html and css
+  Bem selectors should target selectors specifically instead of relying on type or desendent selectors
+  Blocks are self contained allowing us to move then around freely and reuse them without hurting the cascade
+  We try to identify patterns that allow us to create single responsibility blocks
+  Blocks can be nested inside other blocks
+
+  Block -> is a reusable chunk of css (not unique)
+  Element -> belongs to an element but will not be used again (is unique)
+  Modifier -> can be used on an Block or an Element to modify the default state of an object
+
+  example : Block
+
+    A page will have multiple testimonials but the images in each of them will be different
+
+    <div class="testimonial">
+      <h1>title</h1>
+    </div>
+
+  example : Element
+
+    The testimonial block is not unique and will be used over and over, 
+    but the image in the testimonaial will have css with a specific img so it is an element
+
+    <div class="testimonial">
+      <img class="testimonial__image" />
+    </div>
+
+
+
+  example : Modifyer
+
+    btn is a block element that is reused throughout the page, but some buttons are a different color than the default
+
+    <a class="btn btn"></a>                        // original state without modifier 
+    <a class="btn btn--orange"></a>                // with modifier
+    <a class="btn btn--orange btn--large"></a>     // two midifiers
+
+
+****************************************************************************************************
+architecture
+
+  main css file imports in different single responsibililty css files including any resets
+
+  // styles/main.css
+  @import "normalize.css";
+  @import "base/global";           // base can hold global styles and variables
+  @import "base/_variables";       // holds all variables for things like hex colors
+  @import "base/_mixins";          // mixins belong in the base, see below example
+  @import "modules/_large-hero";   // modules can hold partials (files that are ment to be imported)
+  @import "modules/_btn";          // a module can be used for even something as small as a btn
+
+  example : using variables
+
+    // styles/modules/_btn.css
+    .btn {
+      background-color: $mainBlue;  // variable should be defined in base/_variables.css
+      height: 2rem;
+      width: 4rem;
+    }
+
+  example : mixins (using external library)
+
+    npm install --save-dev postcss-mixins
+    require('postcss-mixins');
+
+
+    // styles/base/_mixins.css
+      @define-mixin atSmall {
+        @media (min-width: 530px) {
+          @mixin-content;
+        }
+      }
+
+      @define-mixin atMedium {
+        @media (min-width: 800px) {
+          @mixin-content;
+        }
+      }
+
+      ...
+
+    // styles/modules/_large-hero
+      @mixin atSmall {        // allows you to use the same media query instead of re-typing
+        font-size: 4.rem
+      }
+
+
+****************************************************************************************************
+nesting with &<name>  
+
+  Nesting goes against the bem philiosiphy because when a preprocessor compiles the nested css it compiles it into a desendent selector relationship
+  instead you can use & (which is the outer selector) plus the 
+
+  .large-hero {
+    position: relative;
+    with: 100%;
+    height: 400px;
+
+    &__text-content {      // the preprocess will generate the appropriate bem name (lare-hero__text-content)
+      font-size: '10px';
+      text-align: center;
+    }
+  }
+
+

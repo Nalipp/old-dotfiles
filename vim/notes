@@ -1,8 +1,10 @@
-    remove swap files
+  
+
+
+remove swap files
 
   **vim must not be running
   find ./ -type f -name "\.*sw[klmnop]" -delete
-
 
 *******************************
 things to do
@@ -16,6 +18,9 @@ things to do
   - map tabnew# (open recently closed tab)
 
 *******************************
+;vr                     open plugin file
+:PluginInstall          installs plugins after added to the plugin file
+
 ;f                      search projcet file     
 ;n                        find next instance while searching project files
 5J                      combines the next 5 lines into one line (removes the /n)
