@@ -13,7 +13,7 @@ flexbox
 
       flex-direction               -> row, row-reverse, column, column-reverse
       justify-content (main axis)  -> (right to left) flex-start, flex-end, center, space-between, space-around, space-evenly
-      align-items (cross axis)     -> (top to bottom) flex-start, flex-end, center, baseline, stretch (applies to content that is wrapped)
+      align-items (top to bottom)  -> flex-start, flex-end, center, baseline, stretch (applies to content that is wrapped)
       flex-wrap                    -> wrap, nowrap, wrap-reverse
       align-content (cross axis)   -> flex-start, flex-end, center, space-between, space-around, stretch (for entire multiple row content with wrap)
 
@@ -23,6 +23,7 @@ flexbox
 
       order               -> allows you to specify the order of individual items and accepts a + - interger
       align-self          -> flex-start, flex-end, center, baseline, stretch (overrides the align items for a specific element)
+      justify-self        -> (cross-axis) or just use margin auto 
 
       flex: 1             -> shorthand for flex-grow, flex-shrink and flex-basis
       flex-basis:         -> similar to width
