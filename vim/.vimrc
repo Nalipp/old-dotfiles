@@ -78,6 +78,7 @@ nmap <leader>l <Insert>console.log(<esc>
 nmap <leader>f :vimgrep // **/*.js
 nmap <leader>n :cnext<cr>
 nmap <space> <Insert> <esc>l
+nmap <leader>i :Explore <cr>
 
 "copy all lines in a file
   "nmap <leader>co ggVG*y

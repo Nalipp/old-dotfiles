@@ -83,14 +83,14 @@ pg_dump data
 ********************************************************************************
 Creating a new table
 
-  db_name # \d+ [table name]       //show table schema
-
   library=# CREATE TABLE users (
     id serial,
     username CHAR(25) NOT NULL,
     enabled boolean DEFAULT TRUE,
     PRIMARY KEY (id)
     );
+
+  db_name # \d+ [table name]       //show table schema
 
   the column definition go between the () after the table name
   column definitions accept three arguments | name | datatype | constraints(optional)
@@ -130,19 +130,19 @@ Creating a new table
 ********************************************************************************
 Inserting data
 
-INSERT INTO users (id, username, enabled)
-          VALUES (20,'John Smith', false);
 
-INSERT INTO users VALUES (20,'John Smith', false);
+  INSERT INTO users (id, username, enabled)
+            VALUES (20,'John Smith', false);
 
-* Because we set the PRIMARY KEY (id), this prevents multiple inputs to the same key
-If we run the same INSERT INTO key twice we will get an error
+  INSERT INTO users VALUES (20,'John Smith', false);
 
-When inserting new rows it is better to let the database insert the next id automatically
+  * Because we set the PRIMARY KEY (id), this prevents multiple inputs to the same key
+  If we run the same INSERT INTO key twice we will get an error
 
-library=# INSERT INTO users (username, enabled)
-          VALUES ('Harry Potter', false);
-=> INSERT 0 1
+  When inserting new rows it is better to let the database insert the next id automatically
+
+  library=# INSERT INTO users (username, enabled)
+            VALUES ('Harry Potter', false);
 
 
 ********************************************************************************
@@ -223,52 +223,45 @@ ALTER TABLE books_categories ADD UNIQUE (book_id, category_id);
 Data Definition Language vs Data Manipulation Language
 Data                     vs Schema
 
-Data(DML) is the actual id(4), username('Tom Smith') in the rows, the data of the table.
-  The data is viewed with the SELECT command
+  Data(DML) is the actual id(4), username('Tom Smith') in the rows, the data of the table.
+    The data is viewed with the SELECT command
 
-Data Definition language (DDL) is the details/definition about the data structure in the column, id, username, VARCHAR(25), serial, NOT NULL.
-  The schema is like the construction plan for a table.
-  \d $table_name allows access to the schema
+  Data Definition language (DDL) is the details/definition about the data structure in the column, id, username, VARCHAR(25), serial, NOT NULL.
+    The schema is like the construction plan for a table.
+    \d $table_name allows access to the schema
 
-Data manipulation statements for DML (CRUD)
-INSERT
-SELECT
-UPDATE
-DELETE
+  Data manipulation statements for DML (CRUD)
+  INSERT
+  SELECT
+  UPDATE
+  DELETE
 
-Manipulating the table structures for DDL
-CREATE
-ALTER
-DROP
-DESCRIBE
+  Manipulating the table structures for DDL
+  CREATE
+  ALTER
+  DROP
+  DESCRIBE
 
 
-https://www.postgresql.org/docs/9.5/static/ddl-alter.html#AEN2849
+  https://www.postgresql.org/docs/9.5/static/ddl-alter.html#AEN2849
 
 
 ********************************************************************************
-Adding additional tables
+mapping table relationships
 
-When adding additional tables we have to map the relations between the tables.
+Types of table relationships
+  One-to-One	  A User has ONE address
+  One-to-many	  A Book has MANY reviews
+  Many-to-Many	A user has MANY books and a book has MANY users
 
-One User has MANY books that he/she may have checked out or returned.
-A Book is/has been checked out by MANY users.
-One Book has MANY reviews.
-A User has ONE address.
-
-#Types of table relationships
-One-to-One	  A User has ONE address
-One-to-many	  A Book has MANY reviews
-Many-to-Many	A user has MANY books and a book has MANY users
-
-#One-to-One example
-CREATE TABLE users (
-  id serial,                                                          #
-  username VARCHAR(25) NOT NULL,                                         (NOT NULL constraints must have valid values)
-  enabled boolean DEFAULT TRUE,
-  last_login timestamp NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (id)
-);
+One-to-One example : 
+  CREATE TABLE users (
+    id serial,                                                          #
+    username VARCHAR(25) NOT NULL,                                         (NOT NULL constraints must have valid values)
+    enabled boolean DEFAULT TRUE,
+    last_login timestamp NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (id)
+  );
 
 /*
  one to one: User has one address
@@ -280,7 +273,8 @@ CREATE TABLE addresses (
   city VARCHAR(30) NOT NULL,
   state VARCHAR(30) NOT NULL,
   PRIMARY KEY (user_id),
-  CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id)    #
+  CONSTRAINT fk_user_id 
+  FOREIGN KEY (user_id) REFERENCES users(id)    #
 );
 
 #one-to-many example
@@ -317,7 +311,7 @@ CREATE TABLE users_books (
   book_id int NOT NULL,                                              #
   checkout_date timestamp,
   return_date timestamp,
-  PRIMARY KEY (user_id, book_id),                                         (A composite key is when a primary key is made of two columns, usually in many to many relationships)
+  PRIMARY KEY (user_id, book_id),                       (A composite key is when a primary key is made of two columns, usually in many to many relationships)
   FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE,      #
   FOREIGN KEY (book_id) REFERENCES books(id) ON UPDATE CASCADE       #
 );
@@ -342,52 +336,52 @@ setval() sets the current value of a sequence, this is used when values are manu
 ********************************************************************************
 Joins
 
-Joins (join tables) are operations that rely on foreign keys
+  Joins (join tables) are operations that rely on foreign keys
 
-#Inner Join example
-SELECT books.title, books.author, users_books.checkout_date (This line requests the columns from both tables to be displayed)
-From books                                                  (The first table)
-INNER JOIN users_books                                      (The second table)
-ON books.id=users_books.book_id;                            (The matching keys)
+  #Inner Join example
+  SELECT books.title, books.author, users_books.checkout_date  // (This line requests the columns from both tables to be displayed)
+  From books                                                   // (The first table)
+  INNER JOIN users_books                                       // (The second table)
+  ON books.id=users_books.book_id;                             // (The matching keys)
 
-# Inner Join example (returns values only when they are present in both tables)
-SELECT users.*, addresses.*
-FROM users
-INNER JOIN addresses
-ON users.id = addresses.user_id;
+  # Inner Join example (returns values only when they are present in both tables)
+  SELECT users.*, addresses.*
+  FROM users
+  INNER JOIN addresses
+  ON users.id = addresses.user_id;
 
-# Left (outer) Join example (returns blank values even if they are not present in both tables)
-SELECT users.*, addresses.*
-FROM users
-LEFT JOIN addresses
-ON users.id = addresses.user_id;
+  # Left (outer) Join example (returns blank values even if they are not present in both tables)
+  SELECT users.*, addresses.*
+  FROM users
+  LEFT JOIN addresses
+  ON users.id = addresses.user_id;
 
-# Cross join (returns every user in record mapped with every record in address / 6 records for 3 users x 2 addresses)
-SELECT *
-FROM users
-CROSS JOIN addresses;
+  # Cross join (returns every user in record mapped with every record in address / 6 records for 3 users x 2 addresses)
+  SELECT *
+  FROM users
+  CROSS JOIN addresses;
 
-# Right Join (returns every element from the right table, even if there isn't a corresponding value in the left table)
-SELECT users.username, books.title
-FROM users
-RIGHT JOIN users_books ON (users_books.user_id = users.id)
-RIGHT JOIN books ON (books.id = users_books.book_id);
+  # Right Join (returns every element from the right table, even if there isn't a corresponding value in the left table)
+  SELECT users.username, books.title
+  FROM users
+  RIGHT JOIN users_books ON (users_books.user_id = users.id)
+  RIGHT JOIN books ON (books.id = users_books.book_id);
 
-# Left Join
-SELECT users.username, books.title
-FROM users
-LEFT JOIN users_books ON (users_books.user_id = users.id)
-LEFT JOIN books ON (books.id = users_books.book_id);
+  # Left Join
+  SELECT users.username, books.title
+  FROM users
+  LEFT JOIN users_books ON (users_books.user_id = users.id)
+  LEFT JOIN books ON (books.id = users_books.book_id);
 
-# Joining three tables
-SELECT users.username, reviews.review_content, users_books.checkout_date
-FROM users
-JOIN reviews
-ON users.id=reviews.user_id
-JOIN users_books
-ON users_books.user_id=reviews.user_id;
+  # Joining three tables
+  SELECT users.username, reviews.review_content, users_books.checkout_date
+  FROM users
+  JOIN reviews
+  ON users.id=reviews.user_id
+  JOIN users_books
+  ON users_books.user_id=reviews.user_id;
 
-http://stackoverflow.com/questions/9853586/how-can-i-join-multiple-sql-tables-using-the-ids
+  http://stackoverflow.com/questions/9853586/how-can-i-join-multiple-sql-tables-using-the-ids
 
 
 ********************************************************************************

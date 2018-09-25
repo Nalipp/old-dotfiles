@@ -65,7 +65,7 @@
 
     // update
     db.students.update({"name": "Ben Sadick"}, {$set: {"score" : 80}})
-    db.students.update({_id: new ObjectID(id)}, {$set: {"status" : newStatus}})
+    db.students.update({_id: new ObjectId(id)}, {$set: {"status" : newStatus}})
 
     // push to array
     db.tasks.update({"title":"one"}, {$push: {"timeSubmission":{"timeStamp":"hi", "totalMilliseconds":5000}}})
@@ -258,3 +258,5 @@ var personSchema = new Schema({
     db.courses.find({instructors.name: 'nate'}).limit(3)       // retirns first 3
     db.courses.find({instructors.name: 'nate'}).skip(2).limit(3)// page through documents on the server side is better than client side
     db.courses.findOne({instructors.name: 'nate'})             // returns only one
+
+
