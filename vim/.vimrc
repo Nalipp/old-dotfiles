@@ -3,6 +3,7 @@
 "==================================================================		
 ":PluginInstall
 let g:ackprg = "ag --vimgrep"
+
 "Vundle setup
 set nocompatible " Required by vundle
 filetype off     " Required by vundle
@@ -66,19 +67,18 @@ set guioptions-=L
 "leader comands
 let mapleader = "\;"
 nmap <leader>vr :tabedit ~/.vimrc<cr>
-nmap <leader>oo :source $MYVIMRC<cr>
+nmap <leader>vs :so %<cr>
 nmap <leader>s :w<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
 nmap <leader>w :q<cr>
 " nmap <leader>nn :set nonu norelativenumber<cr>
-nmap <leader>yn :set number relativenumber<cr>
+nmap <leader>yn :set number relativenumber!<cr>
 nmap <leader>l <Insert>console.log(<esc>
-nmap <leader>f :vimgrep // **/*.js
-nmap <leader>n :cnext<cr>
+nmap <leader>so :source ~/.vimrc <cr>
 nmap <space> <Insert> <esc>l
-nmap <leader>i :Explore <cr>
+nmap <leader>b :Explore <cr>
 
 "copy all lines in a file
   "nmap <leader>co ggVG*y
@@ -108,6 +108,20 @@ nmap <leader>tt :tabm -1<cr>
 nmap j gj
 nmap k gk
 
+"Searching
+" nmap <leader>f :vimgrep // **/*.js
+" :vimgrep -R --exclude-dir=node_modules /App/ .  
+" nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' .<left><left><left>
+nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' ../.<left><left><left><left><left><left>
+nmap <leader>oo :copen<cr> 
+"See a list of all files (after grep)"
+nmap <leader>n :cnext<cr>
+"Cycle through the next file file (after grep)"
+nmap <leader>p :cprevious<cr>
+"Cycle through the previous file (after grep)"
+
+
+
 "auto comands
 autocmd Filetype help nnoremap <buffer> q :q<CR>
 
@@ -123,3 +137,5 @@ let g:airline_theme='onedark'
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:netrw_banner = 0
+

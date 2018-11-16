@@ -2,6 +2,14 @@
 react
 ****************************************************************************************************
 
+virtual DOM
+ 1. when a change occurs, update the virtual dom
+ 2. update the previous dom representation with the current
+ 3. only update the real dom with what actually changed
+
+
+
+
 starter code :
 
 <!DOCTYPE html>
