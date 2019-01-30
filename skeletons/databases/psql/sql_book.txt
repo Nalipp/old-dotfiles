@@ -44,6 +44,7 @@ getting started
     # \l
     # \c [database name] => change databases
     # \dt => check the current list of tables
+    # \d+ tablename => view table schema
 
   Create a new database
     $ createdb [database name]
@@ -164,6 +165,7 @@ Updating/Deleting data (before updating or deleting, it is a good idea to backup
 
 Delete a table
 DROP TABLE users;
+DROP TABLE users jobs; (two tables)
 
 #Update all elements from a table
 UPDATE users SET enabled = false;

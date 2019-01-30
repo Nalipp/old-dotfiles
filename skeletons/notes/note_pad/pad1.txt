@@ -1,0 +1,1337 @@
+DARKSKY_API_KEY=d4384f8041d61dc78c973fa48d3fab7d
+
+$ mongo ds153314.mlab.com:53314/heroku_wszz785d -u heroku_wszz785d -p dhckd2n7suvrn1lu4n2j08ut8a
+
+load process.env.DARKSKY_API_KEY when updating the city list in development (this is handled in production using $heroku config)
+  DARKSKY_API_KEY=d4384f8041d61dc78c973fa48d3fab7d node index.js
+
+https://api.darksky.net/forecast/d4384f8041d61dc78c973fa48d3fab7d/34.0194,-118.4108?exclude=minutely,hourly
+https://api.darksky.net/forecast/d4384f8041d61dc78c973fa48d3fab7d/13.752753,100.494086?exclude=minutely,hourly
+https://api.darksky.net/forecast/d4384f8041d61dc78c973fa48d3fab7d/25.268352,55.296196?exclude=minutely,hourly
+
+  ['Bangkok', '', '100.494086'],
+
+  ['Dubai', '', ''],
+
+1548489600
+1548576000
+1548662400
+1548748800
+1548835200
+1548921600
+1549008000
+1549094400
+
+
+**************************************************
+do today
+  testing client
+  sort on click
+  filter
+
+    filter form updates 
+      'APPLY_FILTERS'
+      'FILTERED_CITIES'
+         ForcastTable delects filtered_cities || city_forcasts
+
+
+  add total daylight hours
+
+**************************************************
+watching data update
+
+  mlab
+  boston at 11:15
+  {
+    "_id" : ObjectId("5c3d0b7354ce5f00170dff81"),
+    "cityName" : "boston",
+    "summary" : "Clear",
+    "icon" : "clear-night",
+    "precipIntensity" : "0",
+    "precipProbability" : "0",
+    "temperature" : 28.34,
+    "apparentTemperature" : 28.34,
+    "humidity" : 0.58,
+    "windSpeed" : 2.28,
+    "cloudCover" : 0.11,
+    "uvIndex" : 0,
+    "visibility" : 10,
+    "__v" : 0
+  }
+
+
+**************************************************
+project is scattered about
+
+best-weather (master project)
+  /Users/natelipp/code/react/react/projects/best-weather
+
+node api deploy
+  https://github.com/Nalipp/react_node_api_todo_app
+
+best_weather_now
+  react frontend with setInterval click listerner, firebase attempt
+    /Users/natelipp/code/react/react/projects/examples_playground/old-weather/best_us_weather_now
+
+city_display
+  react start mobile first design seperated out an entire app to a component folder
+  /Users/natelipp/code/react/react/playground/components/city_display
+
+heroku/play
+  exmaple node server serving json to localhost (no database, not deployed)
+  /Users/natelipp/code/react/react/playground/heroku/play
+
+weather_api
+  javascript code filters
+  /Users/natelipp/code/java_script/code/weather_api
+
+example for testsing react apps
+  /Users/natelipp/code/react/react/boilerplates/stephen_grider/testing_example_app
+
+example for testing node mongodb backend
+  https://github.com/Nalipp/testing_mocha_mongodb
+
+city_map_compare
+  complete react project for comparing city size deployed to firebase (https://city-map-compare.firebaseapp.com/)
+  uses mapquest api for finding geo-cordinates and 'google-maps-react' library
+  /Users/natelipp/code/react/react/projects/city_map_compare
+
+google_city_view
+  everything needed to make api request!
+  /Users/natelipp/code/react/react/playground/google_api/city_images
+
+geo_peo
+  some styling and notes but not very useful
+    /Users/natelipp/code/react/react/projects/geo_peo/geo-peo
+
+
+
+
+// weather api
+// 2d49a1a136dc76649589fca68494a29a
+
+**************************************************
+top 100
+
+Hong_Kong
+Bangkok
+London
+Singapore
+Macau
+Paris
+Dubai
+New_York_City
+Kuala_Lumpur
+Shenzhen
+Phuket
+Istanbul
+Delhi
+Tokyo
+Rome
+Antalya
+Taipei
+Guangzhou
+Mumbai
+Prague
+Mecca
+Miami
+Amsterdam
+Seoul
+Pattaya
+Shanghai
+Los_Angeles
+Las_Vegas
+Agra
+Osaka
+Barcelona
+Milan
+Denpasar
+Vienna
+Cancún
+Berlin
+Ho_Chi_Minh_City
+Riyadh
+Venice
+Jaipur
+Madrid
+Orlando
+Chennai
+Dublin
+Florence
+Moscow
+Athens
+Cairo
+Ha_Noi
+Toronto
+Ha_Long
+Beijing
+Sydney
+Munich
+Budapest
+Punta_Cana
+St_Peters_burg
+Jakarta
+Dammam_City
+Lisbon
+Jerusalem
+Chiang_Mai
+Zhuhai
+Penang_Island
+Kyoto
+Heraklion
+Phnom_Penh
+Brussels
+Vancouver
+Copenhagen
+San_Francisco
+Warsaw
+Krakow
+Melbourne
+Honolulu
+Marrakech
+Auckland
+Lviv
+Tel_Aviv
+Kolkatta
+Frankfurt
+Guilin
+Stockholm
+Siem_Reap
+Jeju
+Mexico_City
+Buenos_Aires_City
+Chiba
+Lima
+Nice
+Santiago
+Rio_de_Janeiro
+Abu_Dhabi
+Porto
+Batam
+Doha
+Rhodes
+Krabi
+
+
+
+some lng lat
+**************************************************
+
+['new_york', '40.6635', '-73.9387'],
+['los_angeles', '34.0194', '-118.4108'],
+['chicago', '41.8376', '-87.6818?'],
+['houston', '29.7866', '-95.3909'],
+['philadelphia', '40.0094', '-75.1333'], 
+['san_antonio', '29.4724', '-98.5251'], 
+['san_diego', '32.8153', '-117.1350'], 
+['dallas', '32.7933', '-96.7665'], 
+['san_jose', '37.2967', '-121.8189'], 
+['austin', '30.3039', '-97.7544'], 
+['jacksonville', '30.3369', '-81.6616'], 
+['san_francisco', '37.7272', '-123.0322'], 
+['columbus', '39.9852', '-82.9848'], 
+['fort_worth', '32.7815', '-97.3467'], 
+['indianapolis', '39.7767', '-86.1459'], 
+['charlotte', '35.2078', '-80.8310'], 
+['seattle', '47.6205', '-122.3509'], 
+['denver', '39.7619', '-104.8811'], 
+['washington', '38.9041', '-77.0172'], 
+['boston', '42.3320', '-71.0202'], 
+['el paso',	'31.8484', '106.4270'],
+['detroit', '42.3830', '83.1022'],
+['nashville', '36.1718', '86.7850'],
+['memphis', '35.1028', '89.9774'],
+['portland', '45.5370', '122.6500'],
+['oklahoma city', '35.4671', '97.5137'],
+['las vegas', '36.2292', '115.2601'],
+['louisville', '38.1654', '85.6474'],
+['baltimore', '39.3000', '76.6105'],
+
+
+
+****************************************************************************************************
+top 30
+
+new_york
+/forecast/2d49a1a136dc76649589fca68494a29a/40.6635,-73.9387?exclude=minutely,hourly
+['new_york', '40.6635', '-73.9387'],
+
+los_angeles
+/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+['los_angeles', '34.0194', '-118.4108'],
+
+chicago
+/forecast/2d49a1a136dc76649589fca68494a29a/41.8376,-87.6818?exclude=minutely,hourly
+['chicago', '41.8376', '-87.6818?'],
+
+houston
+/forecast/2d49a1a136dc76649589fca68494a29a/29.7866,-95.3909?exclude=minutely,hourly
+['houston', '29.7866', '-95.3909'],
+
+phoenix
+/forecast/2d49a1a136dc76649589fca68494a29a/33.5722,-112.0901?exclude=minutely,hourly
+['phoenix', '33.5722', '-112.0901'], 
+
+philadelphia
+/forecast/2d49a1a136dc76649589fca68494a29a/40.0094,-75.1333?exclude=minutely,hourly
+['philadelphia', '40.0094', '-75.1333'], 
+
+san_antonio
+/forecast/2d49a1a136dc76649589fca68494a29a/29.4724,-98.5251?exclude=minutely,hourly
+['san_antonio', '29.4724', '-98.5251'], 
+
+san_diego
+/forecast/2d49a1a136dc76649589fca68494a29a/32.8153,-117.1350?exclude=minutely,hourly
+['san_diego', '32.8153', '-117.1350'], 
+
+dallas
+/forecast/2d49a1a136dc76649589fca68494a29a/32.7933,-96.7665?exclude=minutely,hourly
+['dallas', '32.7933', '-96.7665'], 
+
+san_jose
+/forecast/2d49a1a136dc76649589fca68494a29a/37.2967,-121.8189?exclude=minutely,hourly
+['san_jose', '37.2967', '-121.8189'], 
+
+austin
+/forecast/2d49a1a136dc76649589fca68494a29a/30.3039,-97.7544?exclude=minutely,hourly
+['austin', '30.3039', '-97.7544'], 
+
+jacksonville
+/forecast/2d49a1a136dc76649589fca68494a29a/30.3369,-81.6616?exclude=minutely,hourly
+['jacksonville', '30.3369', '-81.6616'], 
+
+san_francisco
+/forecast/2d49a1a136dc76649589fca68494a29a/37.7272,-123.0322?exclude=minutely,hourly
+['san_francisco', '37.7272', '-123.0322'], 
+
+columbus
+/forecast/2d49a1a136dc76649589fca68494a29a/39.9852,-82.9848?exclude=minutely,hourly
+['columbus', '39.9852', '-82.9848'], 
+
+fort_worth
+/forecast/2d49a1a136dc76649589fca68494a29a/32.7815,-97.3467?exclude=minutely,hourly
+['fort_worth', '32.7815', '-97.3467'], 
+
+indianapolis
+/forecast/2d49a1a136dc76649589fca68494a29a/39.7767,-86.1459?exclude=minutely,hourly
+['indianapolis', '39.7767', '-86.1459'], 
+
+charlotte
+/forecast/2d49a1a136dc76649589fca68494a29a/35.2078,-80.8310?exclude=minutely,hourly
+['charlotte', '35.2078', '-80.8310'], 
+
+seattle
+/forecast/2d49a1a136dc76649589fca68494a29a/47.6205,-122.3509?exclude=minutely,hourly
+['seattle', '47.6205', '-122.3509'], 
+
+denver
+/forecast/2d49a1a136dc76649589fca68494a29a/39.7619,-104.8811?exclude=minutely,hourly
+['denver', '39.7619', '-104.8811'], 
+
+washington
+/forecast/2d49a1a136dc76649589fca68494a29a/38.9041,-77.0172?exclude=minutely,hourly
+['washington', '38.9041', '-77.0172'], 
+
+boston
+/forecast/2d49a1a136dc76649589fca68494a29a/42.3320,-71.0202?exclude=minutely,hourly
+['boston', '42.3320', '-71.0202'], 
+
+
+****************************************************************************************************
+        top 21 
+****************************************************************************************************
+
+
+El Paso	 31.8484°N 106.4270°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Detroit 42.3830°N 83.1022°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Nashville 36.1718°N 86.7850°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Memphis 35.1028°N 89.9774°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Portland 45.5370°N 122.6500°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Oklahoma City 35.4671°N 97.5137°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Las Vegas 36.2292°N 115.2601°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Louisville 38.1654°N 85.6474°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+Baltimore 39.3000°N 76.6105°W
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/34.0194,-118.4108?exclude=minutely,hourly
+
+
+Seoul
+https://api.darksky.net/forecast/2d49a1a136dc76649589fca68494a29a/37.5665,126.9780?exclude=minutely,hourly
+° N, 126.9780° E
+
+
+
+
+
+**************************************************
+example response objects
+
+var cities = [
+  sanFrancisco: { 
+time: 1541314800,
+        summary: 'Partly cloudy until evening.',
+        icon: 'partly-cloudy-day',
+        sunriseTime: 1541342387,
+        sunsetTime: 1541380155,
+        moonPhase: 0.9,
+        precipIntensity: 0.0005,
+        precipIntensityMax: 0.0025,
+        precipIntensityMaxTime: 1541383200,
+        precipProbability: 0.07,
+        precipType: 'rain',
+        temperatureHigh: 64.93,
+        temperatureHighTime: 1541368800,
+        temperatureLow: 54.27,
+        temperatureLowTime: 1541426400,
+        apparentTemperatureHigh: 64.93,
+        apparentTemperatureHighTime: 1541368800,
+        apparentTemperatureLow: 54.27,
+        apparentTemperatureLowTime: 1541426400,
+        dewPoint: 46.92,
+        humidity: 0.63,
+        pressure: 1016.54,
+        windSpeed: 4.25,
+        windGust: 15.32,
+        windGustTime: 1541397600,
+        windBearing: 281,
+        cloudCover: 0.28,
+        uvIndex: 4,
+        uvIndexTime: 1541358000,
+        visibility: 10,
+        ozone: 249.35,
+        temperatureMin: 54.76,
+        temperatureMinTime: 1541329200,
+        temperatureMax: 64.93,
+        temperatureMaxTime: 1541368800,
+        apparentTemperatureMin: 54.76,
+        apparentTemperatureMinTime: 1541329200,
+        apparentTemperatureMax: 64.93,
+        apparentTemperatureMaxTime: 1541368800 
+  },
+newYork:
+{ time: 1541304000,
+summary: 'Mostly cloudy starting in the afternoon.',
+         icon: 'partly-cloudy-night',
+         sunriseTime: 1541331082,
+         sunsetTime: 1541368221,
+         moonPhase: 0.9,
+         precipIntensity: 0.0005,
+         precipIntensityMax: 0.0025,
+         precipIntensityMaxTime: 1541383200,
+         precipProbability: 0.07,
+         precipType: 'rain',
+         temperatureHigh: 55.52,
+         temperatureHighTime: 1541361600,
+         temperatureLow: 48.03,
+         temperatureLowTime: 1541383200,
+         apparentTemperatureHigh: 55.52,
+         apparentTemperatureHighTime: 1541361600,
+         apparentTemperatureLow: 44.93,
+         apparentTemperatureLowTime: 1541397600,
+         dewPoint: 34.94,
+         humidity: 0.6,
+         pressure: 1031.81,
+         windSpeed: 1.04,
+         windGust: 11.9,
+         windGustTime: 1541390400,
+         windBearing: 341,
+         cloudCover: 0.28,
+         uvIndex: 3,
+         uvIndexTime: 1541347200,
+         visibility: 10,
+         ozone: 293.59,
+         temperatureMin: 41.53,
+         temperatureMinTime: 1541332800,
+         temperatureMax: 55.52,
+         temperatureMaxTime: 1541361600,
+         apparentTemperatureMin: 37.86,
+         apparentTemperatureMinTime: 1541329200,
+         apparentTemperatureMax: 55.52,
+         apparentTemperatureMaxTime: 1541361600 
+},
+seoul:
+{ time: 1541343600,
+summary: 'Partly cloudy in the morning.',
+         icon: 'partly-cloudy-night',
+         sunriseTime: 1541368931,
+         sunsetTime: 1541406701,
+         moonPhase: 0.91,
+         precipIntensity: 0.0001,
+         precipIntensityMax: 0.0001,
+         precipIntensityMaxTime: 1541365200,
+         precipProbability: 0.04,
+         precipType: 'rain',
+         temperatureHigh: 67.46,
+         temperatureHighTime: 1541397600,
+         temperatureLow: 44.84,
+         temperatureLowTime: 1541448000,
+         apparentTemperatureHigh: 67.46,
+         apparentTemperatureHighTime: 1541397600,
+         apparentTemperatureLow: 44.84,
+         apparentTemperatureLowTime: 1541448000,
+         dewPoint: 39.97,
+         humidity: 0.63,
+         pressure: 1023.35,
+         windSpeed: 1.84,
+         windGust: 6.29,
+         windGustTime: 1541408400,
+         windBearing: 327,
+         cloudCover: 0.57,
+         uvIndex: 4,
+         uvIndexTime: 1541386800,
+         visibility: 10,
+         ozone: 273.02,
+         temperatureMin: 43.87,
+         temperatureMinTime: 1541347200,
+         temperatureMax: 67.46,
+         temperatureMaxTime: 1541397600,
+         apparentTemperatureMin: 43.87,
+         apparentTemperatureMinTime: 1541347200,
+         apparentTemperatureMax: 67.46,
+         apparentTemperatureMaxTime: 1541397600 
+},
+  ]
+
+
+
+
+New York 
+40.6635°N 73.9387°W
+Los Angeles
+34.0194°N 118.4108°W
+Chicago
+41.8376°N 87.6818°W
+Houston
+29.7866°N 95.3909°W
+Phoenix	
+33.5722°N 112.0901°W
+Philadelphia	
+40.0094°N 75.1333°W
+San Antonio	
+29.4724°N 98.5251°W
+San Diego	
+32.8153°N 117.1350°W
+Dallas	
+32.7933°N 96.7665°W
+San Jose
+37.2967°N 121.8189°W
+Austin
+30.3039°N 97.7544°W
+Jacksonville[9]
+30.3369°N 81.6616°W
+San Francisco	
+37.7272°N 123.0322°W
+Columbus	
+39.9852°N 82.9848°W
+Fort Worth
+32.7815°N 97.3467°W
+Indianapolis
+39.7767°N 86.1459°W
+Charlotte
+35.2078°N 80.8310°W
+Seattle	
+47.6205°N 122.3509°W
+Denver
+39.7619°N 104.8811°W
+Washington
+38.9041°N 77.0172°W
+Boston
+42.3320°N 71.0202°W
+El Paso	
+31.8484°N 106.4270°W
+Detroit
+42.3830°N 83.1022°W
+Nashville
+36.1718°N 86.7850°W
+Memphis
+35.1028°N 89.9774°W
+Portland
+45.5370°N 122.6500°W
+Oklahoma City
+35.4671°N 97.5137°W
+Las Vegas	
+36.2292°N 115.2601°W
+Louisville
+38.1654°N 85.6474°W
+Baltimore
+39.3000°N 76.6105°W
+Milwaukee
+43.0633°N 87.9667°W
+Albuquerque
+35.1056°N 106.6474°W
+Tucson	 
+32.1531°N 110.8706°W
+Fresno	 
+36.7836°N 119.7934°W
+Sacramento
+38.5666°N 121.4686°W
+Mesa
+33.4019°N 111.7174°W
+Kansas City
+39.1251°N 94.5510°W
+Atlanta	
+33.7629°N 84.4227°W
+Long Beach	
+33.8092°N 118.1553°W
+Omaha	
+41.2644°N 96.0451°W
+Raleigh	
+35.8306°N 78.6418°W
+Colorado Springs
+38.8673°N 104.7607°W
+Miami	
+25.7752°N 80.2086°W
+Virginia Beach
+36.7800°N 76.0252°W
+Oakland	
+37.7698°N 122.2257°W
+Minneapolis
+44.9633°N 93.2683°W
+Tulsa	
+36.1279°N 95.9023°W
+Arlington	
+32.7007°N 97.1247°W
+New Orleans
+30.0534°N 89.9345°W
+Wichita	
+37.6907°N 97.3459°W
+Cleveland	
+41.4785°N 81.6794°W
+Tampa	
+27.9701°N 82.4797°W
+Bakersfield
+35.3212°N 119.0183°W
+Aurora
+39.6880°N 104.6897°W
+Anaheim
+33.8555°N 117.7601°W
+Honolulu
+21.3243°N 157.8476°W
+Santa Ana
+33.7363°N 117.8830°W
+Riverside
+33.9381°N 117.3932°W
+Corpus Christi
+27.7543°N 97.1734°W
+Lexington
+38.0407°N 84.4583°W
+Stockton
+37.9763°N 121.3133°W
+St. Louis
+38.6357°N 90.2446°W
+Saint Paul
+44.9489°N 93.1041°W
+Henderson
+36.0097°N 115.0357°W
+Pittsburgh
+40.4398°N 79.9766°W
+Cincinnati
+39.1402°N 84.5058°W
+Anchorage
+61.1743°N 149.2843°W
+Greensboro
+36.0951°N 79.8270°W
+Plano	 Texas
+33.0508°N 96.7479°W
+Newark
+40.7242°N 74.1726°W
+Lincoln	 
+40.8105°N 96.6803°W
+Orlando	
+28.4166°N 81.2736°W
+Irvine
+33.6784°N 117.7713°W
+Toledo
+41.6641°N 83.5819°W
+Jersey City
+40.7114°N 74.0648°W
+Chula Vista
+32.6277°N 117.0152°W
+Durham
+35.9811°N 78.9029°W
+Fort Wayne
+41.0882°N 85.1439°W
+St. Petersburg
+27.7620°N 82.6441°W
+Laredo
+27.5604°N 99.4892°W
+Buffalo
+42.8925°N 78.8597°W
+Madison
+43.0878°N 89.4299°W
+Lubbock
+33.5656°N 101.8867°W
+Chandler
+33.2829°N 111.8549°W
+Scottsdale
+33.6843°N 111.8611°W
+Reno	
+39.5491°N 119.8499°W
+Glendale
+33.5331°N 112.1899°W
+Norfolk
+36.9230°N 76.2446°W
+Winston–Salem
+36.1027°N 80.2610°W
+North Las Vegas
+36.2857°N 115.0939°W
+Gilbert
+33.3103°N 111.7431°W
+Chesapeake
+36.6794°N 76.3018°W
+Irving
+32.8577°N 96.9700°W
+Hialeah	
+25.8699°N 80.3029°W
+Garland	
+32.9098°N 96.6303°W
+Fremont
+37.4945°N 121.9412°W
+Richmond
+37.5314°N 77.4760°W
+Boise
+43.6002°N 116.2317°W
+Baton Rouge
+30.4422°N 91.1309°W
+Des Moines
+41.5726°N 93.6102°W
+Spokane	
+47.6669°N 117.4333°W
+San Bernardino
+34.1416°N 117.2936°W
+Modesto	
+37.6375°N 121.0030°W
+Tacoma
+47.2522°N 122.4598°W
+Fontana
+34.1090°N 117.4629°W
+Santa Clarita
+34.4030°N 118.5042°W
+Birmingham
+33.5274°N 86.7990°W
+Oxnard
+34.2023°N 119.2046°W
+Fayetteville
+35.0828°N 78.9735°W
+Rochester
+43.1699°N 77.6169°W
+Moreno Valley
+33.9233°N 117.2057°W
+Glendale
+34.1814°N 118.2458°W
+Yonkers
+40.9459°N 73.8674°W
+Huntington Beach
+33.6906°N 118.0093°W
+Aurora
+41.7635°N 88.2901°W
+Salt Lake City
+40.7769°N 111.9310°W
+Amarillo
+35.1999°N 101.8302°W
+Montgomery	
+32.3472°N 86.2661°W
+Grand Rapids	
+42.9612°N 85.6556°W
+Little Rock	
+34.7254°N 92.3586°W
+Akron	
+41.0805°N 81.5214°W
+Augusta
+33.3655°N 82.0734°W
+Huntsville
+34.6990°N 86.6730°W
+Columbus
+32.5102°N 84.8749°W
+Grand Prairie
+32.6869°N 97.0211°W
+Shreveport
+32.4669°N 93.7922°W
+Overland Park
+38.8890°N 94.6906°W
+Tallahassee	
+30.4551°N 84.2534°W
+Mobile
+30.6684°N 88.1002°W
+Port St. Lucie	
+27.2806°N 80.3883°W
+Knoxville	 
+35.9707°N 83.9493°W
+Worcester	
+42.2695°N 71.8078°W
+Tempe	 
+33.3884°N 111.9318°W
+Cape Coral	
+26.6432°N 81.9974°W
+Brownsville
+25.9991°N 97.4550°W
+McKinney	
+33.1985°N 96.6680°W
+Providence
+41.8231°N 71.4188°W
+Fort Lauderdale	
+26.1412°N 80.1467°W
+Newport News
+37.0762°N 76.5220°W
+Chattanooga	
+35.0660°N 85.2484°W
+Rancho Cucamonga	
+34.1233°N 117.5642°W
+Frisco
+33.1554°N 96.8226°W
+Sioux Falls
+43.5383°N 96.7320°W
+Oceanside	
+33.2245°N 117.3062°W
+Ontario	 
+34.0394°N 117.6042°W
+Vancouver
+45.6349°N 122.5957°W
+Santa Rosa
+38.4468°N 122.7061°W
+Garden Grove	
+33.7788°N 117.9605°W
+Elk Grove	
+38.4146°N 121.3850°W
+Pembroke Pines
+26.0210°N 80.3404°W
+Salem	 
+44.9237°N 123.0232°W
+Eugene
+44.0567°N 123.1162°W
+Peoria
+33.7862°N 112.3080°W
+Corona
+33.8620°N 117.5655°W
+Springfield	
+37.1942°N 93.2913°W
+Jackson	
+32.3158°N 90.2128°W
+Cary
+35.7809°N 78.8133°W
+Fort Collins	
+40.5482°N 105.0648°W
+Hayward	 
+37.6287°N 122.1024°W
+Lancaster
+34.6936°N 118.1753°W
+Alexandria
+38.8201°N 77.0841°W
+Salinas	 
+36.6902°N 121.6337°W
+Palmdale
+34.5910°N 118.1054°W
+Lakewood
+39.6989°N 105.1176°W
+Springfield	 
+42.1155°N 72.5400°W
+Sunnyvale	 
+37.3858°N 122.0263°W
+Hollywood	 
+26.0310°N 80.1646°W
+Pasadena	
+29.6586°N 95.1506°W
+Clarksville	 
+36.5664°N 87.3452°W
+Pomona	 
+34.0585°N 117.7611°W
+Kansas City
+39.1225°N 94.7418°W
+Macon
+32.8088°N 83.6942°W
+Escondido	
+33.1331°N 117.0740°W
+Paterson
+40.9148°N 74.1628°W
+Joliet
+41.5177°N 88.1488°W
+Naperville	
+41.7492°N 88.1620°W
+Rockford	 
+42.2588°N 89.0646°W
+Torrance	
+33.8350°N 118.3414°W
+Bridgeport	
+41.1874°N 73.1958°W
+Savannah	 
+32.0025°N 81.1536°W
+Killeen	 
+31.0777°N 97.7320°W
+Bellevue
+47.5979°N 122.1565°W
+Mesquite
+32.7629°N 96.5888°W
+Syracuse
+43.0410°N 76.1436°W
+McAllen
+26.2322°N 98.2464°W
+Pasadena
+34.1606°N 118.1396°W
+Orange
+33.7870°N 117.8613°W
+Fullerton
+33.8857°N 117.9280°W
+Dayton	
+39.7774°N 84.1996°W
+Miramar	
+25.9770°N 80.3358°W
+Olathe
+38.8843°N 94.8195°W
+Thornton
+39.9194°N 104.9428°W
+Waco	
+31.5601°N 97.1860°W
+Murfreesboro	
+35.8522°N 86.4160°W
+Denton	
+33.2166°N 97.1414°W
+West Valley City	
+40.6885°N 112.0118°W
+Midland	
+32.0246°N 102.1135°W
+Carrollton	
+32.9884°N 96.8998°W
+Roseville	
+38.7690°N 121.3189°W
+Warren	
+42.4929°N 83.0250°W
+Charleston	
+32.8179°N 79.9590°W
+Hampton
+37.0480°N 76.2971°W
+Surprise	
+33.6706°N 112.4527°W
+Columbia
+34.0291°N 80.8980°W
+Coral Springs
+26.2707°N 80.2593°W
+Visalia	 
+36.3273°N 119.3289°W
+Sterling Heights	
+42.5812°N 83.0303°W
+Gainesville	 
+29.6788°N 82.3461°W
+Cedar Rapids
+41.9670°N 91.6778°W
+New Haven	 
+41.3108°N 72.9250°W
+Stamford	
+41.0799°N 73.5460°W
+Elizabeth
+40.6664°N 74.1935°W
+Concord	
+37.9722°N 122.0016°W
+Thousand Oaks	
+34.1933°N 118.8742°W
+Kent	
+47.3880°N 122.2127°W
+Santa Clara	
+37.3646°N 121.9679°W
+Simi Valley
+34.2669°N 118.7485°W
+Lafayette
+30.2074°N 92.0285°W
+Topeka	
+39.0347°N 95.6962°W
+Athens
+33.9496°N 83.3701°W
+Round Rock
+30.5252°N 97.6660°W
+Hartford
+41.7659°N 72.6816°W
+Norman
+35.2406°N 97.3453°W
+Victorville	
+34.5277°N 117.3536°W
+Fargo	  
+46.8652°N 96.8290°W
+Berkeley
+37.8670°N 122.2991°W
+Vallejo
+38.1079°N 122.2640°W
+Abilene
+32.4545°N 99.7381°W
+Columbia
+38.9473°N 92.3264°W
+Ann Arbor
+42.2761°N 83.7309°W
+Allentown
+40.5936°N 75.4784°W
+Pearland
+29.5558°N 95.3231°W
+Beaumont	
+30.0849°N 94.1453°W
+Wilmington	
+34.2092°N 77.8858°W
+Evansville
+37.9877°N 87.5347°W
+Arvada	 
+39.8337°N 105.1503°W
+Provo	 
+40.2453°N 111.6448°W
+Independence	
+39.0855°N 94.3521°W
+Lansing	 
+42.7143°N 84.5593°W
+Odessa	
+31.8838°N 102.3411°W
+Richardson	 
+32.9723°N 96.7081°W
+Fairfield	 
+38.2593°N 122.0321°W
+El Monte	
+34.0746°N 118.0291°W
+Rochester
+44.0154°N 92.4772°W
+Clearwater	 
+27.9789°N 82.7666°W
+Carlsbad	 
+33.1239°N 117.2828°W
+Springfield
+39.7911°N 89.6446°W
+Temecula	
+33.4931°N 117.1317°W
+West Jordan
+40.6024°N 112.0008°W
+Costa Mesa
+33.6659°N 117.9123°W
+Miami Gardens
+25.9489°N 80.2436°W
+Cambridge	 
+42.3760°N 71.1187°W
+College Station	
+30.5852°N 96.2964°W
+Murrieta	 
+33.5721°N 117.1904°W
+Downey	 
+33.9382°N 118.1309°W
+Peoria	
+40.7515°N 89.6174°W
+Westminster	 
+39.8822°N 105.0644°W
+Elgin	 
+42.0396°N 88.3217°W
+Antioch	
+37.9791°N 121.7962°W
+Palm Bay	
+27.9856°N 80.6626°W
+High Point
+35.9900°N 79.9905°W
+Lowell	 
+42.6390°N 71.3211°W
+Manchester
+42.9849°N 71.4441°W
+Pueblo	 
+38.2699°N 104.6123°W
+Gresham	
+45.5023°N 122.4416°W
+North Charleston	
+32.9178°N 80.0650°W
+Ventura
+34.2678°N 119.2542°W
+Inglewood
+33.9561°N 118.3443°W
+Pompano Beach
+26.2416°N 80.1339°W
+Centennial	
+39.5906°N 104.8691°W
+West Palm Beach
+26.7464°N 80.1251°W
+Everett	 
+47.9566°N 122.1914°W
+Richmond
+37.9523°N 122.3606°W
+Clovis
+36.8282°N 119.6849°W
+Billings	
+45.7885°N 108.5499°W
+Waterbury
+41.5585°N 73.0367°W
+Broken Arrow	
+36.0365°N 95.7810°W
+Lakeland	 
+28.0555°N 81.9549°W
+West Covina
+34.0559°N 117.9099°W
+Boulder	 
+40.0270°N 105.2519°W
+Daly City
+37.7009°N 122.4650°W
+Santa Maria
+34.9332°N 120.4438°W
+Hillsboro	
+45.5280°N 122.9357°W
+Sandy Springs	
+33.9315°N 84.3687°W
+Norwalk	 
+33.9076°N 118.0835°W
+Jurupa Valley	
+34.0026°N 117.4676°W
+Lewisville	 
+33.0466°N 96.9818°W
+Greeley	 
+40.4153°N 104.7697°W
+Davie[
+26.0791°N 80.2850°W
+Green Bay
+44.5207°N 87.9842°W
+Tyler	 
+32.3173°N 95.3059°W
+League City	
+29.4901°N 95.1091°W
+Burbank	 
+34.1901°N 118.3264°W
+San Mateo	
+37.5603°N 122.3106°W
+Wichita Falls	
+33.9067°N 98.5259°W
+El Cajon	 
+32.8017°N 116.9604°W
+Rialto	 
+34.1118°N 117.3883°W
+Lakewood
+40.0771°N 74.2004°W
+Edison
+40.5040°N 74.3494°W
+Davenport	
+41.5541°N 90.6040°W
+
+
+
+http://www.mapquestapi.com/geocoding/v1/address?key=FaGrn0aGnJG4GUJOILx6kG06A1j2B1Ca&location=Washington,DC
+
+Hong,Kong
+Bangkok
+London
+Singapore
+Macau
+Paris
+Dubai
+New,York,City
+Kuala,Lumpur
+Shenzhen
+Phuket
+Istanbul
+Delhi
+Tokyo
+Rome
+Antalya
+Taipei
+Guangzhou
+Mumbai
+Prague
+Mecca
+Miami
+Amsterdam
+Seoul
+Pattaya
+Shanghai
+Los,Angeles
+Las,Vegas
+Agra
+Osaka
+Barcelona
+Milan
+Denpasar
+Vienna
+Cancún
+Berlin
+Ho,Chi,Minh,City
+Riyadh
+Venice
+Jaipur
+Madrid
+Orlando
+Chennai
+Dublin
+Florence
+Moscow
+Athens
+Cairo
+Ha,Noi
+Toronto
+Ha,Long
+Beijing
+Sydney
+Munich
+Budapest
+Punta,Cana
+St,Peters,burg
+Jakarta
+Dammam,City
+Lisbon
+Jerusalem
+Chiang,Mai
+Zhuhai
+Penang,Island
+Kyoto
+Heraklion
+Phnom,Penh
+Brussels
+Vancouver
+Copenhagen
+San,Francisco
+Warsaw
+Krakow
+Melbourne
+Honolulu
+Marrakech
+Auckland
+Lviv
+Tel,Aviv
+Kolkatta
+Frankfurt
+Guilin
+Stockholm
+Siem,Reap
+Jeju
+Mexico,City
+Buenos,Aires,City
+Chiba
+Lima
+Nice
+Santiago
+Rio,de,Janeiro
+Abu,Dhabi
+Porto
+Batam
+Doha
+Rhodes
+Krabi
+
+
+
+// placed temporarily in api_calls.js 
+
+function getCoordinates(arr) {
+  var promises = [];
+  arr.forEach(function(city) {
+    var promise = axios.get(`http://www.mapquestapi.com/geocoding/v1/address?key=FaGrn0aGnJG4GUJOILx6kG06A1j2B1Ca&location=${city}`)
+    promises.push(promise);
+  });
+
+
+  Promise.all(promises).then(function(results) {
+    results.forEach(function(result) {
+      console.log(result.data.results[0].providedLocation.location, result.data.results[0].locations[0].latLng.lat, result.data.results[0].locations[0].latLng.lng);
+    });
+  })
+}
+
+
+
+var worldCities = [
+  ['Hong_Kong', '22.264412', '114.167061'],
+  ['Bangkok', '13.752753', '100.494086'],
+  ['London', '51.507276 -','0.12766'],
+  ['Singapore', '1.290453', '103.852038'],
+  ['Macau', '22.191951', '113.538122'],
+  ['Paris', '48.856506', '2.352133'],
+  ['Dubai', '25.268352', '55.296196'],
+  ['New_York_City', '40.713054 -','74.007228'],
+  ['Kuala_Lumpur', '3.157098', '101.700953'],
+  ['Shenzhen', '22.544267', '114.054533'],
+  ['Phuket', '7.715984', '98.322126'],
+  ['Istanbul', '41.017058', '28.985568'],
+  ['Delhi', '28.657291', '77.22726'],
+  ['Tokyo', '35.680071', '139.768522'],
+  ['Rome', '41.893344', '12.483072'],
+  ['Antalya', '36.900878', '30.693712'],
+  ['Taipei', '25.037638', '121.564459'],
+  ['Guangzhou', '23.130004', '113.259001'],
+  ['Mumbai', '18.95238', '72.832711'],
+  ['Prague', '50.08744', '14.421256'],
+  ['Mecca', '21.422863', '39.82099'],
+  ['Miami', '25.775084 -','80.194702'],
+  ['Amsterdam', '52.371009', '4.900112'],
+  ['Seoul', '37.566601', '127'],
+  ['Pattaya', '12.931859', '100.900691'],
+  ['Shanghai', '31.225344', '121.488892'],
+  ['Los_Angeles', '34.052238 -','118.243344'],
+  ['Las_Vegas', '36.169202 -','115.140597'],
+  ['Agra', '27.175255', '78.009816'],
+  ['Osaka', '34.685293', '135.514694'],
+  ['Barcelona', '41.38256', '2.177135'],
+  ['Milan', '45.466797', '9.190498'],
+  ['Denpasar ', '8.65271', '115.219268'],
+  ['Vienna', '48.192309', '16.371364'],
+  ['Cancun', '21.170891 -','86.840317'],
+  ['Berlin', '52.517037', '13.38886'],
+  ['Ho_Chi_Minh_City', '10.782745', '106.694898'],
+  ['Riyadh', '24.63203', '46.714907'],
+  ['Venice', '45.437191', '12.33459'],
+  ['Jaipur', '26.916129', '75.820406'],
+  ['Madrid', '40.416705 -','3.703583'],
+  ['Orlando', '28.538331 -','81.378879'],
+  ['Chennai', '13.079691', '80.282953'],
+  ['Dublin', '53.349307 -','6.261175'],
+  ['Florence', '43.769871', '11.255576'],
+  ['Moscow', '55.751634', '37.618704'],
+  ['Athens', '37.984149', '23.727984'],
+  ['Cairo', '30.048819', '31.243666'],
+  ['Ha_Noi', '21.02921', '105.85247'],
+  ['Toronto', '43.651893 -','79.381713'],
+  ['Ha_Long', '20.952837', '107.08'],
+  ['Beijing', '39.90647', '116.391195'],
+  ['Sydney ', '33.854816', '151.216454'],
+  ['Munich', '48.13641', '11.57753'],
+  ['Budapest', '47.498382', '19.040471'],
+  ['Punta_Cana', '49.4954', '3.28262'],
+  ['St_Peters_burg', '27.772069 -','82.638488'],
+  ['Jakarta ', '6.181015', '106.828335'],
+  ['Dammam_City', '27.15506', '49.56602'],
+  ['Lisbon', '38.713057 -','9.138006'],
+  ['Jerusalem', '31.796816', '35.213782'],
+  ['Chiang_Mai', '18.697495', '98.617712'],
+  ['Zhuhai', '22.265752', '113.568045'],
+  ['Penang_Island', '5.406501', '100.255908'],
+  ['Kyoto', '35.01858', '135.763835'],
+  ['Heraklion', '35.334013', '25.132854'],
+  ['Phnom_Penh', '11.563196', '104.932875'],
+  ['Brussels', '50.838534', '4.375434'],
+  ['Vancouver', '49.263566 -','123.138572'],
+  ['Copenhagen', '55.686724', '12.570069'],
+  ['San_Francisco', '37.78008 -','122.420168'],
+  ['Warsaw', '37.958434 -','76.755329'],
+  ['Krakow', '50.061947', '19.936856'],
+  ['Melbourne ', '37.814255', '144.963146'],
+  ['Honolulu', '21.30992 -','157.858158'],
+  ['Marrakech', '31.62599 -','7.988608'],
+  ['Auckland ', '36.541281', '174.550609'],
+  ['Lviv', '49.841951', '24.031597'],
+  ['Tel_Aviv', '32.080481', '34.780527'],
+  ['Kolkatta', '22.568746', '88.3463'],
+  ['Frankfurt', '50.110653', '8.682093'],
+  ['Guilin', '25.276006', '110.284753'],
+  ['Stockholm', '59.405367', '18.672657'],
+  ['Siem_Reap', '13.38285', '103.992885'],
+  ['Jeju', '33.493057', '126.513059'],
+  ['Mexico_City', '19.43253 -','99.13321'],
+  ['Buenos_Aires_City ', '34.61592 -','58.43345'],
+  ['Chiba', '35.599998', '140.116592'],
+  ['Lima ', '12.045969 -','77.030581'],
+  ['Nice', '43.700936', '7.268391'],
+  ['Santiago ', '33.437913 -','70.650456'],
+  ['Rio_de_Janeiro ', '22.911014 -','43.209373'],
+  ['Abu_Dhabi', '24.474796', '54.370576'],
+  ['Porto', '41.149456 -','8.610766'],
+  ['Batam', '1.106875', '104.028519'],
+  ['Doha', '25.285252', '51.526837'],
+  ['Rhodes', '48.75799', '6.898811'],
+  ['Krabi', '7.841388', '98.987392'],
+];

@@ -1,0 +1,429 @@
+************************************************************
+React Router
+
+  # 67
+
+    npm install --save react-router-dom
+
+    index.js
+      import { BrowserRouter, Route } from 'react-router-dom';
+
+      <Root>
+      + <BrowserRouter>
+      -   <App />
+      +   <Route path="/" component={App} />
+      + </BrowserRouter>
+      </Root>
+
+  #68
+
+    App.js
+      import { Route, Link } from 'react-router-dom';
+
+    <div>
+    - <CommentBox />
+    - <CommentList />
+    + <Route path="/post" component={CommentBox} />
+    + <Route path="/" exact component={CommentList} />
+    </div>
+
+
+************************************************************
+Authentication with a higher order components
+
+  #66
+
+    A higher order component will be used to restrict access to pages in the app
+
+  #69 && #70
+
+    Create a reducer to store if a user is signed in
+
+1     /reducers/auth.js
+        import { CHANGE_AUTH } from 'actions/types';
+
+        const authReducer = function(state = false, action) {
+          switch(action.type) {
+            case (CHANGE_AUTH):
+              return action.payload
+            default:
+              return state;
+          }
+        };
+
+        export default authReducer;
+
+
+2     /actions/types.js
+        export CHANGE_AUTH = 'change_auth';
+
+
+3     /actions/index.js
+        import { CHANGE_AUTH } from 'actions/types';
+
+        export function changeAuth(isLoggedIn) {
+          return {
+            type: CHANGE_AUTH,
+            payload: isLoggedIn,
+          }
+        }
+
+4 (#70)
+      /reducers/index.js
+      + import authReducer from 'reducers/auth'
+
+        export default combineReducers({
+          comments: commentsReducer,
+        + auth: authReducer,
+        })
+
+
+************************************************************
+higher order components
+
+#73
+
+  write the logic you want to reuse into a normal component
+  create an HOC file and create the HOC scaffold
+  move the reusable logic from the original component into the HOC
+  pass props/cofig/behavior through to the child component
+
+#74
+  authentication (without HOC)
+    inside the component that requires authentication (CommentBox.js in the example case)
+    check the auth state both when the component mounts and when the component updates
+
+1   componentDidMount() {
+      this.checkAuth();
+    }
+
+2   componentDidUpdate() {
+      this.checkAuth();
+    }
+
+3   checkAuth() {
+      if (!this.props.auth) {
+        this.props.history.push('/'); // redirects to the root path which was visited in our history 
+      }
+    }
+
+    // make our auth state available
+4   const mapStateToProps = state => ({
+      auth: state.auth,
+    });
+
+    export default connect(mapStateToProps, actions)(CommentBox);
+
+#75 
+    the previous 4 steps are the chunks of code needed on every component that needs authentication accessing
+    this repeatable code will be what we place in our HOC
+
+    HOC boilerplate/scaffold
+      /components/requireAuth.js   (with lowercase r, uppercase components are a class, lowercase are a function)
+
+      import React, { Component } from 'react';
+
+      export default ChildComponent => {
+        class ComposedComponent extends Component {
+          render() {
+            return <ChildComponent {...this.props} />;
+          }
+        }
+
+        return ComposedComponent;
+      };
+
+    
+************************************************************
+Middleware
+
+#78
+
+  review previous use of middleware (redux-promise)
+
+    import React from 'react';
+    import { Provider } from 'react-redux';
+    import { createStore, applyMiddleware } from 'redux';
+    import reduxPromise from 'redux-promise';
+    import reducers from 'reducers';
+
+    export default ({ children, initialState = {} }) => {
+      const store = createStore(
+        reducers,
+        initialState,
+        applyMiddleware(reduxPromise), // pauses at the action cretor to wait for the api to return data
+      );
+
+      // TODO remove before production
+      window.store = store;
+
+      return (
+        <Provider store={store}>
+          {children}
+        </Provider>
+      )
+    }
+
+    When an action is returned form an action creator it can be passed to middleware before it is forwarded to a reducer
+    a middleware can log modify or even stop actions that are returned from action creators
+
+
+#79-89 
+
+    write your own middleware
+
+    // Root.js
+
+      import { createStore, applyMiddleware } from 'redux';
+      import Async from 'middlewares/async'; 
+
+      const store = createStore(
+        reducers,
+        initialState,
+        applyMiddleware(Async), // pass in the custom middleware or imported library, seperate by comma if there are multiple middlewares
+      );
+
+
+    // middlewares/async.js
+
+      export default ({ dispatch }) => next => action => {
+
+        if (!action.payload || !action.payload.then) {
+          return next(action);
+        }
+
+        action.payload.then(function(response) {
+          const newAction = { ...action, payload: response};
+          dispatch(newAction);
+        });
+      }
+
+
+************************************************************
+node.js authentication
+
+#97-102
+
+  setting up node/express and mongodb/mongoose backend user model for authentication
+
+#103
+
+  /models/user.js
+
+    encrypt the password before savig to the database using bcrypt in the user model
+
+      const mongoose = require('mongoose');
+
+      userSchema.pre('save', function(next) {
+        const user = this;
+
+        bcrypt.genSalt(10, function(err, salt) {
+          if (err) { return next(err); }
+
+          bcrypt.hash(user.password, salt, null, function(err, hash) {
+            if (err) { return next(err); }
+
+            user.password = hash;
+            next();
+          });
+        });
+      });
+
+#104 - 105
+
+  JWT Tokens (JSON web token)
+
+    instead of sending a message the the authentication was successful we need to send a JWT token
+    when a user signs or logs in they get the token which can include in future http requests
+
+    JWT Token include the user Id combined with an encrypted string
+
+    When a request from the user is made including their JWT token we will encrpt the token to varify it's validity
+    The secret string that is used for encryption should be protected from the public
+
+#106
+
+  npm install --save jwt-simple
+
+  hide the jwt secret in a config.js file
+
+  /config.js
+
+    // Hold application secrets and config
+    // config.js should be added to .gitignore
+
+    module.exports = {
+      secret: 'aioae893fhasdka0iejadifh1sdiw3', // random sequency
+    }
+
+  /controllers/authentication
+
+    const jwt = require('jwt-simple');
+    const config = require('../config');
+
+    function tokenForUser(user) {
+      const timestamp = new Date().getTime();
+      return jwt.encode({ sub: user.id, iat: timestamp }, config.secret)
+    }
+
+    // jwt conventions
+    //   sub -> subject (who is this web token about) 
+    //   iat -> issued at time
+
+    instead of returning a json object { success: true } we can now send the encrypted token
+
+    res.json({ token: tokenForUser(user) });
+
+
+#107 - 110
+  
+  npm install --save passport passport-jwt
+
+  passport will help us have control over which pages a user can view related to their jwt token
+  passport will be called before our post requests hit the controller in one central place instead of scatered throughout the application
+
+
+  /services/passport.js
+
+    const passport = require('passport');
+    const User = require('../models/user');
+    const config = require('../config');
+    const JwtStrategy = require('passport-jwt').Strategy;
+    const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+    const jwtOptions = {
+      jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+      secretOrKey: config.secret, 
+    }; 
+    // jwtFromRequest, instruct passport on where to find the paload key
+    // payload was created with jwt.encode in the auth controller
+    // instead of sending a cookie through the url send the token in the header
+
+    const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
+      // done belongs to passport, first arg is err, second if boolean for authenticated user
+      User.findById(payload.sub, function(err, user) {
+        if (err) { return done(err, false); } // if err not authenticated
+        if (user) {
+          return done(null, user); // no error and user authenticated
+        } else {
+          return done(null, false); // no user not authenticated
+        }
+      });
+    });
+
+
+  /router.js
+
+    const passportService = require('./services/passport');
+    const passport = require('passport');
+
+    const requireAuth = passport.authenticate('jwt', { session: false });
+    // session is set to false to bypass passports default behaviour for creating a session cookie
+
+    app.get('/', requireAuth, function(req, res) { 
+      return res.json({ body: 'home' });
+    });
+    // requireAuth will use passport to check the header object for authorization key that needs to have the correct token as it's value
+    
+#111 - 1
+
+  passport-local will be used to check if the user suplied password matches the database on signin
+
+    npm install --save passport-local
+
+    /services/passport.js
+
+      const LocalStrategy = require('passport-local');
+
+      // Create for local strategy
+      const localOptions = { usernameField: 'email' };
+      // change default of username to email, password is automatic 
+      const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
+        // verify the user suplied password matches the user.password in the database
+        User.findOne({ email: email }, function(err, user) {
+          if (err) { return done(err); }
+          if (!user) { return done(null, false) }
+
+          user.comparePassword(password, function(err, isMatch) {
+            if (err) { return done(err); }
+            if (!isMatch) { return done(null, false); } 
+            
+            return done(null, user);
+          })
+        });
+      });
+
+      // at the bottom of the file
+      passport.use(localLogin);
+
+
+    /models/user
+
+      // On signin compare the user supplied password with the password in the database
+
+      userSchema.methods.comparePassword = function(canidatePassword, callback) {
+        bcrypt.compare(canidatePassword, this.password, function(err, isMatch) { 
+          if (err) { return callback(err); }
+
+          callback(null, isMatch);
+        });
+      }
+
+              
+    /router.js
+
+      const requireSignin = passport.authenticate('local', { session: false });
+
+      app.post('/signin', requireSignin,  Authentication.signin);
+      // user needs to pass authentication using the requireSignin middleware before we give them their token
+
+      exports.signin = function(req, res, next) {
+      }
+
+
+
+
+************************************************************
+client auth
+
+
+  compose -> built-in react methods that allows us to pass a component to multiple HOC's with cleaner syntax when imported
+
+    example :
+
+      import { connect } from 'react-redux';
+
+      export default compose(
+        connect(null, actions),         // connect HOC
+        reduxForm({ form: 'signup' }),  // redux form HOC
+      )(Signup);
+
+
+  cors is a restrictions implemented by the browser to prevent malicious sites from making http requests to different browsers
+  in order to make cross origin requests we have configure our server to either allow all cors requests or cors from a specific domain
+
+  example : all cors requests are acceptable
+
+    npm install --save cors
+
+    // node.js -> index.js
+    const cors = require('cors');
+
+    app.use(cors()); // node.js middleware
+
+
+
+  example only allow request on specific domain :
+  docs -> https://github.com/expressjs/cors
+
+    var corsOptions = {
+      origin: 'http://localhost:3000',
+      optionsSuccessStatus: 200 
+    }
+
+    app.use(cors(corsOptions)), 
+
+
+                        
+
+

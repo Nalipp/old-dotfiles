@@ -1,0 +1,6 @@
+************************************************************
+absolute paths 
+
+  .env (goes in the root file)
+    NODE_PATH=src/
+

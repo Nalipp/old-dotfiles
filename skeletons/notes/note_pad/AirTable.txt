@@ -1,0 +1,7 @@
+keyUv9iiBnGNSBMie
+appjjc5Z2tSrZtbB0
+
+$ export AIRTABLE_API_KEY=keyUv9iiBnGNSBMie
+$ env
+
+const base = require('airtable').base('appjjc5Z2tSrZtbB0');
