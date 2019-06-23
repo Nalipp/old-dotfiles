@@ -1,8 +1,0 @@
-GOOGLE_API_KEY=AIzaSyBvwtjPflzBTky_tl2BR8DeJBI_5HkK5zg
-
-geocode example
-https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBvwtjPflzBTky_tl2BR8DeJBI_5HkK5zg
-
-https://maps.googleapis.com/maps/api/geocode/json?address=usa&key=AIzaSyBvwtjPflzBTky_tl2BR8DeJBI_5HkK5zg
-
-https://maps.googleapis.com/maps/api/geocode/json?address=los+angles&key=AIzaSyBvwtjPflzBTky_tl2BR8DeJBI_5HkK5zg
