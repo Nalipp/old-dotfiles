@@ -1,0 +1,10 @@
+****************************************************************************************************
+sorts
+
+  On       -> bubble, selection, insertion
+  On log n -> quicksort, mergesort
+
+  insertion sort performs well with almost sorted data
+  quicksort performs poorly with reversed sorted data
+
+  timsort adaptaive merge sort / insertion sort

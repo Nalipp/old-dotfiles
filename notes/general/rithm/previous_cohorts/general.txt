@@ -1,0 +1,314 @@
+**************************************************
+General
+
+****************************************************************************************
+monday
+  
+  ask about
+    making surveys
+    python ajax request library (request?)
+
+import pdb; pdb.set_trace()
+
+****************************************************************************************
+sunday
+
+  make notes for python / flask
+
+  add to vr
+    nr -> rithm
+      cohort -> names, pairs
+      todo -> 
+      daily ->
+      general
+
+    nm -> messages
+    np -> python
+    nf -> flask
+    nh -> html
+    nj -> javascript
+    nn -> node 
+    ns -> sql
+    nv -> vim
+
+    pd -> import pdb; pdb.set_trace()
+    pb -> bash_profile
+    pv -> vim_rc
+    pg -> ~/.gitignore_global
+    pc -> console.log(
+
+
+  read wtf docs
+    sign in from joels message
+
+
+***************************************************************************
+concepts to cover more deeply
+
+  I should study
+    what is localhost?
+
+  week one deficencies
+    manipulating the dom with vanila js 
+
+  course deficencies / lectures could go more deeply on
+    dot vs bracket notation
+    built in methods such as arr.map() arr.forEach()
+    scope
+    css -> display + positioning
+    error handling (different erorr types) debugging
+
+  student asked for 
+    flexbox more deeply
+
+  more handholding for understanding the docs
+    bootstrap
+    jQuery
+
+  short circuting (covered well in the python curriculm)
+    || and && evaluate to a decider not a boolean value
+    they become boolean values when used with if conditions
+    python is the same way
+    Joel also mentioned we need to go deeper on this, mentioned could replace the roman numberals problem on exam1 
+
+  Python
+    what are the common errors in python
+    covered in python tools lecture (could use some code reading exercises for practice)
+
+
+***************************************************************************
+checkins
+
+  check in, how you are doing
+  technical questions
+  offer lunch hour for 1:1 (except mon, tues)
+  the person you come to is you have any issues in the course
+
+  first day
+    who are you / introduction
+    talk about the first week (talk / ask questions about pace)
+    retaining the material (review yesterday's / tomorrow's lecture)
+    food alergies
+    1:1 are kept in confidence
+
+
+***************************************************************************
+  before cohort starts have a couple different course offering ideas for rithm bootcamp prep
+  when is bootcamp prep being taught now?
+
+  idea #1
+    the core javascript fundamentals are free and open to the public
+      4 classes (basically the same as it is now) ?
+
+    paid course $999 / $499
+      extra lecture per week -> advanced concepts, gathered from peronal notes
+      garenteed access to four primary lectures
+      two in house study sessions led by 2 TAs
+      slack channel
+      additional study problems
+
+
+    pre-work | coursework | advanced
+
+    1. instalations and navigating your computer | primitive data types, conditionals, functions | advanced functions ES5 arrow functions
+    2.                                           | iteration | modifying an array in place, function scope and side affects | ES6 for and let iteration
+    3.                                           | arrays, objects | mutability, Sets, Maps
+    4.                                           | callbacks, advanced methods | advanced callback problems, ES6
+                                                 | function scope, reading errors | 
+
+
+    pointers / windows
+    nested for loops
+    frequency counting
+
+
+
+  scan javascript mdn
+  use personal notes
+
+
+
+  !!!!! covered in lecture
+    (intermediate-js-1)
+      Primitive data types 
+    (intermediate-js-2)
+      const let and var 
+      for of and for in
+      default parameters
+      arrow functions
+      rest/spread operator
+      map, filter, some, every...
+
+
+********************************************************************************
+Things todo before R12
+
+  (8hr) scan all curriculm 
+  (8hr) scrape historical weather data 
+  (2hr) notes for possible BCP offerings 
+  (2hr) clean up hard drive and prepare new macbook
+  (2hr) git 
+    https://www.rithmschool.com/courses/git
+    udacity git
+  (6hr) jest testing 
+    review stephen grider course
+  (6hr) graphQl 
+  (2hr) read javascript
+    mdn javascript docs 
+    my javascript notes
+  (4hr) react 
+    read react docs 
+    common interview questions
+    HOC's
+    ref (review dropdown code)
+
+
+  introduction to the dom
+    https://www.rithmschool.com/courses/intermediate-javascript/javascript-dom-introduction
+
+  rxjs react hello world
+
+  find and scrape historical flight data
+    https://developer.flightstats.com/getting-started/
+    https://api.flightstats.com/flex/flightstatus/historical/rest/v3/json/airport/status/sfo/dep/2019/05/15/1300
+    /flex/flightstatus/historical/rest/v3/schema/json
+
+
+****************************************************************************************************
+master curriculm commands
+
+  cd into folder you want to make a handout for
+    uses glide
+    uses sphinx?
+
+    $ make handouts-open   // for exercise and lecture handouts
+    $ make revealjs-open   // for seeing slides in the lectures/ folder
+
+    http://curric.rithmschool.com/r10/slides - slides
+    http://curric.rithmschool.com/r10/lectures - handouts
+    http://curric.rithmschool.com/r10/exercises - exercises
+
+
+  teacher spreadsheet
+    https://docs.google.com/spreadsheets/d/1CJdPLvategs1wiNDTWzkCy4JyMsvYPufZ7lRR4h-aX0/edit#gid=1106676895
+
+
+**************************************************
+open ~/.bashrc
+source ~/.bashrc
+
+echo $RITHM_COHORT
+
+
+**************************************************
+python3 -m http.server
+
+
+****************************************************************************************************
+bootcamp prep ideas
+
+
+  $1500 accelerated prep
+  One month in person bootcamp
+
+  The idea of this program is to give you an accurate understading of your current skills and where you need to be in order to be a success in a top tier bootcamp
+
+  fundamentals of javascript and web development
+  solve 200+ technical interview challenges
+  create and deploy a portfolio site
+  fetch and shape data from public api's
+
+
+
+
+
+
+                      day 1           day 2            day 3            day 4            day 5  
+  ---------------------------------------------------------------------------------------------------
+  |            |                |                |                |                |                |
+  |            |                |                |                |                |                |
+  |            | course intro   |  booleans      | html css introI|   loops        |                |
+  |  week 1    | command line   |  conditions    |    study hall  |   arrays       |    challenge   |
+  |            | primitives     |  functions     |                |                |    session     |
+  |            | numbers strings|                |                |                |                |
+  ---------------------------------------------------------------------------------------------------
+  |            |                |                |                |                |                |
+  |            |                |                |                |                |                |
+  |            |                |                |html css introII|   scope        |                |
+  |  week 2    |   challenge    |  objects       |    study hall  |   nested loops |    challenge   |
+  |            |   session      |                |                |                |    session     |
+  |            |                |                |                |                |                |
+  ---------------------------------------------------------------------------------------------------
+  |            |                |                |                |                |                |
+  |            |                |                |                |                |                |
+  |            |                |                |  api explore   |                |                |
+  |  week 3    |   challenge    |                |    study hall  |                |    challenge   |
+  |            |   session      |                |                |                |    session     |
+  |            |                |                |                |                |                |
+  ---------------------------------------------------------------------------------------------------
+  |            |                |                |                |                |                |
+  |            |                |                |                |                |                |
+  |            |                |                | website hosting|                |                |
+  |  week 4    |   challenge    |                |    study hall  |                |    final       |
+  |            |   session      |                |                |                |    exam        |
+  |            |                |                |                |                |                |
+  ---------------------------------------------------------------------------------------------------
+
+
+  day 1
+    course overview
+
+    strings 
+
+
+  course intro
+  command line
+  primitives -> numbers strings
+  more primitive -> booleans undefined null
+  conditional logic
+  loops
+  arrays
+
+  syntax styling
+  objects
+  debugging
+  nested loops
+  scope
+  callbacks
+
+  es6
+  ternary opperator
+  more javascript -> random, Date, Math, sort
+  three step problem solving
+  mutability
+
+
+  pointers
+  sliding windows
+  frequency counting
+  swapping values in an array
+  max value
+  time and modulo
+
+
+  html css fundamentals I
+  html css fundamentals II
+
+
+
+
+  https://learn.shayhowe.com/html-css/
+
+
+  What are computers?
+  What is a computer program?
+
+
+
+
+
+
+
+
+
+

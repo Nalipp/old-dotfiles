@@ -1,11 +1,39 @@
-;vr                     open plugin file
-   
-
 
 remove swap files
 
   **vim must not be running
   find ./ -type f -name "\.*sw[klmnop]" -delete
+
+
+*******************************
+note shortcuts
+
+  
+  all notes
+    na -> all notes
+
+  technology notes
+    np -> python 
+    nh -> html 
+    nj -> javascript 
+    nn -> node 
+    ns -> sql 
+    nm -> mac 
+    nv -> various 
+
+  general notes
+    nr -> rithm 
+    ne -> emails 
+
+  mvim
+    vr -> .vimrc
+    mn -> vim_notes 
+    ms -> save vimrc
+    mr -> relativenumber!
+   
+
+
+;vr                     open plugin file
 
 *******************************
 things to do

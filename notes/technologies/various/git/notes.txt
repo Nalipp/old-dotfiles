@@ -1,0 +1,189 @@
+create new branch
+  git branch <new branch name>
+
+switch branches
+  git checkout <branch name>
+
+initial commit
+  git push -u
+
+specify which remote repo branch
+  git push -u origin develop
+
+attach current commit to previous commit
+  git commit --amend -m "update"
+
+pull changes
+  git pull
+
+delete a branch
+  git branch -d <branch name> 
+
+reset code (if you didn't commit any changes)
+  git reset HEAD --hard
+
+switch branches without commiting changes in current branch
+  git stash
+    <switch branches> when you return 
+  git stash apply
+
+see all branches in the repository not only on your machine
+  git branch -r
+
+
+prevent git from recognizing swp files in .gitignore
+
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+
+***************************************************************************************
+git
+
+  $ git pull origin master (often)
+  git merge master
+
+  git diff
+  git blame
+  git reset -> 
+    --soft HEAD~1 (green still commited)
+    --mixed (red not commited)
+    --hard (gone no record) 
+
+  git reflog
+
+  git checkout -b <branch name>
+
+  git branch -D <branch name>
+
+  git merge <branch name> (from master)
+
+  git --ammend (change commit message)
+
+  git push origin master -force 
+    is dangerous
+
+  git log --oneline (glo)
+
+  gaa
+  gmm "message"
+
+  ****************************************
+  clone a pr
+
+    git fetch 
+
+    git branch -a // gets branch names
+
+    git checkout <Branch name>
+
+
+****************************************
+common commands
+
+  $ git pull
+      pull at the start of the day, after lunch etc
+      if there is a merge confilict you probably didn't pull enough
+
+  $ git status -> should be done constantly
+      confirm with git before committing
+      allows you to see a history of where you were off
+
+  $ git diff
+      helps with creating commit messages
+
+  $ git commit
+      after a file has been added (staged)
+      git commit -m "message" filename/s (if you only want to commit specific files that have been stadged)
+      git commit --amend -m "message" filename  (--amend allows you to change the most recent commit, filename or commit message)
+
+      git commit -m "bold commit message
+      >
+      > -additional info that is not a part of the title
+      > -additional info that is not a part of the title
+      > -additional info that is not a part of the title
+
+      adding [closes #111] with issue number automatically closes the issue
+
+  $ git log .
+      the '.' gives all commits pertaining to this file
+
+  $ git show 155b0c72.... commit hash id
+      good idea to do before pushing
+
+  never revert things that you have pushed!! because someone else may have pulled
+  you can --ammend things you haven't pushed but after you have pushed you shouldn't revert
+
+  $ git reset
+      change my working directory back to the commit id you specify
+
+  $ git reset --hard 
+      actually removes all code until the last commit, not just pulling the commit out of staging
+
+  $ git stash
+      allows you to set the current code aside
+      take the working directory to the last commit
+
+  $ git stash pop
+      re-access the code that was stashed
+
+  $ git branch
+  $ git checkout
+  $ git push origin 'branch name'
+
+
+  how to merge current master branch onto the current branch you are working on.
+
+
+  pr's
+  issues
+  branches
+  merging
+  best team practices
+  get hooks
+
+
+
+
+    DEBUGGING:
+    git diff         # all changes
+    git diff path    # changes but only for this file/path
+    git show revid   # show what's in this revision id  [ie, "commit"]
+
+    COMMITTING:
+    git commit -m "msg, which can have newlines"     # commit all staged changes
+    git commit -m "msg..." index.txt kitten.py      # commit these files
+    git commit -m "better msg..." --amend index.txt kitten.py    # fix commit msg
+
+    RESET
+    git reset revid    # remove commits after this revision. BE CAREFUL. DO NOT CROSS "PUSH BOUNDARY".
+    git reset          # resets to last commit [takes things out of staging]
+    git reset --hard   # resets to last commit [REMOVES ALL CHANGES; YOU HAVE BEEN WARNED.]
+
+    general process:
+    - git status
+    - git pull
+    - git branch myname-mybranch-issuenum
+    - git checkout branchname
+    - git status
+    - edit!
+    - git status
+    - git commit
+    - git status
+    - git log .
+    - git show REVID
+    - git push origin branchname
+    - git status
+
+
+
+

@@ -1,0 +1,21 @@
+****************************************************************************************************
+// solve recursivly
+
+(((1 + 3) * 6 ) + 7)
+
+convert an array of elements into a string of elements in reverse using recursion
+print a list in reverse using recursion (do not mutate only print)
+
+
+function b(n) {
+  if (n === 0) return [];
+
+  var res = b(n - 1)
+  res.push(n);
+
+  return res
+}
+
+console.log(b(3));
+
+

@@ -1,0 +1,556 @@
+****************************************************************************************
+monday
+  
+  ask about
+    making surveys
+    python ajax request library (request?)
+
+
+
+import pdb; pdb.set_trace()
+
+****************************************************************************************
+sunday
+
+  make notes for python / flask
+
+  add to vr
+    nr -> rithm
+      cohort -> names, pairs
+      todo -> 
+      daily ->
+      general
+
+    nm -> messages
+    np -> python
+    nf -> flask
+    nh -> html
+    nj -> javascript
+    nn -> node 
+    ns -> sql
+    nv -> vim
+
+    pd -> import pdb; pdb.set_trace()
+    pb -> bash_profile
+    pv -> vim_rc
+    pg -> ~/.gitignore_global
+    pc -> console.log(
+
+  add to global gitignore
+    # swap
+    [._]*.s[a-v][a-z]
+    [._]*.sw[a-p]
+    [._]s[a-v][a-z]
+    [._]sw[a-p]
+    # session
+    Session.vim
+    # temporary
+    .netrwhist
+    *~
+    # auto-generated tag files
+    tags
+
+
+
+
+
+  read wtf docs
+    sign in from joels message
+
+
+
+
+
+****************************************************************************************
+Daily Journal
+
+how the internet works code.org
+
+morning lecture
+morning lab
+afternoon lecture
+afternoon lab
+
+
+3-4 lecture -> flask-tools -> flask-session
+    lab -> pet-shop -> flask-shopping-cart
+    ready score 
+      morning lecture
+        redirects are new requests 
+          the redirect is an actual header response (on the location header) for the client to make another request
+          when making a phone call instead of transfering, a new phone number is given to the caller
+        redirects should be used after post requests so if the user refreshes the page you are not showing the popup for the form submission
+        jsonify not only converts a dictionary or aguments to json but also updates the header to signal to the client it is sending json
+
+      morning lab
+        common questions
+          where should we put our flash messages?
+            This is despite the notes in the base.html page, remind students to slow down and read the starter files before starting
+        concepts
+          debugging with pdb
+          so help them remember to “c[return]” to finish pdb before editing file
+          "n" is for going to the next line
+          if they do get a weird terminal state (usually, they can’t see what they’re typing), type “control-c” to get to shell, 
+          and type (blindly) “stty sane[return]“, which should un-screw-up their terminal
+
+          [basically, what’s happening is PDB claimed control of unix-stdin but they can’t see it, because flask restarted. 
+          “stty sane” is a unix command that reset the terminal (‘stty’ is an ancient term for that) to “sane” default]
+
+        common mistakes
+          students should not be accessing _pets dictionary directly use the get_all(cls) method
+          may need to remind students to use the Pet class code provided instead of implementing that code on their own in the routes
+
+        pull request (make sure you pull the latest code before doing this!)
+          flask-pet-shop-solution/
+            show-pet.html 
+              line 3: - {% block title %} All pets {% endblock %}
+              line 3: + {% block title %} {{ pet.name }} {% endblock %}
+      afternoon lecture
+        cookies are generated on the server
+          http responses give the cookie back in the 'Set-cookie' header 
+          the cookie is stored in the browser
+          the request header passes the cookie back in 'Cookie' header
+      afternoon lab
+
+
+3-3 lecture -> flask-intro -> flask-jinja
+    lab -> flask-greet-calc -> flask-madlibs
+    ready score 3.5
+      morning lecture
+        common commands
+          flask run (looks for app.py)
+        @app.route('/') is refered to as both route and view
+        the functions in app.py are view functions (app.py is the View of mvc)
+      morning lab
+        make sure students are in (venv)
+        students should be in development mode ($ FLASK_ENV=development run flask, but should be in .bashrc) 
+        questions about ~/bash_profile
+          do we need to make our own .gitignore
+          how to verify that venv is not getting tracked
+          .gitconfig
+
+        use a dictionary for saftey when accepting user requests
+          lookup = {
+            1: one,
+            2: two
+          }
+      afternoon lecture
+        import pdb; pdb.set_trace()
+        (venv) pip3 install flask-debugtoolbar
+        keyword argument name=name (used to pass varialbe to html templates with jinja)
+      afternoon lab
+        common bugs
+          copy and pasting the template without installing the new libraries they are trying to use, forgetting -r 
+          $ pip3 install -r requirements.txt
+        common question
+          should we post or get with madlibs
+            -> are you posting to database / charging a credit card / changing the world (then get request if probably fine)
+            -> does it matter if you press back and forward mid submission (then get request is probably fine)
+
+
+    questions
+      Do you have to pip freeze > requirements.txt every time you install files?
+
+
+3-2 lecture -> python tools -> python oo
+    lab -> 
+    ready score 2.5
+      morning lecture
+        need more practice with error handling
+        virtual environment
+          $ cd cur_directory
+        1 $ python3 -m venv venv (make venv module then imediatley call venv)
+          $ ls (should show venv)
+        2 $ pip3 install flask
+        3 $ source venv/bin/activate (activate the venv, should how show (venv) in the terminal) 
+          $ pip freeze (lists what has been installed)
+        4 $ pip freeze > requirements.txt (write to a file)
+        5 $ deactivate (get out of venv)
+        6 $ pip install -r requirements.txt (recreate venv)
+          add venv to .gitignore
+
+        git clone ...
+        1 $ python3 -m venv venv (make venv module then imediatley call venv)
+        2 $ source venv/bin/activate (activate the venv, should how show (venv) in the terminal) 
+        3 $ pip freeze > requirements.txt (write to a file)
+
+      morning lab
+        a couple problems can be solved with sets in linear time instead of nested for loop quadratic time
+      afternoon lecture
+                
+      afternoon lab
+        Be prepared to explain keyword arguments in python (the ability to specify which argument you are passing in)
+        >>> serial = SerialGenerator(start=100)
+        students need to be aware that linix machines use '\n' for cariage returns but windows uses '\r\n'
+        solution: .strip() accepts arguments or if no arguments are passed removes all whitespaces, carriage returns, tabs
+        Have students create class docstrings that are testable
+        Possible solutions
+          .splitlines and then .strip() on each line
+          [word.strip() for word in open('./words.txt', 'r')]
+          [word.strip() for word in open('./words2.txt', 'r') if not word.startswith('#')]
+        Question: Do we need to close the txt file after openning it?
+          -> not important when running simple scripts, this becomes important when we work with actual web apps
+
+3-1 lecture -> python syntax
+    lab -> pyton data strucure practice
+    ready score 3.5
+
+    morning lecture
+      $ brew install ipython
+        ipython3 doesn't work, must default to latest version?
+      Accessing the he python interpreter
+        python3
+        >>> 
+      most common conventions
+        snake_case instead of camelCase
+        4 spaces as indent instead of 2
+
+      is const and let function scoped in js?
+
+      play around with this code and compare to js hoisting
+        x = 42
+        def my_func():
+            x = 12
+            print(x) # 12
+
+        print(x) # 42
+
+      run code with ipython instead of python
+      ipython 
+      [1] %run file_name.py
+
+      $ python3 -m doctest [filename].py
+
+
+    morning lab
+      some students didn't have all the installs finished
+    afternoon lecture
+      read the lecture notes before class
+      does sorted(arr) mutate?
+
+      Set Operations (found in Python Data Structures)
+        moods = {"happy", "sad", "grumpy"}
+
+        dwarfs = {"happy", "grumpy", "doc"}
+
+
+        moods | dwarfs    # union: {"happy", "sad", "grumpy", "doc"}
+
+        moods & dwarfs    # intersection: {"happy", "grumpy"}
+
+        moods - dwarfs    # difference: {"sad"}
+        dwarfs - moods    # difference: {"doc"}
+
+        moods ^ dwarfs    # symmetric difference: {"sad", "doc"}
+
+    afternoon lab
+      terminology
+        list comprehensions 
+      how to easily remove spaces from a string in python?
+      the compact function is being used twice around problem number 13
+      number 26 has a weird test for None
+
+
+2-5 lecture -> sprint
+    lab
+
+2-4 lecture -> hack-or-snooze
+    lab     -> sprint
+      lectures
+        static is how you create Class methods in js
+      lab
+        google chrome is caching too much a not always updating after a debugger is added to the code / in the network tab there is an option for disable cache
+        when favoriting a story the event listener for each story star gets lost when clicking links in the navbar using event delegation fixes this
+
+
+2-3 lecture -> axax -> apis
+    lab     -> tvmaze -> gify party
+      morning lecture
+        acyncronous analogy -> asking someone to get information and continuing to talk while the person goes to get the anser
+        async example of function expression might be nice in the slides -> const foo = async function () {}
+
+        full example :
+
+          async function name() {
+            return await axios.get("/api/card");
+          }
+
+          async function getName() {
+            const res = await name();
+            return res + 10;
+          }
+
+          await getName();
+
+      morning lab
+      afternoon lecture
+        got tripped up on results.data type error, needed results.data.data
+      afternoon lab
+
+2-2 -> jQuery -> How the web works
+  jQuery ready score -> 3 -> need to improve vanila js familararity
+  how the web works ready score -> 2 -> 
+    morning lecture
+      don't mix vanila js and jquery
+      know the difference between DOMContentLoaded and window.onload
+        you don't need to / shouldn't put all code in $(function() {}) -> for testability, don't put classes, helper functions
+      the most valuable part of the lecture was to quickly review the jQuery methods we learned in the therminal live at the end
+      event delegation -> allows you to reduce the number of eventListeners added to elements in your html
+                          adding an event listener to a single delegate element (parent) responsible for listening for events an all of its children
+                          this is instead of adding a sigle event listener to every single child element individually
+                          $('ul').on('click', 'li', function(evt) { 
+                            console.log($evt.target).text() // the child has to be transformed to a jQuery object from a html element
+                          }); 
+                          li is the child of the ul delegate(parent)
+      selector caching -> saving the resoult of a jQuery selection to a variable to you don't have to search the document multiple times
+    morning lab
+      using $("").eq(0) instead of get returns a jQuery object instead of an html element which is better practice for chaining together jQuery
+        but just taking the .value off of the html element is acceptable too for this
+    afternoon lecture
+    afternoon lab
+      got a bit tripped up on the labwork, only read the solution link and didn't see the 3 other parts to the exercise
+
+    python3 -m http.server
+
+
+2-1 -> css-1 -> bootstrap
+  ready score 4 ->
+    morning lecture
+      things I didn't know
+        margin collapse
+    morning lab
+      understand that position: fixed positions itself off of the body container not the nearest relative / absolutly positioned element
+    afternoon lecture
+    afternoon lab
+      students didn't take the advice and read through the bootstrap docs before starting the exercise and most didn't know what a jumbotron is
+      maybe there could be some direction given on how to approach reading the documentation, looking through the docs without reading word by word
+      students got out of the habit of asking for a code review but seems especially useful to them on the bootstrap mock-1 exercise
+
+2week
+
+1-5 -> oo_programming -> this -> connect_for_refactor
+  ready score 2 -> might be a little difficult to field student questions / this is harder
+  things I didn't know
+    t1 = new Triangle();
+    t1 instanceof Triangle => true
+  morning lecture
+    The check for tie in the connect for game every => every would be a good advanced exercise after teaching the fundamentals of the build in methods
+  morning lab
+  afternoon lecture
+  afternoon lab
+    be prepared to explain this line of code // top.addEventListener('click', this.handleClick.bind(this));
+
+1-4 -> git -> connect four
+  ready score 2
+  things I didn't know
+    setting upstream -> $git push -u origin master // now you only have to git push to push to master
+    setting origin to a githup repo address so you don't have to type it each time, this is done automatically but you can set manually / change
+    $git remote -v
+    terminology -> object key value pair is same as object property
+  explore further
+    does js have multiple class inheritence (yes but not commonly -> see mixins)
+  morning lecture 9:15 -> 11:45
+    Most of the morning was lecture
+    I didn't have mucn to add
+  morning lab
+    There wasn't much time in lab but students started connect 4
+  afternoon lecture
+    Just a quick intro
+  afternoon lab
+    Most students were able finish or almost finish connect 4
+
+1-3 -> big-o -> prob-solving-freq-pointers
+  ready score 4
+  morning lecture
+    Some students where a little unclear why pushing to an array is O(1) and unshifting an array is O(n) in lab
+      You could think of it as lined paper
+    example site for displaying time complexity -> https://rithmschool.github.io/function-timer-demo/
+  morning lab
+    Students ran out of things to do, some looked at afternoon problems, some re-visited the simon game from yesterday
+  afternoon
+
+1-2 -> js-intermediate-1 -> js-intermediate-2
+  ready score 5
+  personal
+    Spent 1 hour in the morning going over calculator but didn't finish simon game
+  morning lab
+    not enough time to get to simon game in the morning
+  afternoon lecture
+    finished 3:30 was a little long
+  afternoon lab
+    most had time to do the intermediate-2 refactors and go back to the simon game
+    There is not a bug in the refacotor of default variables, 0 is a falsy value
+
+1-1 -> intro / pro-coding
+  ready score 4
+  personal
+    I should have gone over the exercises, I wasn't prepared enough for lab
+  morning lab
+    none
+  afternoon lab
+    seemed slow sometimes, maybe students wanted more challenge / lab time
+    most students got to triangles but most didn't spend much time on it
+
+1week
+
+
+
+r12.fb.rithmschool.com
+
+On the python For Loops slide
+The range(5) starts at 0 instead of 1
+
+
+
+
+****************************************************************************************
+Todo
+
+
+
+  organize bash_profile, vim_rc, move email messages out of version control before pushing
+    https://www.rithmschool.com/courses/terminal
+
+
+
+  mondays assignment
+
+  pull requests
+    make a pull request to fix problem 19? of the python problems for testing is None instead of nothing (if it hasn't been done already) 
+      there is another problem too
+
+    bootstrap-mocks -> https://github.com/rithmschool/curric/issues/136#event-2406198293
+
+    more robust testing (check assessment 4)
+
+    post notes to the meta folder in curric
+
+
+  message dale
+
+
+  book tahoe
+  Zenifits
+  check movie times
+  return books
+  make a shortcut to turn of screen instead of mouse in upper rith corner
+  Ask about next weeks terminal class (get notes)
+  mealpal
+  remove pb from h
+
+
+  done
+  log into web survey
+  organize bookmarks
+
+
+
+$ python3 -m doctest 01_product/product.py
+
+
+****************************************************************************************
+Pairs
+
+Today's pairs
+
+Faycel / Hekmat
+Marisa / Chantal
+Joanne / Mara
+Teddy / Emi 
+Gabe  / Andrew
+Stephanie
+
+Faycel/Teddy
+Hekmat/Andrew
+Gabe/Chantal
+Mara/Marisa
+Emi/Stephanie
+Joanne
+
+Mara / Marisa
+Hekmat / Emi 
+Gabe / Teddy
+Joanne / Andrew
+Chantal / Stephanie
+Faycel
+
+
+
+****************************************************************************************
+ideas
+
+  a simple web app that tracks students progress on labwork
+    current problem if a student doesn't finish labwork it is just forgot
+    everytime a student finishes labwork they could upload their work for visual progress on the course
+
+  a flask web app that accepts a serch term and returns fuzzy finder data
+    ajax?
+
+  *********************************************************
+  ideas for night class
+    template for manipulating the dom with vanila js
+    template for making calls to a public api
+    deploy to github pages
+
+
+***************************************************************************************
+book recomendations
+
+  how to design programs -> https://htdp.org/
+
+  —Brian Kernighan, The Elements of Programming Style
+
+
+****************************************************************************************************
+vscode
+
+install code simlink for vscode
+  command + shift + p
+  shell (click on install shell command)
+
+
+
+
+
+****************************************************************************************************
+static defaultProps = {}
+
+
+  import React, { Component } from 'react';
+  import './BlogList.css';
+
+
+  class BlogList extends Component {
+    static defaultProps = {
+      blogs: [
+        { 
+          title: 'blog1',
+          description: 'blog post one about a blog',
+          body: '',
+        },
+        { 
+          title: 'blog2',
+          description: 'blog post two about a blog',
+          body: '',
+        },
+      ]
+    };
+
+    render() {
+      console.log(this.props);
+      return (
+        <div className="BlogList">
+          {BlogList}
+        </div>
+      );
+    }
+  }
+
+  export default BlogList;
+
+
+
+
+
+
+

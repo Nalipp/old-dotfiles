@@ -66,33 +66,58 @@ set guioptions-=L
 
 "leader comands
 let mapleader = "\;"
+
+" notes
+
+" all notes
+nmap <leader>na :tabedit /Users/natelipp/code/dotfiles/notes <cr> 
+
+" technology notes
+nmap <leader>np :tabedit /Users/natelipp/code/dotfiles/notes/technologies/python <cr> 
+nmap <leader>nh :tabedit /Users/natelipp/code/dotfiles/notes/technologies/html <cr> 
+nmap <leader>nj :tabedit /Users/natelipp/code/dotfiles/notes/technologies/javascript <cr> 
+nmap <leader>nn :tabedit /Users/natelipp/code/dotfiles/notes/technologies/node <cr> 
+nmap <leader>ns :tabedit /Users/natelipp/code/dotfiles/notes/technologies/sql <cr> 
+nmap <leader>nm :tabedit /Users/natelipp/code/dotfiles/notes/technologies/mac <cr> 
+nmap <leader>nv :tabedit /Users/natelipp/code/dotfiles/notes/technologies/various <cr> 
+
+" general notes
+nmap <leader>nr :tabedit /Users/natelipp/code/dotfiles/notes/general/rithm <cr> 
+nmap <leader>ne :tabedit /Users/natelipp/code/dotfiles/notes/general/emails <cr> 
+
+" mvim
 nmap <leader>vr :tabedit ~/.vimrc<cr>
-nmap <leader>vs :so %<cr>
+nmap <leader>mn :tabedit /Users/natelipp/code/dotfiles/vim/notes <cr> 
+nmap <leader>ms :so %<cr>
+nmap <leader>mr :set number relativenumber!<cr>
+
+" general
 nmap <leader>s :w<cr>
 nmap <leader>h :noh<cr>
 nmap <leader>op :!open % -a Google\ Chrome<cr>
 nmap <leader>q :q<cr>
 nmap <leader>w :q<cr>
-" nmap <leader>nn :set nonu norelativenumber<cr>
-nmap <leader>yn :set number relativenumber!<cr>
-nmap <leader>l <Insert>console.log(<esc>
-nmap <leader>so :source ~/.vimrc <cr>
-nmap <space> <Insert> <esc>l
 nmap <leader>b :Explore <cr>
 
-"copy all lines in a file
-  "nmap <leader>co ggVG*y
-nmap <leader>ca :w !pbcopy<cr>
+"insert into mvim
+nmap <space> <Insert> <esc>l
+nmap <leader>pc <Insert>console.log(<esc>
+nmap <leader>pd <Insert>import pdb; pdb.set_trace()<esc>
 
 "split window with current parent directory file path 
 nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>vv :split <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 nmap <leader>t :tabe <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
 
-"shortcuts to files
-nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/notes <cr> 
-nmap <leader>fc :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/
-nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/skeletons <cr>
+"copy all lines in a file
+  "nmap <leader>co ggVG*y
+nmap <leader>ca :w !pbcopy<cr>
+
+
+"shortcuts to files (old)
+" nmap <leader>cs :tabedit /Users/natelipp/code/dotfiles/vim/notes <cr> 
+" nmap <leader>fc :tabedit /Users/natelipp/code/dotfiles/vim/cheatsheets/
+" nmap <leader>fs :tabedit /Users/natelipp/code/dotfiles/skeletons <cr>
 
 "can be used for testing 
 nmap <leader>T :w<cr>:call RunCurrentSpecFile()<cr>
@@ -112,7 +137,7 @@ nmap k gk
 " nmap <leader>f :vimgrep // **/*.js
 " :vimgrep -R --exclude-dir=node_modules /App/ .  
 " nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' .<left><left><left>
-nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' ../.<left><left><left><left><left><left>
+nmap <leader>ff :grep -R --exclude-dir=node_modules --exclude-dir=build --exclude=\yarn.lock --exclude=\package-lock.json* '' ./.<left><left><left><left><left>
 nmap <leader>oo :copen<cr> 
 "See a list of all files (after grep)"
 nmap <leader>n :cnext<cr>
